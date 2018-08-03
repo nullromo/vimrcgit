@@ -3,7 +3,9 @@
 1. clone this repository
 1. cd into this repository
 1. execute `run.sh`
+1. cd out
 1. delete this repository
+1. open vim and run `:PluginInstall`
 
 # Manual Setup
 
