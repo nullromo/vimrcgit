@@ -21,6 +21,7 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'majutsushi/tagbar'
 Plugin 'neomake/neomake'
 Plugin 'derekwyatt/vim-scala'
+Plugin 'wesQ3/vim-windowswap'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -296,3 +297,7 @@ let $BASH_ENV = "~/.bash_aliases"
 
 cnoremap rd redraw!
 " make it so that :rd redraws the window
+
+"WINDOW SWAP
+let g:windowswap_map_keys = 0 "prevent default bindings
+nnoremap <silent> <Leader>w :call WindowSwap#EasyWindowSwap()<CR>
