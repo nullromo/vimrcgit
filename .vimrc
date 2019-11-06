@@ -3,6 +3,8 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+" clear the status line
+set statusline=
 call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -19,8 +21,6 @@ Plugin 'henrik/vim-indexed-search'
 Plugin 'godlygeek/tabular'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'majutsushi/tagbar'
-Plugin 'neomake/neomake'
-Plugin 'derekwyatt/vim-scala'
 Plugin 'wesQ3/vim-windowswap'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -114,8 +114,6 @@ colorscheme kyle
 " set the color scheme
 set showmatch
 " highlights matching parentheses
-hi ColorColumn ctermbg=darkred
-" set the ruler color
 cnoremap ruler<CR> set colorcolumn=81<CR>
 cnoremap noruler<CR> set colorcolumn=<CR>
 " toggle the ruler on or off
@@ -280,11 +278,10 @@ nnoremap <S-Down> :set lines+=5<CR>
 set backspace=indent,eol,start
 " Make the backspace key work
 
-"Make the current line hilighted if in command mode
+" make the current line hilighted if in command mode
 au InsertEnter * set cul
 au InsertLeave * set nocul
 au BufRead * set nocul
-hi CursorLine cterm=NONE ctermbg=blue
 
 " Use <C-c> in visual mode to copy
 vnoremap <C-c> "+y
@@ -301,3 +298,7 @@ cnoremap rd redraw!
 "WINDOW SWAP
 let g:windowswap_map_keys = 0 "prevent default bindings
 nnoremap <silent> <Leader>w :call WindowSwap#EasyWindowSwap()<CR>
+
+au BufRead,BufNewFile * set nospell
+au BufRead,BufNewFile *.notes set spell
+" Set spell-checking on when editing a .notes file
