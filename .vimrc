@@ -302,3 +302,6 @@ nnoremap <silent> <Leader>w :call WindowSwap#EasyWindowSwap()<CR>
 au BufRead,BufNewFile * set nospell
 au BufRead,BufNewFile *.notes set spell
 " Set spell-checking on when editing a .notes file
+
+set wildmenu
+" Show filepath completion in status line
