@@ -14,7 +14,6 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'oblitum/rainbow'
 Plugin 'valloric/vim-operator-highlight'
 Plugin 'yggdroot/indentline'
 Plugin 'henrik/vim-indexed-search'
@@ -33,7 +32,6 @@ filetype plugin indent on    " required
 " Nerd Tree is a file explorer opened with the :nt command.
 " Fugitive is a git integration plugin that I use just to display the branch.
 " VIM Autoformat is an autoformatter that uses astyle. Use ggg to format.
-" Rainbow colors brackets. I use only 1 color.
 " Operator Highlight changes the colors of operators.
 " IndentLine shows whitespace indent characters
 
@@ -88,11 +86,6 @@ nnoremap fff {gq}{=}
 " use fff to auto-format a single function
 nnoremap ff<CR> {V}k
 " use ff (followed by c or u) to select current block (for commenting)
-"RAINBOW
-let g:rainbow_active = 1
-" enable the plugin
-let g:rainbow_ctermfgs = ['brown']
-" set which colors will be used
 "OPERATOR HIGHLIGHT
 let g:ophigh_color = 'darkgreen'
 " INDENTLINE
