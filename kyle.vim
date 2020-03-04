@@ -8,7 +8,7 @@ endif
 " assign this colorscheme a name
 let g:colors_name = "kyle"
 
-" all options from the syntax help document in the order they appear
+" options for vim in general (in the order they appear in the syntax help document)
 hi ColorColumn  ctermbg=darkred
 hi Conceal      cterm=NONE
 hi Cursor       cterm=NONE
@@ -31,13 +31,15 @@ hi MatchParen   ctermfg=white
 hi ModeMsg      cterm=bold
 hi MoreMsg      cterm=bold ctermfg=darkgreen
 hi NonText      cterm=bold ctermfg=darkred
+   hi link EndOfBuffer NonText
 hi Normal       cterm=NONE
 hi Pmenu        cterm=NONE ctermbg=darkmagenta
 hi PmenuSel     cterm=NONE
 hi PmenuSbar    cterm=NONE ctermfg=white
 hi PmenuThumb   cterm=NONE
 hi Question     cterm=bold ctermfg=darkgreen
-hi Search       cterm=reverse ctermfg=white ctermbg=darkred
+hi Search       ctermfg=white ctermbg=darkred
+   hi link QuickFixLine Search
 hi SpecialKey   cterm=bold ctermfg=darkred
 hi SpellBad     ctermfg=darkred ctermbg=gray
 hi SpellCap     cterm=NONE ctermbg=darkblue
@@ -51,48 +53,53 @@ hi TabLineSel   cterm=bold ctermfg=lightblue ctermbg=darkcyan
 hi Terminal     cterm=NONE
 hi Title        cterm=bold ctermfg=darkgreen
 hi Visual       cterm=reverse
+   hi link IncSearch Visual
 hi VisualNOS    cterm=NONE
 hi WarningMsg   term=standout cterm=bold ctermfg=darkred
 hi WildMenu     cterm=NONE
 
-" not sure where these are defined
+" code-specific colorings for syntax groups
 hi Comment      term=bold cterm=bold ctermfg=darkgray
 hi Constant     term=underline cterm=bold ctermfg=darkcyan
+   hi link String Constant
+   hi link Character Constant
+   hi link Number Constant
+      hi link Float Number
+   hi link Boolean Constant
 hi Error        term=reverse ctermfg=darkcyan ctermbg=black
-hi Identifier   term=underline ctermfg=brown
+hi Identifier   ctermfg=brown
+   hi link Function Identifier
 hi Ignore       ctermfg=black ctermbg=black
 hi PreProc      term=underline ctermfg=darkmagenta
+   hi link Include PreProc
+   hi link Define PreProc
+   hi link Macro PreProc
+   hi link PreCondit PreProc
 hi Special      term=bold cterm=bold ctermfg=brown
+   hi link Tag Special
+   hi link SpecialChar Special
+   hi link Delimiter Special
+   hi link SpecialComment Special
+   hi link Debug Special
 hi Statement    term=bold cterm=bold ctermfg=yellow
+   hi link Conditional Statement
+   hi link Repeat Statement
+   hi link Label Statement
+   hi link Operator Statement
+   hi link Keyword Statement
+   hi link Exception Statement
 hi Type         term=underline cterm=bold ctermfg=lightgreen
+   hi link StorageClass Type
+   hi link Structure Type
+   hi link Typedef Type
 hi Todo         term=standout ctermfg=black ctermbg=darkcyan
 hi Underlined   term=underline cterm=bold,underline ctermfg=lightblue
 
-" links
-hi link EndOfBuffer NonText
-hi link IncSearch Visual
-hi link QuickFixLine Search
-hi link String Constant
-hi link Character Constant
-hi link Number Constant
-hi link Boolean Constant
-hi link Float Number
-hi link Function Identifier
-hi link Conditional Statement
-hi link Repeat Statement
-hi link Label Statement
-hi link Operator Statement
-hi link Keyword Statement
-hi link Exception Statement
-hi link Include PreProc
-hi link Define PreProc
-hi link Macro PreProc
-hi link PreCondit PreProc
-hi link StorageClass Type
-hi link Structure Type
-hi link Typedef Type
-hi link Tag Special
-hi link SpecialChar Special
-hi link Delimiter Special
-hi link SpecialComment Special
-hi link Debug Special
+" python-specific colorings
+hi pythonFunction        cterm=NONE ctermfg=green
+hi pythonClassVar        cterm=NONE ctermfg=darkmagenta
+hi pythonBuiltinFunc     cterm=NONE ctermfg=brown
+hi pythonString          cterm=NONE ctermfg=darkgray
+hi pythonFString         cterm=NONE ctermfg=darkgray
+hi pythonStrInterpRegion cterm=NONE ctermfg=darkcyan
+hi link pythonFunctionCall pythonFunction
