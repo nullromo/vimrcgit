@@ -71,7 +71,7 @@ let NERDTreeShowHidden=1
 " makes the NREDTree show files and hidden files
 let NERDTreeShowLineNumbers=1
 " makes the NERDTree show line numbers inside it
-cnoremap nt<CR> NERDTree<CR>
+:command! Nt :NERDTree
 " using :nt opens the tree
 "LOOKUPFILE
 cnoremap ff<CR> LookupFile<CR>
@@ -113,8 +113,8 @@ colorscheme kyle
 " set the color scheme
 set showmatch
 " highlights matching parentheses
-cnoremap ruler<CR> set colorcolumn=81<CR>
-cnoremap noruler<CR> set colorcolumn=<CR>
+:command! Ruler set colorcolumn=81
+:command! Noruler set colorcolumn=
 " toggle the ruler on or off
 
 
@@ -323,3 +323,7 @@ endfunction
 
 nnoremap <C-U> :call ScrollQuarter('up')<CR>
 nnoremap <C-D> :call ScrollQuarter('down')<CR>
+
+:command! WhatIsThis :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+
+:command! ColorMap :so $VIMRUNTIME/syntax/hitest.vim
