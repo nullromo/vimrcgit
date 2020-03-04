@@ -98,6 +98,7 @@ let g:ophigh_color = 'darkgreen'
 " INDENTLINE
 let g:indentLine_color_term = 'brown'
 let g:indentLine_char = '|'
+let g:indentLine_fileTypeExclude = ['json']
 cnoremap lines<CR> IndentLinesToggle<CR>
 " INDEXED SEARCH
 let g:indexed_search_colors = 0
@@ -305,3 +306,22 @@ au BufRead,BufNewFile *.notes set spell
 
 set wildmenu
 " Show filepath completion in status line
+
+function! ScrollQuarter(move)
+    let height=winheight(0)
+    if a:move == 'up'
+        let scrollKey="\<C-Y>"
+        let motionKey="k"
+    elseif a:move == 'down'
+        let scrollKey="\<C-E>"
+        let motionKey="j"
+    else
+        let scrollKey=""
+        let motionKey=""
+    endif
+    execute 'normal! ' . height/4 . scrollKey
+    execute 'normal! ' . height/4 . motionKey
+endfunction
+
+nnoremap <C-U> :call ScrollQuarter('up')<CR>
+nnoremap <C-D> :call ScrollQuarter('down')<CR>
