@@ -73,8 +73,6 @@ let NERDTreeShowLineNumbers=1
 " makes the NERDTree show line numbers inside it
 :command! Nt :NERDTree
 " using :nt opens the tree
-"LOOKUPFILE
-cnoremap ff<CR> LookupFile<CR>
 "FUGITIVE
 set statusline+=%{fugitive#statusline()}\ 
 " just using this plugin to show the current branch on the statusline
