@@ -21,6 +21,8 @@ Plugin 'godlygeek/tabular'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'majutsushi/tagbar'
 Plugin 'wesQ3/vim-windowswap'
+Plugin 'MaxMEllon/vim-jsx-pretty'
+Plugin 'vim-python/python-syntax'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -44,11 +46,12 @@ let g:syntastic_cpp_compiler_options = "-std=c++11"
 let g:syntastic_cpp_compiler_options = "-Isnappy/build"
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_java_javac_classpath = 'C:\Users\Kyle\cs61b\repo\cs61b-software\'
 let g:syntastic_quiet_messages = {
     \ "regex": ['Cucumber::Undefined', 'ambiguous first argument'] }
+let g:syntastic_javascript_checkers = ['eslint']
 
 inoremap {<CR> {}<ESC>i<CR><CR><ESC>kcc
 au BufRead *.s let b:syntastic_mode="passive"
@@ -99,10 +102,12 @@ let g:indexed_search_colors = 0
 cnoremap tt<CR> TagbarToggle<CR>
 " NEOMAKE
 au BufWritePost *.scala Neomake! sbt
+" PYTHON-SYNTAX
+let g:python_highlight_all = 1
 
 
 " COLORS
-syntax enable
+syntax on
 " turn syntax coloring on
 colorscheme kyle
 " set the color scheme
@@ -272,7 +277,7 @@ nnoremap <S-Down> :set lines+=5<CR>
 set backspace=indent,eol,start
 " Make the backspace key work
 
-" make the current line hilighted if in command mode
+" make the current line hilighted if in insert mode
 au InsertEnter * set cul
 au InsertLeave * set nocul
 au BufRead * set nocul
