@@ -52,6 +52,7 @@ let g:syntastic_java_javac_classpath = 'C:\Users\Kyle\cs61b\repo\cs61b-software\
 let g:syntastic_quiet_messages = {
     \ "regex": ['Cucumber::Undefined', 'ambiguous first argument'] }
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = 'eslint_d'
 
 inoremap {<CR> {}<ESC>i<CR><CR><ESC>kcc
 au BufRead *.s let b:syntastic_mode="passive"
