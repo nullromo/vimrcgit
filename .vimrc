@@ -106,8 +106,8 @@ au BufWritePost *.scala Neomake! sbt
 let g:python_highlight_all = 1
 " TABOO
 set sessionoptions+=tabpages,globals
-let g:taboo_tab_format = '|%U %f%m'
-let g:taboo_renamed_tab_format = '|%U %l%m'
+let g:taboo_tab_format = '├%U╯%f%m '
+let g:taboo_renamed_tab_format = '├%U╯%l%m '
 
 " COLORS
 syntax on
