@@ -23,6 +23,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'MaxMEllon/vim-jsx-pretty'
 Plugin 'vim-python/python-syntax'
+Plugin 'gcmt/taboo.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -103,7 +104,10 @@ cnoremap tt<CR> TagbarToggle<CR>
 au BufWritePost *.scala Neomake! sbt
 " PYTHON-SYNTAX
 let g:python_highlight_all = 1
-
+" TABOO
+set sessionoptions+=tabpages,globals
+let g:taboo_tab_format = '|%U %f%m'
+let g:taboo_renamed_tab_format = '|%U %l%m'
 
 " COLORS
 syntax on
