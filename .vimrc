@@ -330,3 +330,8 @@ nnoremap <C-D> :call ScrollQuarter('down')<CR>
 :command! WhatIsThis :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 
 :command! ColorMap :so $VIMRUNTIME/syntax/hitest.vim
+
+" :checktime is the thing that checks for file updates that happend outside of vim
+" run automatically when a buffer is entered or the cursor doesn't move for a while
+au BufEnter * :checktime
+au CursorHold,CursorHoldI * checktime
