@@ -1,3 +1,6 @@
+" remove all autocommands
+autocmd!
+
 " Vundle Stuff
 set nocompatible              " be iMproved, required
 filetype off                  " required
