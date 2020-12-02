@@ -1,200 +1,286 @@
-" remove all autocommands
+" Remove all autocommands to prevent duplicates on vimrc reload
 autocmd!
 
-" Vundle Stuff
-set nocompatible              " be iMproved, required
-filetype off                  " required
-" set the runtime path to include Vundle and initialize
+" Required for Vundle
+set nocompatible
+filetype off
+
+" Set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-" clear the status line
-set statusline=
 call vundle#begin()
-" let Vundle manage Vundle, required
+" Plugin manager
 Plugin 'VundleVim/Vundle.vim'
+" Use tab for autocomplete
 Plugin 'ervandew/supertab'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
+" Syntax checker
+Plugin 'vim-syntastic/syntastic'
+" Visual mode comment/uncomment
+Plugin 'preservim/nerdcommenter'
+" File explorer
+Plugin 'preservim/nerdtree'
+" Display git branch on statusline
 Plugin 'tpope/vim-fugitive'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'valloric/vim-operator-highlight'
+" Show vertical lines for indented blocks
 Plugin 'yggdroot/indentline'
-Plugin 'henrik/vim-indexed-search'
-Plugin 'godlygeek/tabular'
+" Show 'match X of Y' when searching
+"Plugin 'henrik/vim-indexed-search'          " let g:indexed_search_colors = 1
+" Highlight trailing whitespace
 Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'majutsushi/tagbar'
+" Allows swapping windows with <Leader>w
 Plugin 'wesQ3/vim-windowswap'
-Plugin 'MaxMEllon/vim-jsx-pretty'
+" Better syntax highlighting for python
 Plugin 'vim-python/python-syntax'
+" Makes the tabline pretty
 Plugin 'gcmt/taboo.vim'
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
 
-" PLUGINS
-" Supertab makes the tab key for autocomplete.
-" Syntastic is a syntax checker. It runs on save.
-" Nerd Commenter allows quick - and un-commenting. Use vn and vu.
-" Nerd Tree is a file explorer opened with the :nt command.
-" Fugitive is a git integration plugin that I use just to display the branch.
-" VIM Autoformat is an autoformatter that uses astyle. Use ggg to format.
-" Operator Highlight changes the colors of operators.
-" IndentLine shows whitespace indent characters
 
-" SUPERTAB (no settings)
-" SYNTASTIC (default reccommended configuration)
-set statusline+=%#warningmsg#
-set statusline+=%*
+
+
+"Plugin 'majutsushi/tagbar' " cnoremap tt<CR> TagbarToggle<CR>
+"Plugin 'MaxMEllon/vim-jsx-pretty'
+"Plugin 'valloric/vim-operator-highlight' "OPERATOR HIGHLIGHT let g:ophigh_color = 'darkgreen'
+"Plugin 'pangloss/vim-javascript'
+"Plugin 'leafgarland/typescript-vim'
+"Plugin 'peitalin/vim-jsx-typescript'
+call vundle#end()
+filetype plugin indent on
+
+" =========
+" SYNTASTIC
+" =========
+" Set C++ compiler and options
 let g:syntastic_cpp_compiler = "g++"
 let g:syntastic_cpp_compiler_options = "-std=c++11"
-let g:syntastic_cpp_compiler_options = "-Isnappy/build"
+" Always put errors from syntastic into the location list
 let g:syntastic_always_populate_loc_list = 1
+" Automatically open/close the location list
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
+" Check syntax when file is opened
+let g:syntastic_check_on_open = 1
+" Don't check syntax when closing a file (wq, x, or ZZ)
 let g:syntastic_check_on_wq = 0
-let g:syntastic_java_javac_classpath = 'C:\Users\Kyle\cs61b\repo\cs61b-software\'
-let g:syntastic_quiet_messages = {
-    \ "regex": ['Cucumber::Undefined', 'ambiguous first argument'] }
+" Set syntastic JS checker to eslint and use eslint daemon
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'
 
-inoremap {<CR> {}<ESC>i<CR><CR><ESC>kcc
-au BufRead *.s let b:syntastic_mode="passive"
+" ==============
+" NERD COMMENTER
+" ==============
+" Use c/u to comment/uncomment the selection in visual mode
+vnoremap c :call NERDComment('n', 'Comment')<CR>
+vnoremap u :call NERDComment('n', 'Uncomment')<CR>
 
-"NERD COMMENTER
-vmap c ,cl
-" use c to comment out the current line in visual mode
-vmap u ,cu
-" use u to uncomment the current line in visual mode
-"NERDTree
-"let NERDTreeQuitOnOpen=1
-" makes the NERDTree close when a file is opened
-let NERDTreeShowBookmarks=1
-" turns on the display of bookmarks
+" ========
+" NERDTREE
+" ========
+" Close NERDTree when a file is opened
+let NERDTreeQuitOnOpen=1
+" Do not show bookmarks
+let NERDTreeShowBookmarks=0
+" Show files and hidden files in NREDTree
 let NERDTreeShowFiles=1
 let NERDTreeShowHidden=1
-" makes the NREDTree show files and hidden files
+" Show line numbers in NERDTree
 let NERDTreeShowLineNumbers=1
-" makes the NERDTree show line numbers inside it
-:command! Nt :NERDTree
-" using :nt opens the tree
-"FUGITIVE
-set statusline+=%{fugitive#statusline()}\ 
-" just using this plugin to show the current branch on the statusline
-"VIM-AUTOFORMAT
-let g:formatterpath = ['C:\Program Files (x86)\vim\vim74\bundle']
-autocmd BufNewFile,BufRead *.java set formatprg=astyle\ -A1s4SM80m0pHyj
-" sets the auto-formatter to astyle with a lot of options. See
-" http://astyle.sourceforge.net/astyle.html for the details of the options.
-nnoremap ggg gggqG<C-o><C-o>
-" use ggg to auto-format.
-nnoremap fff {gq}{=}
-" use fff to auto-format a single function
-nnoremap ff<CR> {V}k
-" use ff (followed by c or u) to select current block (for commenting)
-"OPERATOR HIGHLIGHT
-let g:ophigh_color = 'darkgreen'
+
+" ==========
 " INDENTLINE
+" ==========
+" Set the color
 let g:indentLine_color_term = 'brown'
+" Set the character
 let g:indentLine_char = '|'
-let g:indentLine_fileTypeExclude = ['json']
-cnoremap lines<CR> IndentLinesToggle<CR>
-" INDEXED SEARCH
-let g:indexed_search_colors = 0
-" TAGBAR
-cnoremap tt<CR> TagbarToggle<CR>
-" NEOMAKE
-au BufWritePost *.scala Neomake! sbt
+" Do not use in json or help files
+"   NOTE: since this plugin uses vim's conceal feature, and that messes up
+"   JSON quotes, it doens't really work in json files
+let g:indentLine_fileTypeExclude = ['json', 'help']
+
+" ===========
+" WINDOW SWAP
+" ===========
+" Prevent default bindings
+let g:windowswap_map_keys = 0
+" Use ,w to 'yank' and 'paste' windows
+nnoremap <silent> <Leader>w :call WindowSwap#EasyWindowSwap()<CR>
+
+" =============
 " PYTHON-SYNTAX
+" =============
+" Turn on all highlighting
 let g:python_highlight_all = 1
+
+" =====
 " TABOO
+" =====
+" Allows tab names to be saved in the session file
 set sessionoptions+=tabpages,globals
+" Set the tab format for default tabs
 let g:taboo_tab_format = '├%N%U╯%f %m'
+" Set the tab format for renamed tabs
 let g:taboo_renamed_tab_format = '├%N%U╯%l %m'
 
-" COLORS
+" ==============
+" Autoformatting
+" ==============
+" Set the auto-formatter for java
+"   NOTE: See http://astyle.sourceforge.net/astyle.html for details
+autocmd BufNewFile,BufRead *.java set formatprg=astyle\ -A1s4SM80m0pHyj
+" Use ggg to auto-format the whole file
+nnoremap ggg gggqG<C-o><C-o>
+" Use fff to auto-format a single function
+nnoremap fff {gq}{=}
+" Autoformat javascript files after they are saved
+autocmd BufWritePost *.js,*.jsx,*.ts,*.tsx !prettier <afile> --write
+
+" ==========
+" Statusline
+" ==========
+" Custom statusline generation function
+function! MakeStatusLine() abort
+    " True if the window is selected
+    let focused = g:statusline_winid == win_getid(winnr())
+
+    " Reset the statusline
+    let statusline = ''
+
+    " Color helper strings
+    let colorNC = (focused ? '' : 'NC')
+    let fileNameColor = '%#StatusLineFileName' . colorNC . '#'
+    let metaColor = '%#StatusLineMeta' . colorNC . '#'
+    let numberColor = '%#StatusLineNumber' . colorNC . '#'
+    let percentColor = '%#StatusLinePercent' . colorNC . '#'
+    let branchNameColor = '%#StatusLineGitBranchName' . colorNC . '#'
+
+    " Add the buffer number
+    let statusline .= metaColor . '%n%*'
+    " Add the current git branch name
+    "   NOTE: there is an issue here. The statusline is updated both when entering and exiting a buffer. This means that the 
+    "   call to fugitive#head() will set both the switched-from and switched-to buffer's status lines to have the branch of
+    "   the switched-to buffer.
+    let notInGit = len(fugitive#head()) == 0
+    let statusline .= ' ' . (notInGit ? '' : (branchNameColor . '%{fugitive#head()}%* '))
+    " Add the folder path
+    let statusline .= "%{expand('%:~:h')}/"
+    " Add file name
+    let statusline .= fileNameColor . '%t%*'
+    " Add modified flag
+    let statusline .= ' %m'
+    " Add spacer
+    let statusline .= '%='
+    " Add location within file
+    let statusline .= '%(line ' . numberColor . '%l%* of ' . numberColor . '%L%*'
+    let statusline .= ' [' . percentColor . '%p%%%*]'
+    let statusline .= ' col ' . numberColor . '%c%*%)'
+    " Add vim file type
+    let statusline .= ' ' . metaColor . '%y'
+
+    return statusline
+endfunction
+" Set the statusline to the output of the custom function
+set statusline=%!MakeStatusLine()
+" Make sure there is always a statusline at the very bottom window
+set laststatus=2
+
+" ======
+" Colors
+" ======
+" Enable syntax coloring
 syntax on
-" turn syntax coloring on
+" Set the color scheme
 colorscheme kyle
-" set the color scheme
+" Highlights matching parentheses, brackets, etc. on hover
 set showmatch
-" highlights matching parentheses
-:command! Ruler set colorcolumn=81
-:command! Noruler set colorcolumn=
-" toggle the ruler on or off
+" Highlight the current line in insert mode
+autocmd InsertEnter * set cul
+autocmd InsertLeave * set nocul
+autocmd BufRead * set nocul
+" Turn spell-checking on when editing a .notes file
+autocmd BufRead,BufNewFile * set nospell
+autocmd BufRead,BufNewFile *.notes set spell
+" Always show all characters in markdown files
+autocmd BufEnter,BufRead,BufNewFile *.md set conceallevel=0
 
-
-" TYPING
+" ======
+" Typing
+" ======
+" Enable line numbering
 set nu
-" line numbering
+" Set length of a tab
 set tabstop=4
-au BufNewFile,BufRead *.rb set tabstop=2
-" length of a tab
+" Enable auto indent after return
 set autoindent
-" indent after return
+" Enable smarter auto indenting
 set smartindent
-" not sure if this does anything
+" Use spaces instead of tabs
 set expandtab
-" use spaces instead of tabs
+" When using >> to indent, use indent size 4
 set shiftwidth=4
-au BufNewFile,BufRead *.rb set shiftwidth=2
-" when using >> to indent, use indent size 4
+" Allow backspacing over everything in insert mode
 set backspace=2
-" allow backspacing over everything in insert mode
+" Keep 4 lines above/below cursor
+set scrolloff=4
+" Make the backspace key work
+set backspace=indent,eol,start
+" Auto-insert } when typing {<CR> in insert mode
+inoremap {<CR> {<CR><CR>}<ESC>kcc
 
-
-" MOUSE
+" =====
+" Mouse
+" =====
+" Enable mouse in all modes
 set mouse=a
-" mouse enabled in all modes
+" Hide mouse when typing
 set mousehide
-" hide mouse when typing
+" Not sure this matters, but it should make the mouse work, I think
 set ttymouse=xterm2
 
-
-" SEARCHING
-set ic
-" ignore case in searches
-set hls
-" highlight searches
-set is
-" incremental search
+" =========
+" Searching
+" =========
+" Ignore case in searches
+set ignorecase
+" Highlight searches
+set hlsearch
+" Show search matches as the search is being typed
+set incsearch
+" Use clc in command mode to clear the search
 cnoremap clc<CR> let @/ = ""<CR>
-" use clc in command mode to clear the search
+" Use // in visual mode to search for what is highlighted
 vnoremap // y/<C-R>"<CR>
-" type // in visual mode to search for what is hilighted
+" Make commands apply to all lines (global) by default
+set gdefault
+" Show filepath completion in status line
+set wildmenu
 
+" ============
+" GUI Elements
+" ============
+" Show mode in bottom-left corner
+set showmode
+" Show partial command in bottom right corner
+set showcmd
+" Toggle the ruler on or off
+:command! Ruler set colorcolumn=81
+:command! Noruler set colorcolumn=
+" Resize the window (when not maximized)
+nnoremap <S-Left> :set columns-=10<CR>
+nnoremap <S-Right> :set columns+=10<CR>
+nnoremap <S-Up> :set lines-=5<CR>
+nnoremap <S-Down> :set lines+=5<CR>
 
-" SIZING
-" set lines=77 columns=186
-" window size
-set scrolloff=5
-" keep 5 lines above/below cursor
-set laststatus=2
-"set lazyredraw
-" redraw only when needed
+" ===========
+" Performance
+" ===========
+" Helps the screen redraw
 set ttyfast
-" redraws even faster
 
-
-" KEY MAPPING
-
-au BufNewFile,BufRead *.java cnoremap ww<CR> w<CR>:!cls && javac -g %<CR>
-" automatically compile java files on :w
-au BufNewFile,BufRead *.java cnoremap java<CR> !cls && java -ea %:r<CR>
-"run current java file with java command
-
-" use jk quickly instead of escape
+" ============
+" Key Mappings
+" ============
+" Use jk to exit insert mode
 inoremap jk <ESC>
-
-" use qw for autocomplete
-inoremap qw <C-N>
-
-" type sout<TAB> for printlines
-au BufNewFile,BufRead *.java inoremap sout<TAB> System.out.println();<ESC>hi
-au BufNewFile,BufRead *.c inoremap sout<TAB> fprintf(stderr, "\n");<ESC>hhhhi
-au BufNewFile,BufRead *.cc inoremap sout<TAB> fprintf(stderr, "\n");<ESC>hhhhi
-
-"move between windows faster
+" Move between windows faster
+"   NOTE: moving left from insert mode doesn't work because of a bug
 nnoremap <C-k> <C-w>k
 nnoremap <C-j> <C-w>j
 nnoremap <C-h> <C-w>h
@@ -203,138 +289,93 @@ inoremap <C-k> <ESC><C-w>k
 inoremap <C-j> <ESC><C-w>j
 "inoremap <C-h> <ESC><C-w>h
 inoremap <C-l> <ESC><C-w>l
-
-" get to ex mode faster
+" Use ; for command mode
 nnoremap ; :
-
-" move along individual rows instead of lines in case of very long lines
+" Move along rows instead of lines (for lines that wrap around)
 nnoremap j gj
 nnoremap k gk
 nnoremap 0 g0
 nnoremap ^ g^
 nnoremap $ g$
-
-" use gc to find all usages of a word (use to find call of a method or
-" useages of a varable)
-nnoremap gc g*
-
-" centers the screen
+" Use space to center the screen
 nnoremap <space> zz
+" Center the screen after searching
 nnoremap n nzz
 nnoremap N Nzz
-
+" Use , as the leader key
 let mapleader=","
-" sets the leader key to be the comma
+" Use , + direction to resize windows
 nnoremap <Leader>h :vertical resize +3<CR>
 nnoremap <Leader>j :resize +3<CR>
 nnoremap <Leader>k :resize -3<CR>
 nnoremap <Leader>l :vertical resize -3<CR>
-
-" make it easier to see loaded scripts
+" Select current block from visual mode
+vnoremap i} <ESC>{jV}k
+vnoremap i{ <ESC>{jV}k
+" Add an alias for the scriptnames command
 cnoremap scripts<CR> scriptnames<CR>
-
-" allow for accidental capital letters when saving or quitting
+" Allow for accidental capital letters when saving or quitting
 cnoremap W<CR> w<CR>
 cnoremap X<CR> x<CR>
 cnoremap Q<CR> q<CR>
 cnoremap W<CR> w<CR>
-
-
-" FILES
-set nocompatible
-" do not be compatible with vi
-filetype plugin indent on
-" not sure
-set noswapfile
-" do not create swap files
-set nobackup
-" do not create backup files
-set encoding=utf-8
-" set encoding type
-set statusline+=%f
-" display file name in status line
-set statusline+=\ \ \ \ line\ %l\ of\ %L\ [%p%%]
-" displa location in file
-" au VimEnter * :split | :vsplit | :vsplit | :wincmd j | :vsplit | vsplit
-" start with 5 extra buffers open
-" au VimEnter * :start
-" start in insert mode
-cnoremap ss6<CR> :split<CR>:vsplit<CR>:vsplit<CR><C-w>j:vsplit<CR>:vsplit<CR><C-w>k
-" use ss6 to open 5 extra buffers
-cnoremap ss3<CR> :vsplit<CR>:vsplit<CR>
-" use ss3 to open 2 extra buffers
-cnoremap ss23<CR> :split<CR>:vsplit<CR><C-w>j:vsplit<CR>:vsplit<CR><C-w>k
-" use ss23 to open 4 extra buffers in a 2-3 formation
-cnoremap ss32<CR> :split<CR>:vsplit<CR>:vsplit<CR><C-w>j:vsplit<CR><C-w>k
-" use ss32 to open 4 extra buffers in a 3-2 formation
-cnoremap ss4<CR> :split<CR>:vsplit<CR><C-w>j:vsplit<CR><C-w>k
-" use ss4 to open 3 extra buffers
-set gdefault
-" makes the %s replace feature go through the whole file
-cnoremap small<CR> :set columns=100<CR>:set lines=50<CR>
-" make the editor small
-cnoremap big<CR> :set columns=286<CR>:set lines=77<CR>
-" make the editor big
-nnoremap <S-Left> :set columns-=10<CR>
-nnoremap <S-Right> :set columns+=10<CR>
-nnoremap <S-Up> :set lines-=5<CR>
-nnoremap <S-Down> :set lines+=5<CR>
-" resize the window
-set backspace=indent,eol,start
-" Make the backspace key work
-
-" make the current line hilighted if in insert mode
-au InsertEnter * set cul
-au InsertLeave * set nocul
-au BufRead * set nocul
-
-" Use <C-c> in visual mode to copy
-vnoremap <C-c> "+y
-inoremap <C-v> <ESC>"+p
-
-" Make bash aliases work with external commands
-"set shellcmdflag=-ic
-"set shell=bash\ --login
-let $BASH_ENV = "~/.bash_aliases"
-
-cnoremap rd redraw!
-" make it so that :rd redraws the window
-
-"WINDOW SWAP
-let g:windowswap_map_keys = 0 "prevent default bindings
-nnoremap <silent> <Leader>w :call WindowSwap#EasyWindowSwap()<CR>
-
-au BufRead,BufNewFile * set nospell
-au BufRead,BufNewFile *.notes set spell
-" Set spell-checking on when editing a .notes file
-
-set wildmenu
-" Show filepath completion in status line
-
+" Custom function for scrolling 1/4 of the screen
 function! ScrollQuarter(move)
-    let height=winheight(0)
+    let height = winheight(0)
     if a:move == 'up'
-        let scrollKey="\<C-Y>"
-        let motionKey="k"
+        let scrollKey = "\<C-Y>"
+        let motionKey = "k"
     elseif a:move == 'down'
-        let scrollKey="\<C-E>"
-        let motionKey="j"
+        let scrollKey = "\<C-E>"
+        let motionKey = "j"
     else
-        let scrollKey=""
-        let motionKey=""
+        let scrollKey = ""
+        let motionKey = ""
     endif
     execute 'normal! ' . height/4 . scrollKey
     execute 'normal! ' . height/4 . motionKey
 endfunction
-
+" Remap <C-u> and <C-d> to move using the custom function
 nnoremap <C-U> :call ScrollQuarter('up')<CR>
 nnoremap <C-D> :call ScrollQuarter('down')<CR>
+" Use :rd to redraw the window
+cnoremap rd redraw!
+" Printline shortcuts
+autocmd FileType java inoremap <buffer> sout<TAB> System.out.println("");<ESC>hhi
+autocmd FileType c    inoremap <buffer> sout<TAB> fprintf(stderr, "\n");<ESC>hhhhi
+autocmd FileType cpp  inoremap <buffer> sout<TAB> fprintf(stderr, "\n");<ESC>hhhhi
+autocmd FileType javascript inoremap <buffer> clog<TAB> console.log('');<ESC>hhi
+" use qw for autocomplete
+inoremap qw <C-N>
 
+" =====
+" Files
+" =====
+" Do not create swap files
+set noswapfile
+" Do not create backup files
+set nobackup
+" Set encoding type
+set encoding=utf-8
+
+" =====================
+" General Configuration
+" =====================
+" Make bash aliases work with external commands
+let $BASH_ENV = "~/.bash_aliases"
+" Check for external file updates on buffer enter or idle cursor
+autocmd BufEnter * :checktime
+autocmd CursorHold,CursorHoldI * checktime
+
+" ========
+" Commands
+" ========
+" Show what kind of syntactic object the cursor is over
 :command! WhatIsThis :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-
+" Open a new split showing all existing color definitions
 :command! ColorMap :so $VIMRUNTIME/syntax/hitest.vim
+" Save and compile java files
+command! JavaCompile w | !clear && javac -g %
+" Run current java file
+command! Java !clear && java -ea %:r
 
-" :checktime is the thing that checks for file updates that happend outside of vim
-" run automatically when a buffer is entered or the cursor doesn't move for a while
-au BufEnter * :checktime
-au CursorHold,CursorHoldI * checktime

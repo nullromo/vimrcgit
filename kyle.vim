@@ -103,3 +103,15 @@ hi pythonString          cterm=NONE ctermfg=darkgray
 hi pythonFString         cterm=NONE ctermfg=darkgray
 hi pythonStrInterpRegion cterm=NONE ctermfg=darkcyan
 hi link pythonFunctionCall pythonFunction
+
+" Colorings for the custom status line
+hi StatusLineGitBranchName ctermfg=lightgreen ctermbg=darkcyan
+hi StatusLineGitBranchNameNC ctermfg=lightgreen ctermbg=darkgray
+hi StatusLineFileName ctermfg=white ctermbg=darkcyan
+hi StatusLineFileNameNC ctermfg=white ctermbg=darkgray
+hi StatusLineNumber ctermfg=green ctermbg=darkcyan
+hi StatusLineNumberNC ctermfg=green ctermbg=darkgray
+hi StatusLinePercent ctermfg=yellow ctermbg=darkcyan
+hi StatusLinePercentNC ctermfg=yellow ctermbg=darkgray
+hi StatusLineMeta ctermfg=black ctermbg=darkcyan
+hi StatusLineMetaNC ctermfg=black ctermbg=darkgray
