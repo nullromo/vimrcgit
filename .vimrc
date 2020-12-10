@@ -126,6 +126,47 @@ let g:taboo_tab_format = '├%N%U╯%f %m'
 " Set the tab format for renamed tabs
 let g:taboo_renamed_tab_format = '├%N%U╯%l %m'
 
+" ===
+" COC
+" ===
+" Install CoC extensions when the service starts
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-python', 'coc-git', 'coc-prettier']
+" Use <tab> to trigger completion/navigate to the next item
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1] =~ '\s'
+endfunction
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<Tab>" : coc#refresh()
+" Navigate the completion list with control + j/k in addition to control + n/p
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+" Move between errors
+nmap <silent> [[ <Plug>(coc-diagnostic-prev)
+nmap <silent> ]] <Plug>(coc-diagnostic-next)
+" Use :Check to get errors current buffer in location list
+command! Check :CocDiagnostics()<CR>
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Use K for hover-style documentation/help
+function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    elseif (coc#rpc#ready())
+        call CocActionAsync('doHover')
+    else
+        execute '!' . &keywordprg . " " .
+        expand('<cword>')
+    endif
+endfunction
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Add command for organizing imports
+command! -nargs=0 OrganizeImports :call CocAction('runCommand', 'editor.action.organizeImport')
+" Shortcut for perttier to format javascript/css
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 " ==============
 " Autoformatting
 " ==============
@@ -137,7 +178,8 @@ nnoremap ggg gggqG<C-o><C-o>
 " Use fff to auto-format a single function
 nnoremap fff {gq}{=}
 " Autoformat javascript files after they are saved
-autocmd BufWritePost *.js,*.jsx,*.ts,*.tsx !prettier <afile> --write
+"   NOTE: Now handled by CoC instead. See CocConfig
+"autocmd BufWritePost *.js,*.jsx,*.ts,*.tsx !prettier <afile> --write
 
 " ==========
 " Statusline
