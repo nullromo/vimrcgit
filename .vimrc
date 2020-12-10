@@ -337,10 +337,10 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-j> <C-w>j
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
-inoremap <C-k> <ESC><C-w>k
-inoremap <C-j> <ESC><C-w>j
+"inoremap <C-k> <ESC><C-w>k
+"inoremap <C-j> <ESC><C-w>j
 "inoremap <C-h> <ESC><C-w>h
-inoremap <C-l> <ESC><C-w>l
+"inoremap <C-l> <ESC><C-w>l
 " Use ; for command mode
 nnoremap ; :
 " Move along rows instead of lines (for lines that wrap around)
@@ -352,10 +352,10 @@ nnoremap $ g$
 " Use space to center the screen
 nnoremap <space> zz
 " Center the screen after searching
-nnoremap n nzz
-nnoremap N Nzz
-" Use , as the leader key
-let mapleader=","
+nnoremap n nzzlN
+nnoremap N NzzlN
+nnoremap * *zzlN
+nnoremap # #zzlN
 " Use , + direction to resize windows
 nnoremap <Leader>h :vertical resize +3<CR>
 nnoremap <Leader>j :resize +3<CR>
