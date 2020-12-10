@@ -316,6 +316,9 @@ nnoremap <S-Left> :set columns-=10<CR>
 nnoremap <S-Right> :set columns+=10<CR>
 nnoremap <S-Up> :set lines-=5<CR>
 nnoremap <S-Down> :set lines+=5<CR>
+" Show search messages ([X/Y] in bottom right for match X of Y)
+set shortmess-=s
+set shortmess-=S
 
 " ===========
 " Performance
