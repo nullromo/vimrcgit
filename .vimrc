@@ -1,49 +1,52 @@
 " Remove all autocommands to prevent duplicates on vimrc reload
 autocmd!
-
-" Required for Vundle
+" Disable vi-compatibility
 set nocompatible
 filetype off
 
-" Set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" Plugin manager
-Plugin 'VundleVim/Vundle.vim'
+" ========
+" VIM-PLUG
+" ========
+" Download vim-plug itself if it doesn't exist
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+" Install plugins
+call plug#begin('~/.vim/plugged')
 " Use tab for autocomplete
-Plugin 'ervandew/supertab'
+"Plug 'ervandew/supertab'
 " Syntax checker
-Plugin 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic'
 " Visual mode comment/uncomment
-Plugin 'preservim/nerdcommenter'
+Plug 'preservim/nerdcommenter'
 " File explorer
-Plugin 'preservim/nerdtree'
+Plug 'preservim/nerdtree'
 " Display git branch on statusline
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " Show vertical lines for indented blocks
-Plugin 'yggdroot/indentline'
-" Show 'match X of Y' when searching
-"Plugin 'henrik/vim-indexed-search'          " let g:indexed_search_colors = 1
+Plug 'yggdroot/indentline'
 " Highlight trailing whitespace
-Plugin 'ntpeters/vim-better-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 " Allows swapping windows with <Leader>w
-Plugin 'wesQ3/vim-windowswap'
+Plug 'wesQ3/vim-windowswap'
 " Better syntax highlighting for python
-Plugin 'vim-python/python-syntax'
+Plug 'vim-python/python-syntax'
 " Makes the tabline pretty
-Plugin 'gcmt/taboo.vim'
+Plug 'gcmt/taboo.vim'
+" Improve syntax coloring for JSX
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+" Syntax highlighting for .jsonc files
+Plug 'kevinoid/vim-jsonc'
+" Autocomplete and syntax checking
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-
-
-
-"Plugin 'majutsushi/tagbar' " cnoremap tt<CR> TagbarToggle<CR>
-"Plugin 'MaxMEllon/vim-jsx-pretty'
-"Plugin 'valloric/vim-operator-highlight' "OPERATOR HIGHLIGHT let g:ophigh_color = 'darkgreen'
-"Plugin 'pangloss/vim-javascript'
-"Plugin 'leafgarland/typescript-vim'
-"Plugin 'peitalin/vim-jsx-typescript'
-call vundle#end()
-filetype plugin indent on
+"Plug 'majutsushi/tagbar' " cnoremap tt<CR> TagbarToggle<CR>
+"Plug 'pangloss/vim-javascript'
+call plug#end()
 
 " =========
 " SYNTASTIC
@@ -154,7 +157,7 @@ function! MakeStatusLine() abort
     " Add the buffer number
     let statusline .= metaColor . '%n%*'
     " Add the current git branch name
-    "   NOTE: there is an issue here. The statusline is updated both when entering and exiting a buffer. This means that the 
+    "   NOTE: there is an issue here. The statusline is updated both when entering and exiting a buffer. This means that the
     "   call to fugitive#head() will set both the switched-from and switched-to buffer's status lines to have the branch of
     "   the switched-to buffer.
     let notInGit = len(fugitive#head()) == 0
