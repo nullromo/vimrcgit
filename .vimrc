@@ -2,7 +2,11 @@
 autocmd!
 " Disable vi-compatibility
 set nocompatible
-filetype off
+" Use , as the leader key
+let mapleader=","
+" Use this for WSL default terminal emulator (non wsltty)
+" https://vi.stackexchange.com/questions/28269/command-already-typed-in-when-i-open-vim
+"set t_u7=
 
 " ========
 " VIM-PLUG
