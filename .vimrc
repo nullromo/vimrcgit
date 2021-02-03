@@ -167,6 +167,8 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 command! -nargs=0 OrganizeImports :call CocAction('runCommand', 'editor.action.organizeImport')
 " Shortcut for perttier to format javascript/css
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" Shortcut for CocAction
+command! Ca CocAction
 
 " ==============
 " Autoformatting
