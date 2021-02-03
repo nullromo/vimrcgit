@@ -100,7 +100,7 @@ let g:indentLine_char = '|'
 " Do not use in json or help files
 "   NOTE: since this plugin uses vim's conceal feature, and that messes up
 "   JSON quotes, it doens't really work in json files
-let g:indentLine_fileTypeExclude = ['json', 'help']
+let g:indentLine_fileTypeExclude = ['json', 'jsonc', 'help']
 
 " ===========
 " WINDOW SWAP
