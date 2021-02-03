@@ -192,7 +192,7 @@ autocmd BufNewFile,BufRead *.c,*.cpp set formatoptions=croqlj
 " setting for this is 'sO:*\ -,mO:*\ ,exO:*/,s1:/*,mb:*,ex:*/,://', so this
 " setting adds the 's1:/**' option to the list to support Doxygen-style
 " comments. See :h comments for details.
-autocmd BufNewFile,BufRead *.c,*.cpp set comments=sO:*\ -,mO:*\ ,exO:*/,s1:/**,mb:*,ex:*/,s1:/*,mb:*,ex:*/,://
+autocmd BufNewFile,BufRead *.c,*.cpp,*.h,*.hpp set comments=sO:*\ -,mO:*\ ,exO:*/,s1:/**,mb:*,ex:*/,s1:/*,mb:*,ex:*/,://
 
 " ==========
 " Statusline
