@@ -409,7 +409,7 @@ cnoremap rd redraw!
 autocmd FileType java inoremap <buffer> sout<TAB> System.out.println("");<ESC>hhi
 autocmd FileType c    inoremap <buffer> sout<TAB> fprintf(stderr, "\n");<ESC>hhhhi
 autocmd FileType cpp  inoremap <buffer> sout<TAB> fprintf(stderr, "\n");<ESC>hhhhi
-autocmd FileType javascript inoremap <buffer> clog<TAB> console.log('');<ESC>hhi
+autocmd FileType javascript inoremap <buffer> clog<TAB> console.log();<ESC>hi
 " use qw for autocomplete
 inoremap qw <C-N>
 
