@@ -20,9 +20,9 @@ endif
 " Install plugins
 call plug#begin('~/.vim/plugged')
 " Use tab for autocomplete
-"Plug 'ervandew/supertab'
+Plug 'ervandew/supertab'
 " Syntax checker
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
 " Visual mode comment/uncomment
 Plug 'preservim/nerdcommenter'
 " File explorer
