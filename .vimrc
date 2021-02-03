@@ -183,6 +183,16 @@ nnoremap fff {gq}{=}
 " Autoformat javascript files after they are saved
 "   NOTE: Now handled by CoC instead. See CocConfig
 "autocmd BufWritePost *.js,*.jsx,*.ts,*.tsx !prettier <afile> --write
+" Make it so that markdown files are formatted properly with gq and also while
+" typing in the file (automatically). See :h fo-table for details.
+autocmd BufNewFile,BufRead *.md set formatoptions=tcqln
+" Make it so that comments and code are formatted properly with gq in C files
+autocmd BufNewFile,BufRead *.c,*.cpp set formatoptions=croqlj
+" Add '/**' to the list of allowable comment block starters. The default
+" setting for this is 'sO:*\ -,mO:*\ ,exO:*/,s1:/*,mb:*,ex:*/,://', so this
+" setting adds the 's1:/**' option to the list to support Doxygen-style
+" comments. See :h comments for details.
+autocmd BufNewFile,BufRead *.c,*.cpp set comments=sO:*\ -,mO:*\ ,exO:*/,s1:/**,s1:/*,mb:*,ex:*/,://
 
 " ==========
 " Statusline
