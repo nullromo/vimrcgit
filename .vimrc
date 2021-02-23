@@ -43,6 +43,9 @@ Plug 'gcmt/taboo.vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+"Plug 'othree/yajs'
+"Plug 'HerringtonDarkholme/yats.vim'
+"Plug 'pangloss/vim-javascript'
 " Syntax highlighting for .jsonc files
 Plug 'kevinoid/vim-jsonc'
 " Autocomplete and syntax checking
@@ -187,12 +190,12 @@ nnoremap fff {gq}{=}
 " typing in the file (automatically). See :h fo-table for details.
 autocmd BufNewFile,BufRead *.md set formatoptions=tcqln
 " Make it so that comments and code are formatted properly with gq in C files
-autocmd BufNewFile,BufRead *.c,*.cpp set formatoptions=croqlj
+autocmd BufNewFile,BufRead *.c,*.cpp,*.h,*.hpp,*.js,*.ts,*.jsx,*.tsx set formatoptions=croqlj
 " Add '/**' to the list of allowable comment block starters. The default
 " setting for this is 'sO:*\ -,mO:*\ ,exO:*/,s1:/*,mb:*,ex:*/,://', so this
 " setting adds the 's1:/**' option to the list to support Doxygen-style
 " comments. See :h comments for details.
-autocmd BufNewFile,BufRead *.c,*.cpp,*.h,*.hpp set comments=sO:*\ -,mO:*\ ,exO:*/,s1:/**,mb:*,ex:*/,s1:/*,mb:*,ex:*/,://
+autocmd BufNewFile,BufRead *.c,*.cpp,*.h,*.hpp,*.js,*.ts,*.jsx,*.tsx set comments=sO:*\ -,mO:*\ ,exO:*/,s1:/**,mb:*,ex:*/,s1:/*,mb:*,ex:*/,://
 
 " ==========
 " Statusline
@@ -409,7 +412,7 @@ cnoremap rd redraw!
 autocmd FileType java inoremap <buffer> sout<TAB> System.out.println("");<ESC>hhi
 autocmd FileType c    inoremap <buffer> sout<TAB> fprintf(stderr, "\n");<ESC>hhhhi
 autocmd FileType cpp  inoremap <buffer> sout<TAB> fprintf(stderr, "\n");<ESC>hhhhi
-autocmd FileType javascript inoremap <buffer> clog<TAB> console.log();<ESC>hi
+autocmd FileType javascript,typescript inoremap <buffer> clog<TAB> console.log();<ESC>hi
 " use qw for autocomplete
 inoremap qw <C-N>
 
