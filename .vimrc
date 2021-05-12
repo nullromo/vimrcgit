@@ -134,7 +134,7 @@ let g:taboo_renamed_tab_format = '├%N%U╯%l %m'
 " ===
 " Install CoC extensions when the service starts
 "   coc-tsserver
-let g:coc_global_extensions = ['coc-json', 'coc-html', 'coc-css', 'coc-python', 'coc-git', 'coc-prettier', 'coc-eslint']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-python', 'coc-git', 'coc-prettier', 'coc-eslint']
 " Use <tab> to trigger completion/navigate to the next item
 function! s:check_back_space() abort
     let col = col('.') - 1
