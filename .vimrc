@@ -425,6 +425,8 @@ set noswapfile
 set nobackup
 " Set encoding type
 set encoding=utf-8
+" Highlight Jenkinsfile as a Groovy script
+autocmd BufNewFile,BufRead Jenkinsfile set filetype=groovy
 
 " =====================
 " General Configuration
