@@ -51,9 +51,9 @@ hi SpellLocal   cterm=NONE ctermbg=darkcyan
 hi SpellRare    cterm=NONE ctermbg=darkmagenta
 execute 'hi StatusLine cterm=bold ctermfg=lightblue ctermbg=' . statusLineBackground
 execute 'hi StatusLineNC ctermfg=' . statusLineBackgroundNC . ' ctermbg=lightblue'
-hi TabLine      ctermfg=blue ctermbg=white
-hi TabLineFill  ctermfg=white ctermbg=white
-hi TabLineSel   cterm=bold ctermfg=lightblue ctermbg=darkcyan
+execute 'hi TabLine cterm=NONE ctermfg=white ctermbg=' . statusLineBackgroundNC
+execute 'hi TabLineFill ctermfg=' . statusLineBackgroundNC
+execute 'hi TabLineSel cterm=NONE ctermfg=lightblue ctermbg=' . statusLineBackground
 hi Terminal     cterm=NONE
 hi Title        cterm=bold ctermfg=darkgreen
 hi Visual       cterm=reverse
