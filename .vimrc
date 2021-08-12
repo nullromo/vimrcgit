@@ -128,6 +128,10 @@ set sessionoptions+=tabpages,globals
 let g:taboo_tab_format = '├%N%U╯%f %m'
 " Set the tab format for renamed tabs
 let g:taboo_renamed_tab_format = '├%N%U╯%l %m'
+" Put a clock in the top-right corner of the tabline
+let g:taboo_close_tabs_label = "%{strftime('%a\ %e\ %b\ %I:%M:%S\ %p')}"
+" Always show the tabline
+set showtabline=2
 
 " ===
 " COC
