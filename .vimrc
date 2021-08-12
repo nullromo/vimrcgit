@@ -424,8 +424,6 @@ endfunction
 " Remap <C-u> and <C-d> to move using the custom function
 nnoremap <C-U> :call ScrollQuarter('up')<CR>
 nnoremap <C-D> :call ScrollQuarter('down')<CR>
-" Use :rd to redraw the window
-cnoremap rd redraw!
 " Printline shortcuts
 autocmd FileType java inoremap <buffer> sout<TAB> System.out.println("");<ESC>hhi
 autocmd FileType c    inoremap <buffer> sout<TAB> fprintf(stderr, "\n");<ESC>hhhhi
