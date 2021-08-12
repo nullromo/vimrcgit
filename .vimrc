@@ -340,6 +340,20 @@ nnoremap <S-Down> :set lines+=5<CR>
 set shortmess-=s
 set shortmess-=S
 
+" =====
+" NETRW
+" =====
+" Use tree layout by default
+let g:netrw_liststyle = 3
+" Hide the banner
+let g:netrw_banner = 0
+" Use default width of 40 columns
+let g:netrw_winsize = 20
+" Open files in the netrw window
+let g:netrw_browse_split = 0
+" Use the :Tree command to open netrw in Vim's working directory
+command! -nargs=0 Tree :execute 'Vexplore' getcwd()
+
 " ===========
 " Performance
 " ===========
