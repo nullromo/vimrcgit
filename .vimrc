@@ -504,6 +504,9 @@ nnoremap <Leader>h :vertical resize +3<CR>
 nnoremap <Leader>j :resize +3<CR>
 nnoremap <Leader>k :resize -3<CR>
 nnoremap <Leader>l :vertical resize -3<CR>
+" Normally <C-w>| and <C-w>_ maximize windows. Use <C-w>- and <C-w>\ to minimize
+nnoremap <C-w>- :resize 0<CR>
+nnoremap <C-w>\ :vertical resize 0<CR>
 " Select current block from visual mode
 vnoremap i} <ESC>{jV}k
 vnoremap i{ <ESC>{jV}k
