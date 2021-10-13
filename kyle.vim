@@ -122,4 +122,4 @@ execute 'hi StatusLineMetaNC ctermfg=black ctermbg=' . statusLineBackgroundNC
 
 " Color overrides for CoC
 hi CocErrorSign ctermfg=yellow
-hi CocInfoSign ctermfg=darkyellow
+hi CocInfoSign ctermfg=lightblue
