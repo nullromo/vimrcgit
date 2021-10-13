@@ -58,6 +58,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Autoformatting for python
 Plug 'psf/black'
+" Syntax highlighting for toml
+Plug 'cespare/vim-toml'
 call plug#end()
 
 " =========
