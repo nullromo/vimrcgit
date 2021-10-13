@@ -55,6 +55,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "Plug 'majutsushi/tagbar' " cnoremap tt<CR> TagbarToggle<CR>
 "Plug 'pangloss/vim-javascript'
+
+" Autoformatting for python
+Plug 'psf/black'
 call plug#end()
 
 " =========
@@ -178,6 +181,13 @@ command! -nargs=0 OrganizeImports :call CocAction('runCommand', 'editor.action.o
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " Shortcut for CocAction
 command! Ca CocAction
+
+" =====
+" BLACK
+" =====
+autocmd BufWritePre *.py execute ':Black'
+" This does not do anything (yet)
+let g:black_skip_magic_trailing_comma = 1
 
 " ==============
 " Autoformatting
