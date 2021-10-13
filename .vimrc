@@ -147,7 +147,7 @@ set showtabline=2
 " ===
 " Install CoC extensions when the service starts
 "   coc-tsserver
-let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-python', 'coc-git', 'coc-prettier', 'coc-eslint']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-pyright', 'coc-git', 'coc-prettier', 'coc-eslint']
 " Use <tab> to trigger completion/navigate to the next item
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -160,6 +160,8 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 " Move between errors
 nmap <silent> [[ <Plug>(coc-diagnostic-prev)
 nmap <silent> ]] <Plug>(coc-diagnostic-next)
+" Allow the [[ and ]] to work in python
+let g:no_python_maps = 1
 " Use :Check to get errors current buffer in location list
 command! Check :CocDiagnostics()<CR>
 " GoTo code navigation.
