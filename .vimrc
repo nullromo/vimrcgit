@@ -86,8 +86,8 @@ let g:syntastic_javascript_eslint_exec = 'eslint_d'
 " NERD COMMENTER
 " ==============
 " Use c/u to comment/uncomment the selection in visual mode
-vnoremap c :call NERDComment('n', 'Comment')<CR>
-vnoremap u :call NERDComment('n', 'Uncomment')<CR>
+vnoremap c :call nerdcommenter#Comment('n', 'Comment')<CR>
+vnoremap u :call nerdcommenter#Comment('n', 'Uncomment')<CR>
 
 " ========
 " NERDTREE
