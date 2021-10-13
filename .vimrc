@@ -46,6 +46,8 @@ Plug 'peitalin/vim-jsx-typescript'
 "Plug 'othree/yajs'
 "Plug 'HerringtonDarkholme/yats.vim'
 "Plug 'pangloss/vim-javascript'
+" Syntax highlighting for YANG files
+Plug 'nathanalderson/yang.vim'
 " Syntax highlighting for .jsonc files
 Plug 'kevinoid/vim-jsonc'
 " Autocomplete and syntax checking
