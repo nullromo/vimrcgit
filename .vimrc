@@ -62,6 +62,8 @@ Plug 'psf/black'
 Plug 'cespare/vim-toml'
 " Autoformatting for C files
 Plug 'rhysd/vim-clang-format'
+" Semantic syntax highlighting for C and C++
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 call plug#end()
 
 " =========
@@ -146,8 +148,7 @@ set showtabline=2
 " COC
 " ===
 " Install CoC extensions when the service starts
-"   coc-tsserver
-let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-pyright', 'coc-git', 'coc-prettier', 'coc-eslint']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-pyright', 'coc-git', 'coc-prettier', 'coc-eslint', 'coc-clangd']
 " Use <tab> to trigger completion/navigate to the next item
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -187,6 +188,10 @@ command! -nargs=0 OrganizeImports :call CocAction('runCommand', 'editor.action.o
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " Shortcut for CocAction
 command! Ca CocAction
+" Shortcut for switching to C header files
+command! GHeader CocCommand clangd.switchSourceHeader
+command! Header rightbelow sp | CocCommand clangd.switchSourceHeader
+command! VHeader rightbelow vsp | CocCommand clangd.switchSourceHeader
 
 " =====
 " BLACK
@@ -285,6 +290,7 @@ let g:clang_format#style_options = {
 \}
 " Autoformat C and C++ files on save
 autocmd FileType c,cpp ClangFormatAutoEnable
+autocmd FileType javascript,typescript,javascriptreact,typescriptreact ClangFormatAutoDisable
 
 " ==============
 " Autoformatting
@@ -540,7 +546,7 @@ nnoremap <C-D> :call ScrollQuarter('down')<CR>
 autocmd FileType java inoremap <buffer> sout<TAB> System.out.println("");<ESC>hhi
 autocmd FileType c    inoremap <buffer> sout<TAB> fprintf(stderr, "\n");<ESC>hhhhi
 autocmd FileType cpp  inoremap <buffer> sout<TAB> fprintf(stderr, "\n");<ESC>hhhhi
-autocmd FileType javascript,typescript inoremap <buffer> clog<TAB> console.log();<ESC>hi
+autocmd FileType javascript,typescript,javascriptreact,typescriptreact inoremap <buffer> clog<TAB> console.log();<ESC>hi
 " use qw for autocomplete
 inoremap qw <C-N>
 
