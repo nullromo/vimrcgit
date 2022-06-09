@@ -564,6 +564,8 @@ autocmd FileType java  inoremap <buffer> sout<TAB> System.out.println("");<ESC>2
 autocmd FileType c,cpp inoremap <buffer> serr<TAB> fprintf(stderr, "\n");<ESC>4hi
 autocmd FileType c,cpp inoremap <buffer> sout<TAB> printf("\n");<ESC>4hi
 autocmd FileType javascript,typescript,javascriptreact,typescriptreact inoremap <buffer> clog<TAB> console.log();<ESC>hi
+" Close all windows in a tab using qt
+cnoremap qt<CR> tabclose<CR>
 
 " =====
 " Files
