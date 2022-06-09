@@ -195,7 +195,6 @@ command! VHeader rightbelow vsp | CocCommand clangd.switchSourceHeader
 " BLACK
 " =====
 autocmd BufWritePre *.py execute ':Black'
-" This does not do anything (yet)
 let g:black_skip_magic_trailing_comma = 1
 
 " ================
