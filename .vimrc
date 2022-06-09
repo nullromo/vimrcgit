@@ -520,6 +520,8 @@ nnoremap n nzzlN
 nnoremap N NzzlN
 nnoremap * *zzlN
 nnoremap # #zzlN
+" When using *, just start the search without going to the next match
+nnoremap * *N
 " Use , + direction to resize windows
 nnoremap <Leader>h :vertical resize +3<CR>
 nnoremap <Leader>j :resize +3<CR>
