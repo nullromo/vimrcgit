@@ -560,9 +560,9 @@ endfunction
 nnoremap <C-U> :call ScrollQuarter('up')<CR>
 nnoremap <C-D> :call ScrollQuarter('down')<CR>
 " Printline shortcuts
-autocmd FileType java inoremap <buffer> sout<TAB> System.out.println("");<ESC>hhi
-autocmd FileType c    inoremap <buffer> sout<TAB> fprintf(stderr, "\n");<ESC>hhhhi
-autocmd FileType cpp  inoremap <buffer> sout<TAB> fprintf(stderr, "\n");<ESC>hhhhi
+autocmd FileType java  inoremap <buffer> sout<TAB> System.out.println("");<ESC>2hi
+autocmd FileType c,cpp inoremap <buffer> serr<TAB> fprintf(stderr, "\n");<ESC>4hi
+autocmd FileType c,cpp inoremap <buffer> sout<TAB> printf("\n");<ESC>4hi
 autocmd FileType javascript,typescript,javascriptreact,typescriptreact inoremap <buffer> clog<TAB> console.log();<ESC>hi
 " use qw for autocomplete
 inoremap qw <C-N>
