@@ -451,6 +451,10 @@ nnoremap <S-Down> :set lines+=5<CR>
 " Show search messages ([X/Y] in bottom right for match X of Y)
 set shortmess-=s
 set shortmess-=S
+" Make the cursor always a blinking underscore
+let &t_SI .= "\<Esc>[3 q"
+let &t_SR .= "\<Esc>[3 q"
+let &t_EI .= "\<Esc>[3 q"
 
 " =====
 " NETRW
@@ -487,8 +491,22 @@ nnoremap <C-l> <C-w>l
 "inoremap <C-j> <ESC><C-w>j
 "inoremap <C-h> <ESC><C-w>h
 "inoremap <C-l> <ESC><C-w>l
+" Move between terminal windows too
+tnoremap <C-k> <C-w>k
+tnoremap <C-j> <C-w>j
+tnoremap <C-h> <C-w>h
+tnoremap <C-l> <C-w>l
 " Use ; for command mode
 nnoremap ; :
+" Use ; for command mode in terminal windows
+tnoremap ; <C-w>:
+" Use <C-;> to get an actual ; in a terminal window
+tnoremap <C-;> ;
+" Use <C-z> to send vim to the background from terminal windows
+tnoremap <C-z> <C-w>:suspend<CR>
+" Use gt and gT to go to tabs fro within terminal windows
+tnoremap gt <C-w>gt
+tnoremap gT <C-w>gT
 " Move along rows instead of lines (for lines that wrap around)
 nnoremap j gj
 nnoremap k gk
