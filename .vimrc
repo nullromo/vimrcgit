@@ -566,6 +566,8 @@ autocmd FileType c,cpp inoremap <buffer> sout<TAB> printf("\n");<ESC>4hi
 autocmd FileType javascript,typescript,javascriptreact,typescriptreact inoremap <buffer> clog<TAB> console.log();<ESC>hi
 " Close all windows in a tab using qt
 cnoremap qt<CR> tabclose<CR>
+" Open a terminal in a vertial split
+cnoremap vt vertical terminal
 
 " =====
 " Files
