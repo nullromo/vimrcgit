@@ -62,8 +62,6 @@ Plug 'psf/black'
 Plug 'cespare/vim-toml'
 " Autoformatting for C files
 Plug 'rhysd/vim-clang-format'
-" Semantic syntax highlighting for C and C++
-Plug 'jackguo380/vim-lsp-cxx-highlight'
 call plug#end()
 
 " =========
