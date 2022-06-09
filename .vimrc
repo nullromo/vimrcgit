@@ -111,8 +111,8 @@ let g:indentLine_color_term = 'brown'
 let g:indentLine_char = '|'
 " Do not use in json or help files
 "   NOTE: since this plugin uses vim's conceal feature, and that messes up
-"   JSON quotes, it doens't really work in json files
-let g:indentLine_fileTypeExclude = ['json', 'jsonc', 'help']
+"   JSON quotes, it doens't really work in json files or markdown
+let g:indentLine_fileTypeExclude = ['json', 'jsonc', 'help', 'markdown']
 
 " ===========
 " WINDOW SWAP
