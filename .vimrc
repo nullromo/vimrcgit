@@ -451,7 +451,8 @@ nnoremap <S-Down> :set lines+=5<CR>
 " Show search messages ([X/Y] in bottom right for match X of Y)
 set shortmess-=s
 set shortmess-=S
-" Make the cursor always a blinking underscore
+" Make the cursor always a blinking underscore NOTE: add `printf '\033[3 q'` to
+" bashrc to make the cursor work in terminal windows
 let &t_SI .= "\<Esc>[3 q"
 let &t_SR .= "\<Esc>[3 q"
 let &t_EI .= "\<Esc>[3 q"
@@ -601,4 +602,3 @@ autocmd CursorHold,CursorHoldI * checktime
 command! JavaCompile w | !clear && javac -g %
 " Run current java file
 command! Java !clear && java -ea %:r
-
