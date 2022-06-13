@@ -338,8 +338,8 @@ function! MakeStatusLine() abort
     "   NOTE: there is an issue here. The statusline is updated both when entering and exiting a buffer. This means that the
     "   call to fugitive#head() will set both the switched-from and switched-to buffer's status lines to have the branch of
     "   the switched-to buffer.
-    let notInGit = len(fugitive#head()) == 0
-    let statusline .= ' ' . (notInGit ? '' : (branchNameColor . '%{fugitive#head()}%* '))
+    let notInGit = len(FugitiveHead()) == 0
+    let statusline .= ' ' . (notInGit ? '' : (branchNameColor . '%{FugitiveHead()}%* '))
     " Add the folder path
     let statusline .= "%{expand('%:~:h')}/"
     " Add file name
