@@ -45,7 +45,7 @@ hi Question     cterm=bold ctermfg=darkgreen
 hi Search       ctermfg=white ctermbg=darkred
    hi link QuickFixLine Search
 hi SpecialKey   cterm=bold ctermfg=darkred
-hi SpellBad     ctermfg=darkred ctermbg=gray
+hi SpellBad     cterm=NONE ctermfg=darkred ctermbg=white
 hi SpellCap     cterm=NONE ctermbg=darkblue
 hi SpellLocal   cterm=NONE ctermbg=darkcyan
 hi SpellRare    cterm=NONE ctermbg=darkmagenta
