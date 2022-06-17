@@ -296,10 +296,12 @@ autocmd FileType javascript,typescript,javascriptreact,typescriptreact ClangForm
 " ====================
 " VIM-MARKDOWN-FOLDING
 " ====================
-" keep content on fold header
+" Keep content on fold header
 let g:markdown_fold_override_foldtext = 0
-" collapse all folds and then expand all top-level folds by default
+" Collapse all folds and then expand all top-level folds by default
 autocmd BufRead,BufNewFile *.md normal zM zr
+" Use nested folding for different header levels
+autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
 
 " ==============
 " Autoformatting
