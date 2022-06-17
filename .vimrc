@@ -187,6 +187,13 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 command! GHeader CocCommand clangd.switchSourceHeader
 command! Header rightbelow sp | CocCommand clangd.switchSourceHeader
 command! VHeader rightbelow vsp | CocCommand clangd.switchSourceHeader
+" Scroll popup windows with <C-n> and <C-p>
+nnoremap <silent><nowait><expr> <C-n> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<C-n>"
+nnoremap <silent><nowait><expr> <C-p> coc#float#has_scroll() ? coc#float#scroll(0, 1) : "\<C-p>"
+inoremap <silent><nowait><expr> <C-n> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1, 1)\<cr>" : "\<Right>"
+inoremap <silent><nowait><expr> <C-p> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<cr>" : "\<Left>"
+vnoremap <silent><nowait><expr> <C-n> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<C-n>"
+vnoremap <silent><nowait><expr> <C-p> coc#float#has_scroll() ? coc#float#scroll(0, 1) : "\<C-p>"
 
 " =====
 " BLACK
