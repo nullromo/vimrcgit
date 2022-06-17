@@ -43,19 +43,12 @@ Plug 'gcmt/taboo.vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
-"Plug 'othree/yajs'
-"Plug 'HerringtonDarkholme/yats.vim'
-"Plug 'pangloss/vim-javascript'
 " Syntax highlighting for YANG files
 Plug 'nathanalderson/yang.vim'
 " Syntax highlighting for .jsonc files
 Plug 'kevinoid/vim-jsonc'
 " Autocomplete and syntax checking
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-"Plug 'majutsushi/tagbar' " cnoremap tt<CR> TagbarToggle<CR>
-"Plug 'pangloss/vim-javascript'
-
 " Autoformatting for python
 Plug 'psf/black'
 " Syntax highlighting for toml
