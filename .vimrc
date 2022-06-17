@@ -511,6 +511,10 @@ tnoremap <C-z> <C-w>:suspend<CR>
 " Use gt and gT to go to tabs fro within terminal windows
 tnoremap gt <C-w>gt
 tnoremap gT <C-w>gT
+" Use <C-'> to paste in terminal windows
+tnoremap <C-'> <C-w>""
+" Use <C-w><C-w> to enter terminal normal mode
+tnoremap <C-w><C-w> <C-w>N
 " Move along rows instead of lines (for lines that wrap around)
 nnoremap j gj
 nnoremap k gk
