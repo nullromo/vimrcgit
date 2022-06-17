@@ -55,6 +55,8 @@ Plug 'psf/black'
 Plug 'cespare/vim-toml'
 " Autoformatting for C files
 Plug 'rhysd/vim-clang-format'
+" Folding in markdown
+Plug 'masukomi/vim-markdown-folding'
 call plug#end()
 
 " =========
@@ -281,6 +283,14 @@ let g:clang_format#style_options = {
 " Autoformat C and C++ files on save
 autocmd FileType c,cpp ClangFormatAutoEnable
 autocmd FileType javascript,typescript,javascriptreact,typescriptreact ClangFormatAutoDisable
+
+" ====================
+" VIM-MARKDOWN-FOLDING
+" ====================
+" keep content on fold header
+let g:markdown_fold_override_foldtext = 0
+" collapse all folds and then expand all top-level folds by default
+autocmd BufRead,BufNewFile *.md normal zM zr
 
 " ==============
 " Autoformatting
