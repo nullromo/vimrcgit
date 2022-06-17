@@ -163,24 +163,21 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+" Shortcut for CocAction
+command! CocAction normal <Plug>(coc-codeaction)
 " Use K for hover-style documentation/help
-function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    elseif (coc#rpc#ready())
-        call CocActionAsync('doHover')
-    else
-        execute '!' . &keywordprg . " " .
-        expand('<cword>')
-    endif
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
 endfunction
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> K :call ShowDocumentation()<CR>
 " Add command for organizing imports
 command! -nargs=0 OrganizeImports :call CocAction('runCommand', 'editor.action.organizeImport')
 " Shortcut for perttier to format javascript/css
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-" Shortcut for CocAction
-command! Ca CocAction
 " Shortcut for switching to C header files
 command! GHeader CocCommand clangd.switchSourceHeader
 command! Header rightbelow sp | CocCommand clangd.switchSourceHeader
