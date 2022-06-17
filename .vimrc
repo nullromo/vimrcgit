@@ -174,6 +174,9 @@ function! ShowDocumentation()
   endif
 endfunction
 nnoremap <silent> K :call ShowDocumentation()<CR>
+" Highlight all references to the symbol where the cursor is
+autocmd CursorHold * silent call CocActionAsync('highlight')
+set updatetime=100
 " Add command for organizing imports
 command! -nargs=0 OrganizeImports :call CocAction('runCommand', 'editor.action.organizeImport')
 " Shortcut for perttier to format javascript/css
