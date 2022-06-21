@@ -298,8 +298,8 @@ autocmd FileType javascript,typescript,javascriptreact,typescriptreact ClangForm
 " ====================
 " Keep content on fold header
 let g:markdown_fold_override_foldtext = 0
-" Collapse all folds and then expand all top-level folds by default
-autocmd BufRead,BufNewFile *.md normal zM zr
+" Expand all folds by default
+autocmd BufRead,BufNewFile *.md normal zR
 " Use nested folding for different header levels
 autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
 
