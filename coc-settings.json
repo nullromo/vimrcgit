@@ -1,7 +1,7 @@
 {
     "coc.source.buffer.firstMatch": false,
     "coc.source.around.firstMatch": false,
-    "coc.preferences.formatOnSaveFiletypes": ["css", "javascript", "typescript", "javascriptreact", "typescriptreact"],
+    "coc.preferences.formatOnSaveFiletypes": ["css", "javascript", "typescript", "javascriptreact", "typescriptreact", "markdown"],
     "python.linting.pylintEnabled": true,
     "python.pythonPath": "/usr/bin/python",
     "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/12.0.1/clangd_12.0.1/bin/clangd",
