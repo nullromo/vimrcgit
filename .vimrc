@@ -57,6 +57,8 @@ Plug 'cespare/vim-toml'
 Plug 'rhysd/vim-clang-format'
 " Folding in markdown
 Plug 'masukomi/vim-markdown-folding'
+" Utility for editing surrounding symbols like quotes and xml tags
+Plug 'tpope/vim-surround'
 call plug#end()
 
 " =========
