@@ -145,14 +145,10 @@ set showtabline=2
 " Install CoC extensions when the service starts
 let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-pyright', 'coc-git', 'coc-prettier', 'coc-eslint', 'coc-clangd']
 " Use <tab> to trigger completion/navigate to the next item
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1] =~ '\s'
-endfunction
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<Tab>" : coc#refresh()
+inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : <SID>CheckBackSpace() ? "\<Tab>" : coc#refresh()
 " Navigate the completion list with control + j/k in addition to control + n/p
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+inoremap <expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
+inoremap <expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
 " Move between errors
 nmap <silent> [[ <Plug>(coc-diagnostic-prev)
 nmap <silent> ]] <Plug>(coc-diagnostic-next)
@@ -189,13 +185,13 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 command! GHeader CocCommand clangd.switchSourceHeader
 command! Header rightbelow sp | CocCommand clangd.switchSourceHeader
 command! VHeader rightbelow vsp | CocCommand clangd.switchSourceHeader
-" Scroll popup windows with <C-n> and <C-p>
-nnoremap <silent><nowait><expr> <C-n> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<C-n>"
-nnoremap <silent><nowait><expr> <C-p> coc#float#has_scroll() ? coc#float#scroll(0, 1) : "\<C-p>"
-inoremap <silent><nowait><expr> <C-n> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1, 1)\<cr>" : "\<Right>"
-inoremap <silent><nowait><expr> <C-p> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<cr>" : "\<Left>"
-vnoremap <silent><nowait><expr> <C-n> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<C-n>"
-vnoremap <silent><nowait><expr> <C-p> coc#float#has_scroll() ? coc#float#scroll(0, 1) : "\<C-p>"
+" Scroll popup windows with <C-j> and <C-k>
+nnoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<C-j>"
+nnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0, 1) : "\<C-k>"
+inoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1, 1)\<cr>" : "\<Down>"
+inoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<cr>" : "\<Up>"
+vnoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<C-j>"
+vnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0, 1) : "\<C-k>"
 
 " =====
 " BLACK
