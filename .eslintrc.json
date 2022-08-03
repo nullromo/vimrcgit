@@ -22,7 +22,8 @@
     "plugins": [
         "react",
         "@typescript-eslint",
-        "import"
+        "import",
+        "sort-keys-fix"
     ],
     "settings": {
         "react": {
@@ -496,6 +497,7 @@
         "import/no-webpack-loader-syntax": "error",
         "import/order": ["error", {"groups": ["builtin", "external", "parent", "sibling", "index"]}],
         "import/prefer-default-export": "off",
-        "import/unambiguous": "warn"
+        "import/unambiguous": "warn",
+        "sort-keys-fix/sort-keys-fix": ["warn", "asc", {"natural": true}]
     }
 }
