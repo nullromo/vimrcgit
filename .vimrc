@@ -578,8 +578,8 @@ function! ScrollQuarter(move)
     execute 'normal! ' . height/4 . motionKey
 endfunction
 " Remap <C-u> and <C-d> to move using the custom function
-nnoremap <C-U> :call ScrollQuarter('up')<CR>
-nnoremap <C-D> :call ScrollQuarter('down')<CR>
+nnoremap <silent> <C-U> :call ScrollQuarter('up')<CR>
+nnoremap <silent> <C-D> :call ScrollQuarter('down')<CR>
 " Printline shortcuts
 autocmd FileType java  inoremap <buffer> sout<TAB> System.out.println("");<ESC>2hi
 autocmd FileType c,cpp inoremap <buffer> serr<TAB> fprintf(stderr, "\n");<ESC>4hi
