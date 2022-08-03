@@ -136,6 +136,8 @@ let g:taboo_tab_format = '├%N%U╯%f %m'
 let g:taboo_renamed_tab_format = '├%N%U╯%l %m'
 " Put a clock in the top-right corner of the tabline
 let g:taboo_close_tabs_label = "%{strftime('%a\ %e\ %b\ %I:%M:%S\ %p')}"
+" Update the clock whenever possible
+autocmd CursorHold,CursorHoldI * silent redrawtabline
 " Always show the tabline
 set showtabline=2
 
