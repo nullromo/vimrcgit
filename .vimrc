@@ -151,8 +151,6 @@ set showtabline=2
 " ===
 " Install CoC extensions when the service starts
 let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-pyright', 'coc-git', 'coc-prettier', 'coc-eslint', 'coc-clangd']
-" Use <tab> to trigger completion/navigate to the next item
-inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : <SID>CheckBackSpace() ? "\<Tab>" : coc#refresh()
 " Navigate the completion list with control + j/k in addition to control + n/p
 inoremap <expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
 inoremap <expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
