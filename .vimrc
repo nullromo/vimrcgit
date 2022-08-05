@@ -136,8 +136,13 @@ let g:taboo_tab_format = '├%N%U╯%f %m'
 let g:taboo_renamed_tab_format = '├%N%U╯%l %m'
 " Put a clock in the top-right corner of the tabline
 let g:taboo_close_tabs_label = "%{strftime('%a\ %e\ %b\ %I:%M:%S\ %p')}"
-" Update the clock whenever possible
+" Update the clock whenever possible (when the cursor moves)
 autocmd CursorHold,CursorHoldI * silent redrawtabline
+" Redraw the tabline every minute to update the clock
+function! RedrawTabline(timerID) abort
+  silent redrawtabline
+endfunction
+call timer_start(60000, 'RedrawTabline', {'repeat': -1})
 " Always show the tabline
 set showtabline=2
 
