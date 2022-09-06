@@ -139,7 +139,7 @@ let g:taboo_close_tabs_label = "%{substitute(strftime('%a\ %e\ %b\ %l:%M:%S\ %p'
 " Update the clock whenever possible (when the cursor moves)
 autocmd CursorHold,CursorHoldI * silent redrawtabline
 " Redraw the tabline every minute to update the clock
-function! RedrawTabline(timerID) abort
+function RedrawTabline(timerID) abort
   silent redrawtabline
 endfunction
 call timer_start(60000, 'RedrawTabline', {'repeat': -1})
@@ -169,7 +169,7 @@ nmap <silent> gr <Plug>(coc-references)
 " Shortcut for CocAction
 command! CocAction normal <Plug>(coc-codeaction)
 " Use K for hover-style documentation/help
-function! ShowDocumentation()
+function ShowDocumentation() abort
   if CocAction('hasProvider', 'hover')
     call CocActionAsync('doHover')
   else
@@ -334,7 +334,7 @@ autocmd BufNewFile,BufRead *.c,*.cpp,*.h,*.hpp,*.js,*.ts,*.jsx,*.tsx set comment
 " Statusline
 " ==========
 " Custom statusline generation function
-function! MakeStatusLine() abort
+function MakeStatusLine() abort
     " True if the window is selected
     let focused = g:statusline_winid == win_getid(winnr())
 
@@ -565,7 +565,7 @@ cnoremap X<CR> x<CR>
 cnoremap Q<CR> q<CR>
 cnoremap W<CR> w<CR>
 " Custom function for scrolling 1/4 of the screen
-function! ScrollQuarter(move)
+function ScrollQuarter(move) abort
     let height = winheight(0)
     if a:move == 'up'
         let scrollKey = "\<C-Y>"
