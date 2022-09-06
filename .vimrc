@@ -135,7 +135,7 @@ let g:taboo_tab_format = '├%N%U╯%f %m'
 " Set the tab format for renamed tabs
 let g:taboo_renamed_tab_format = '├%N%U╯%l %m'
 " Put a clock in the top-right corner of the tabline
-let g:taboo_close_tabs_label = "%{strftime('%a\ %e\ %b\ %I:%M:%S\ %p')}"
+let g:taboo_close_tabs_label = "%{substitute(strftime('%a\ %e\ %b\ %l:%M:%S\ %p'), '  ', ' ', 'g')}"
 " Update the clock whenever possible (when the cursor moves)
 autocmd CursorHold,CursorHoldI * silent redrawtabline
 " Redraw the tabline every minute to update the clock
