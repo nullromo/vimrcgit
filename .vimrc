@@ -59,6 +59,8 @@ Plug 'rhysd/vim-clang-format'
 Plug 'masukomi/vim-markdown-folding'
 " Utility for editing surrounding symbols like quotes and xml tags
 Plug 'tpope/vim-surround'
+" Allow f, t, F, and T to wrap across lines
+Plug 'dahu/vim-fanfingtastic'
 call plug#end()
 
 " =========
