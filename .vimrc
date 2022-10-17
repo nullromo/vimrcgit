@@ -594,6 +594,8 @@ autocmd FileType javascript,typescript,javascriptreact,typescriptreact inoremap 
 cnoremap qt<CR> tabclose<CR>
 " Open a terminal in a vertial split
 cnoremap vt vertical terminal
+" Disable default Ex mode mapping
+nnoremap Q <nop>
 
 " =====
 " Files
