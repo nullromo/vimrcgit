@@ -526,7 +526,7 @@ tnoremap ; <C-w>:
 tnoremap <C-;> ;
 " Use <C-z> to send vim to the background from terminal windows
 tnoremap <C-z> <C-w>:suspend<CR>
-" Use gt and gT to go to tabs fro within terminal windows
+" Use gt and gT to go to tabs from within terminal windows
 tnoremap gt <C-w>gt
 tnoremap gT <C-w>gT
 " Use <C-'> to paste in terminal windows
