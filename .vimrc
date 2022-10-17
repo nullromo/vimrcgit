@@ -398,7 +398,7 @@ autocmd BufRead * set nocul
 autocmd BufRead,BufNewFile * set nospell
 autocmd BufRead,BufNewFile *.notes,*.md set spell
 " Always show all characters in markdown files
-autocmd BufEnter,BufRead,BufNewFile *.md set conceallevel=0
+autocmd BufEnter,BufRead,BufNewFile *.md,*.json set conceallevel=0
 " Set highlighting for coc to be just bold
 highlight CocHighlightText cterm=bold
 
