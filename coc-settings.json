@@ -9,5 +9,7 @@
     "html.autoClosingTags": false,
     "typescript.autoClosingTags": false,
     "javascript.autoClosingTags": false,
-    "suggest.noselect": true
+    "suggest.noselect": true,
+    "pyright.inlayHints.functionReturnTypes":false,
+    "pyright.inlayHints.variableTypes": false
 }
