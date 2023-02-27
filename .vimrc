@@ -63,6 +63,9 @@ Plug 'tpope/vim-surround'
 Plug 'dahu/vim-fanfingtastic'
 call plug#end()
 
+" Add package to jump between html tags
+packadd! matchit
+
 " =========
 " SYNTASTIC
 " =========
