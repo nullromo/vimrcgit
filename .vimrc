@@ -601,6 +601,8 @@ cnoremap qt<CR> tabclose<CR>
 cnoremap vt vertical terminal
 " Disable default Ex mode mapping
 nnoremap Q <nop>
+" Use C-c to copy selection to the system clipboard
+vnoremap <C-c> y:!echo <C-r>=escape(substitute(shellescape(getreg('"')), '\n', '\r', 'g'), '%!')<CR> <Bar> clip.exe<CR><CR>
 
 " =====
 " Files
