@@ -603,6 +603,9 @@ cnoremap vt vertical terminal
 nnoremap Q <nop>
 " Use C-c to copy selection to the system clipboard
 vnoremap <C-c> y:!echo <C-r>=escape(substitute(shellescape(getreg('"')), '\n', '\r', 'g'), '%!')<CR> <Bar> clip.exe<CR><CR>
+" Add shortcuts for typing arrow functions in JavaScript and TypeScript
+autocmd FileType javascript,typescript,javascriptreact,typescriptreact inoremap <C-=> () => {<CR>.<CR>}<ESC>kA<backspace>
+autocmd FileType javascript,typescript,javascriptreact,typescriptreact inoremap <C-0> ) => {<CR>.<CR>})<ESC>kA<backspace>
 
 " =====
 " Files
