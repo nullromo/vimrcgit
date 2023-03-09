@@ -171,6 +171,14 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+" jump between git changes (chunks)
+nmap <silent> [g <Plug>(coc-git-prevchunk)
+nmap <silent> ]g <Plug>(coc-git-nextchunk)
+" jump between git conflicts
+nmap <silent> [c <Plug>(coc-git-prevconflict)
+nmap <silent> ]c <Plug>(coc-git-nextconflict)
+" show git chunk diff
+nmap <silent> gs <Plug>(coc-git-chunkinfo)
 " Shortcut for CocAction
 command! CocAction normal <Plug>(coc-codeaction)
 " Use K for hover-style documentation/help
