@@ -639,3 +639,5 @@ autocmd CursorHold,CursorHoldI * checktime
 command! JavaCompile w | !clear && javac -g %
 " Run current java file
 command! Java !clear && java -ea %:r
+" Open the file corresponding to the name under the cursor
+command! Open normal viWy:vs <C-r>"<CR>
