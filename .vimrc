@@ -61,6 +61,8 @@ Plug 'masukomi/vim-markdown-folding'
 Plug 'tpope/vim-surround'
 " Allow f, t, F, and T to wrap across lines
 Plug 'dahu/vim-fanfingtastic'
+" Show context of current function
+Plug 'wellle/context.vim'
 call plug#end()
 
 " Add package to jump between html tags
@@ -320,6 +322,14 @@ let g:markdown_fold_override_foldtext = 0
 autocmd BufRead,BufNewFile *.md normal zR
 " Use nested folding for different header levels
 autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+
+" =======
+" CONTEXT
+" =======
+let g:context_enabled = 0
+let g:context_max_height = 21
+let g:context_highlight_tag = '<hide>'
+command! Context normal :ContextPeek<CR>
 
 " ==============
 " Autoformatting
