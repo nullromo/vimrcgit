@@ -327,7 +327,6 @@ autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
 " CONTEXT
 " =======
 let g:context_enabled = 0
-let g:context_max_height = 21
 let g:context_highlight_tag = '<hide>'
 command! Context normal :ContextPeek<CR>
 
