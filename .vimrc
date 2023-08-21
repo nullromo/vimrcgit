@@ -661,3 +661,5 @@ command! JavaCompile w | !clear && javac -g %
 command! Java !clear && java -ea %:r
 " Open the file corresponding to the name under the cursor
 command! Open normal viWy:vs <C-r>"<CR>
+" Move the current buffer into its own tab to the left of the current one
+command! MoveLeft normal :-1tabnew<CR>,wgt,w:q<CR>gT
