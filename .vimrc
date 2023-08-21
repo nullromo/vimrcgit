@@ -338,10 +338,6 @@ command! Context normal :ContextPeek<CR>
 " Set the auto-formatter for java
 "   NOTE: See http://astyle.sourceforge.net/astyle.html for details
 autocmd BufNewFile,BufRead *.java set formatprg=astyle\ -A1s4SM80m0pHyj
-" Use ggg to auto-format the whole file
-nnoremap ggg gggqG<C-o><C-o>
-" Use fff to auto-format a single function
-nnoremap fff {gq}{=}
 " Autoformat javascript files after they are saved
 "   NOTE: Now handled by CoC instead. See CocConfig
 "autocmd BufWritePost *.js,*.jsx,*.ts,*.tsx !prettier <afile> --write
