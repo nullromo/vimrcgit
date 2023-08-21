@@ -636,6 +636,8 @@ set nobackup
 set encoding=utf-8
 " Highlight Jenkinsfile as a Groovy script
 autocmd BufNewFile,BufRead Jenkinsfile set filetype=groovy
+" Highlight system.config file as JSON
+autocmd BufNewFile,BufRead system.config set filetype=json
 
 " =====================
 " General Configuration
