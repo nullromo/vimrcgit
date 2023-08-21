@@ -473,6 +473,9 @@ vnoremap // y/<C-R>"<CR>
 set gdefault
 " Show filepath completion in status line
 set wildmenu
+" Add terms to the current search with + (NOTE: the normal mapping for + is
+" just moving between lines)
+nnoremap + /<C-r>/\\|
 
 " ============
 " GUI Elements
