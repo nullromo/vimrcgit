@@ -63,6 +63,8 @@ Plug 'tpope/vim-surround'
 Plug 'dahu/vim-fanfingtastic'
 " Show context of current function
 Plug 'wellle/context.vim'
+" Syntax highlighting for MDX files
+Plug 'jxnblk/vim-mdx-js'
 call plug#end()
 
 " Add package to jump between html tags
@@ -116,7 +118,7 @@ let g:indentLine_char = '|'
 " Do not use in json or help files
 "   NOTE: since this plugin uses vim's conceal feature, and that messes up
 "   JSON quotes, it doens't really work in json files or markdown
-let g:indentLine_fileTypeExclude = ['json', 'jsonc', 'help', 'markdown']
+let g:indentLine_fileTypeExclude = ['json', 'jsonc', 'help', 'markdown', 'markdown.mdx']
 
 " ===========
 " WINDOW SWAP
@@ -319,7 +321,7 @@ autocmd FileType javascript,typescript,javascriptreact,typescriptreact ClangForm
 " Keep content on fold header
 let g:markdown_fold_override_foldtext = 0
 " Expand all folds by default
-autocmd BufRead,BufNewFile *.md normal zR
+autocmd BufRead,BufNewFile *.md,*.mdx normal zR
 " Use nested folding for different header levels
 autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
 
@@ -418,9 +420,9 @@ autocmd InsertLeave * set nocul
 autocmd BufRead * set nocul
 " Turn spell-checking on when editing a .notes file
 autocmd BufRead,BufNewFile * set nospell
-autocmd BufRead,BufNewFile *.notes,*.md set spell
+autocmd BufRead,BufNewFile *.notes,*.md,*.mdx set spell
 " Always show all characters in markdown files
-autocmd BufEnter,BufRead,BufNewFile *.md,*.json set conceallevel=0
+autocmd BufEnter,BufRead,BufNewFile *.md,*.mdx,*.json set conceallevel=0
 " Set highlighting for coc to be just bold
 highlight CocHighlightText cterm=bold
 
