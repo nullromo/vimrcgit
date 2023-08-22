@@ -212,6 +212,9 @@ vim.api.nvim_create_user_command('Prettier', ':CocCommand prettier.formatFile', 
 vim.api.nvim_create_user_command('GHeader', 'CocCommand clangd.switchSourceHeader', {bang = true})
 vim.api.nvim_create_user_command('Header', 'rightbelow sp | CocCommand clangd.switchSourceHeader', {bang = true})
 vim.api.nvim_create_user_command('VHeader', 'rightbelow vsp | CocCommand clangd.switchSourceHeader', {bang = true})
+-- Scroll popups with <C-f> and <C-b>
+vim.keymap.set('n', '<C-f>', 'coc#float#scroll(1)', {silent = true, nowait = true, expr = true})
+vim.keymap.set('n', '<C-b>', 'coc#float#scroll(0)', {silent = true, nowait = true, expr = true})
 
 -- =====
 -- BLACK
