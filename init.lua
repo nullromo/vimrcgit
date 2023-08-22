@@ -489,6 +489,8 @@ vim.keymap.set('n', '<S-Down>', ':set lines+=5<CR>')
 -- Show search messages ([X/Y] in bottom right for match X of Y)
 vim.cmd('set shortmess-=s')
 vim.cmd('set shortmess-=S')
+-- Set the cursor for neovim
+vim.cmd('set guicursor=n-o-i-c:hor25-blinkwait100-blinkoff500-blinkon500')
 -- Make the cursor always a blinking underscore NOTE: add `printf '\033[3 q'` to
 -- bashrc to make the cursor work in terminal windows
 vim.cmd([[
