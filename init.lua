@@ -605,9 +605,21 @@ vim.cmd([[
     nnoremap <silent> <C-D> :call ScrollQuarter('down')<CR>
 ]])
 -- Printline shortcuts
-vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'java', command = 'inoremap <buffer> sout<TAB> System.out.println("");<ESC>2hi'})
-vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'c,cpp', command = 'inoremap <buffer> serr<TAB> fprintf(stderr, "\n");<ESC>4hi'})
-vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'c,cpp', command = 'inoremap <buffer> sout<TAB> printf("\n");<ESC>4hi'})
+vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'java', callback =
+    function()
+        vim.keymap.set('i', 'sout<TAB>', 'System.out.println("");<ESC>2hi', {buffer = 0})
+    end
+})
+vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'c,cpp', callback =
+    function()
+        vim.keymap.set('i', 'serr<TAB>', 'fprintf(stderr, "\\n");<ESC>4hi', {buffer = 0})
+    end
+})
+vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'c,cpp', callback =
+    function()
+        vim.keymap.set('i', 'sout<TAB>', 'printf("\\n");<ESC>4hi', {buffer = 0})
+    end
+})
 vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'javascript,typescript,javascriptreact,typescriptreact', command = 'inoremap <buffer> clog<TAB> console.log();<ESC>hi'})
 -- Close all windows in a tab using qt
 vim.keymap.set('c', 'qt<CR>', 'tabclose<CR>')
