@@ -127,10 +127,8 @@ vim.g.taboo_tab_format = '├%N%U╯%f %m'
 vim.g.taboo_renamed_tab_format = '├%N%U╯%l %m'
 -- Put a clock in the top-right corner of the tabline
 vim.g.taboo_close_tabs_label = "%{substitute(strftime('%a %e %b %l:%M:%S %p'), '  ', ' ', 'g')}"
-
 -- Update the clock whenever possible (when the cursor moves)
 vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {pattern = '*', command = 'silent redrawtabline'})
-
 -- Redraw the tabline every minute to update the clock
 vim.cmd([[
 function RedrawTabline(timerID) abort
@@ -188,16 +186,17 @@ vim.keymap.set('n', 'gs', '<Plug>(coc-git-chunkinfo)', {remap = true, silent = t
 -- Shortcut for CocAction
 vim.api.nvim_create_user_command('CocAction', 'normal <Plug>(coc-codeaction)', {bang = true})
 -- Use K for hover-style documentation/help
-vim.cmd([[
-    function ShowDocumentation() abort
-      if CocAction('hasProvider', 'hover')
-        call CocActionAsync('doHover')
-      else
-        call feedkeys('K', 'in')
-      endif
-    endfunction
-]])
-vim.keymap.set('n', 'K', ':call ShowDocumentation()<CR>', {silent = true})
+function _G.show_docs()
+    local cw = vim.fn.expand('<cword>')
+    if vim.fn.index({'vim', 'help'}, vim.bo.filetype) >= 0 then
+        vim.api.nvim_command('h ' .. cw)
+    elseif vim.api.nvim_eval('coc#rpc#ready()') then
+        vim.fn.CocActionAsync('doHover')
+    else
+        vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
+    end
+end
+vim.keymap.set('n', 'K', '<CMD>lua _G.show_docs()<CR>', {silent = true})
 -- Highlight all references to the symbol where the cursor is
 vim.api.nvim_create_autocmd({'CursorHold'}, {pattern = '*', command = "silent call CocActionAsync('highlight')"})
 vim.opt.updatetime = 100
@@ -213,64 +212,6 @@ vim.api.nvim_create_user_command('Prettier', ':CocCommand prettier.formatFile', 
 vim.api.nvim_create_user_command('GHeader', 'CocCommand clangd.switchSourceHeader', {bang = true})
 vim.api.nvim_create_user_command('Header', 'rightbelow sp | CocCommand clangd.switchSourceHeader', {bang = true})
 vim.api.nvim_create_user_command('VHeader', 'rightbelow vsp | CocCommand clangd.switchSourceHeader', {bang = true})
---[[
--- Scroll popup windows with <C-j> and <C-k>
-vim.keymap.set('n', '<C-j>',
-	function()
-		if vim.fn['coc#float#has_scroll']() then
-			return vim.fn['coc#float#scroll'](1, 1)
-		end
-		return '<C-j>'
-	end,
-	{silent = true, nowait = true, expr = true}
-)
-vim.keymap.set('n', '<C-k>',
-    function()
-        if vim.fn['coc#float#has_scroll']() then
-            return vim.fn['coc#float#scroll'](0, 1)
-        end
-        return '<C-k>'
-    end,
-    {silent = true, nowait = true, expr = true}
-)
-vim.keymap.set('i', '<C-j>',
-    function()
-        if vim.fn['coc#float#has_scroll']() then
-            return "<c-r>=coc#float#scroll(1, 1)<cr>"
-        end
-        return '<Down>'
-    end,
-    {silent = true, nowait = true, expr = true}
-)
-vim.keymap.set('i', '<C-k>',
-    function()
-        if vim.fn['coc#float#has_scroll']() then
-            --return "<c-r>=coc#float#scroll(0, 1)<cr>"
-            return vim.fn['coc#float#scroll'](0, 1)
-        end
-        return '<Up>'
-    end,
-    {silent = true, nowait = true, expr = true}
-)
-vim.keymap.set('v', '<C-j>',
-    function()
-        if vim.fn['coc#float#has_scroll']() then
-            return vim.fn['coc#float#scroll'](1, 1)
-        end
-        return '<C-j>'
-    end,
-    {silent = true, nowait = true, expr = true}
-)
-vim.keymap.set('v', '<C-k>',
-    function()
-        if vim.fn['coc#float#has_scroll']() then
-            return vim.fn['coc#float#scroll'](0, 1)
-        end
-        return '<C-k>'
-    end,
-    {silent = true, nowait = true, expr = true}
-)
---]]
 
 -- =====
 -- BLACK
@@ -366,7 +307,6 @@ vim.g['clang_format#style_options'] = {
     UseCRLF = "false",
     UseTab = "Never"
 }
-
 -- Autoformat C and C++ files on save
 vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'c,cpp', command = 'ClangFormatAutoEnable'})
 vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'javascript,typescript,javascriptreact,typescriptreact', command = 'ClangFormatAutoDisable'})
@@ -549,13 +489,12 @@ vim.keymap.set('n', '<S-Down>', ':set lines+=5<CR>')
 -- Show search messages ([X/Y] in bottom right for match X of Y)
 vim.cmd('set shortmess-=s')
 vim.cmd('set shortmess-=S')
-
+-- Make the cursor always a blinking underscore NOTE: add `printf '\033[3 q'` to
+-- bashrc to make the cursor work in terminal windows
 vim.cmd([[
-" Make the cursor always a blinking underscore NOTE: add `printf '\033[3 q'` to
-" bashrc to make the cursor work in terminal windows
-let &t_SI .= "\<Esc>[3 q"
-let &t_SR .= "\<Esc>[3 q"
-let &t_EI .= "\<Esc>[3 q"
+    let &t_SI .= "\<Esc>[3 q"
+    let &t_SR .= "\<Esc>[3 q"
+    let &t_EI .= "\<Esc>[3 q"
 ]])
 
 -- =====
