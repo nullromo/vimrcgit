@@ -349,7 +349,7 @@ vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {pattern = '*.c,*.cpp,*.h
 -- setting for this is 'sO:*\ -,mO:*\ ,exO:*/,s1:/*,mb:*,ex:*/,://', so this
 -- setting adds the 's1:/**' option to the list to support Doxygen-style
 -- comments. See :h comments for details.
-vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {pattern = '*.c,*.cpp,*.h,*.hpp,*.js,*.ts,*.jsx,*.tsx', command = 'set comments=sO:* -,mO:* ,exO:*/,s1:/**,mb:*,ex:*/,s1:/*,mb:*,ex:*/,://'})
+vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {pattern = '*.c,*.cpp,*.h,*.hpp,*.js,*.ts,*.jsx,*.tsx', command = 'set comments=sO:*\\ -,mO:*\\ ,exO:*/,s1:/**,mb:*,ex:*/,s1:/*,mb:*,ex:*/,://'})
 
 -- ==========
 -- Statusline
