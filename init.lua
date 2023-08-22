@@ -131,10 +131,10 @@ vim.g.taboo_close_tabs_label = "%{substitute(strftime('%a %e %b %l:%M:%S %p'), '
 vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {pattern = '*', command = 'silent redrawtabline'})
 -- Redraw the tabline every minute to update the clock
 vim.cmd([[
-function RedrawTabline(timerID) abort
-  silent redrawtabline
-endfunction
-call timer_start(60000, 'RedrawTabline', {'repeat': -1})
+    function RedrawTabline(timerID) abort
+        silent redrawtabline
+    endfunction
+    call timer_start(60000, 'RedrawTabline', {'repeat': -1})
 ]])
 -- Always show the tabline
 vim.opt.showtabline = 2
@@ -490,7 +490,7 @@ vim.keymap.set('n', '<S-Down>', ':set lines+=5<CR>')
 vim.cmd('set shortmess-=s')
 vim.cmd('set shortmess-=S')
 -- Set the cursor for neovim
-vim.cmd('set guicursor=n-o-i-c:hor25-blinkwait100-blinkoff500-blinkon500')
+vim.opt.guicursor = 'n-o-i-c:hor25-blinkwait100-blinkoff500-blinkon500'
 -- Make the cursor always a blinking underscore NOTE: add `printf '\033[3 q'` to
 -- bashrc to make the cursor work in terminal windows
 vim.cmd([[
@@ -585,24 +585,24 @@ vim.keymap.set('c', 'Q<CR>', 'q<CR>')
 vim.keymap.set('c', 'W<CR>', 'w<CR>')
 -- Custom function for scrolling 1/4 of the screen
 vim.cmd([[
-function ScrollQuarter(move) abort
-    let height = winheight(0)
-    if a:move == 'up'
-        let scrollKey = "\<C-Y>"
-        let motionKey = "k"
-    elseif a:move == 'down'
-        let scrollKey = "\<C-E>"
-        let motionKey = "j"
-    else
-        let scrollKey = ""
-        let motionKey = ""
-    endif
-    execute 'normal! ' . height/4 . scrollKey
-    execute 'normal! ' . height/4 . motionKey
-endfunction
-" Remap <C-u> and <C-d> to move using the custom function
-nnoremap <silent> <C-U> :call ScrollQuarter('up')<CR>
-nnoremap <silent> <C-D> :call ScrollQuarter('down')<CR>
+    function ScrollQuarter(move) abort
+        let height = winheight(0)
+        if a:move == 'up'
+            let scrollKey = "\<C-Y>"
+            let motionKey = "k"
+        elseif a:move == 'down'
+            let scrollKey = "\<C-E>"
+            let motionKey = "j"
+        else
+            let scrollKey = ""
+            let motionKey = ""
+        endif
+        execute 'normal! ' . height/4 . scrollKey
+        execute 'normal! ' . height/4 . motionKey
+    endfunction
+    " Remap <C-u> and <C-d> to move using the custom function
+    nnoremap <silent> <C-U> :call ScrollQuarter('up')<CR>
+    nnoremap <silent> <C-D> :call ScrollQuarter('down')<CR>
 ]])
 -- Printline shortcuts
 vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'java', command = 'inoremap <buffer> sout<TAB> System.out.println("");<ESC>2hi'})
@@ -639,9 +639,7 @@ vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {pattern = 'system.config
 -- General Configuration
 -- =====================
 -- Make bash aliases work with external commands
-vim.cmd([[
-    let $BASH_ENV = "~/.bash_aliases"
-]])
+vim.cmd('let $BASH_ENV = "~/.bash_aliases"')
 -- Check for external file updates on buffer enter or idle cursor
 vim.api.nvim_create_autocmd({'BufEnter'}, {pattern = '*', command = ':checktime'})
 vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {pattern = '*', command = 'checktime'})
