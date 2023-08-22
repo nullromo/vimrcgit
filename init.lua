@@ -143,7 +143,7 @@ vim.opt.showtabline = 2
 -- COC
 -- ===
 -- Install CoC extensions when the service starts
-vim.g.coc_global_extensions = {'coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-pyright', 'coc-git', 'coc-prettier', 'coc-eslint', 'coc-clangd', 'coc-webview', 'coc-markdown-preview-enhanced'}
+vim.g.coc_global_extensions = {'coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-pyright', 'coc-git', 'coc-prettier', 'coc-eslint', 'coc-clangd', 'coc-webview', 'coc-markdown-preview-enhanced', 'coc-sumneko-lua'}
 -- Navigate the completion list with control + j/k in addition to control + n/p
 vim.keymap.set('i', '<C-n>',
     function()
