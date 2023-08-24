@@ -674,3 +674,5 @@ vim.api.nvim_create_user_command('Java', '!clear && java -ea %:r', {bang = true}
 vim.api.nvim_create_user_command('Open', 'normal viWy:vs <C-r>"<CR>', {bang = true})
 -- Move the current buffer into its own tab to the left of the current one
 vim.api.nvim_create_user_command('MoveLeft', 'normal :-1tabnew<CR>,wgt,w:q<CR>gT', {bang = true})
+-- Open a web browser to preview a markdown file
+vim.api.nvim_create_user_command('MarkdownPreview', ':CocCommand markdown-preview-enhanced.openPreview', {})
