@@ -365,6 +365,12 @@ local plugins = {
             })
         end,
     },
+    {
+        -- ???
+        'folke/flash.nvim',
+        event = 'VeryLazy',
+        opts = {}
+    },
 }
 require("lazy").setup(plugins, {})
 
