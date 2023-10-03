@@ -8,354 +8,369 @@ vim.g.mapleader = ","
 -- https://vi.stackexchange.com/questions/28269/command-already-typed-in-when-i-open-vim
 --vim.cmd("set t_u7=")
 
--- ========
--- VIM-PLUG
--- ========
--- Download vim-plug itself if it doesn't exist
-vim.cmd([[
-    if empty(glob('"${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim'))
-        silent !curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    endif
-]])
--- Install plugins
-vim.fn['plug#begin']('~/.vim/plugged')
--- Visual mode comment/uncomment
-vim.cmd("Plug 'preservim/nerdcommenter'")
--- File explorer
-vim.cmd("Plug 'preservim/nerdtree'")
--- Display git branch on statusline
-vim.cmd("Plug 'tpope/vim-fugitive'")
--- Show vertical lines for indented blocks
-vim.cmd("Plug 'yggdroot/indentline'")
--- Highlight trailing whitespace
-vim.cmd("Plug 'ntpeters/vim-better-whitespace'")
--- Allows swapping windows with <Leader>w
-vim.cmd("Plug 'wesQ3/vim-windowswap'")
--- Better syntax highlighting for python
-vim.cmd("Plug 'vim-python/python-syntax'")
--- Makes the tabline pretty
-vim.cmd("Plug 'gcmt/taboo.vim'")
--- Improve syntax coloring for JSX
-vim.cmd("Plug 'MaxMEllon/vim-jsx-pretty'")
-vim.cmd("Plug 'leafgarland/typescript-vim'")
-vim.cmd("Plug 'peitalin/vim-jsx-typescript'")
--- Syntax highlighting for YANG files
-vim.cmd("Plug 'nathanalderson/yang.vim'")
--- Syntax highlighting for .jsonc files
-vim.cmd("Plug 'kevinoid/vim-jsonc'")
--- Autocomplete and syntax checking
-vim.cmd("Plug 'neoclide/coc.nvim', {'branch': 'release'}")
--- Autoformatting for python
-vim.cmd("Plug 'psf/black'")
--- Syntax highlighting for toml
-vim.cmd("Plug 'cespare/vim-toml'")
--- Autoformatting for C files
-vim.cmd("Plug 'rhysd/vim-clang-format'")
--- Folding in markdown
-vim.cmd("Plug 'masukomi/vim-markdown-folding'")
--- Utility for editing surrounding symbols like quotes and xml tags
-vim.cmd("Plug 'tpope/vim-surround'")
--- Allow f, t, F, and T to wrap across lines
-vim.cmd("Plug 'dahu/vim-fanfingtastic'")
--- Show context of current function
-vim.cmd("Plug 'wellle/context.vim'")
--- Syntax highlighting for MDX files
-vim.cmd("Plug 'jxnblk/vim-mdx-js'")
--- Welcome screen
-vim.cmd("Plug 'folke/drop.nvim'")
--- Re-map the s motion to move around based on 2 characters at a time
---vim.cmd("Plug 'justinmk/vim-sneak'")
-vim.fn['plug#end']()
+-- =========
+-- LAZY.NVIM
+-- =========
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+local plugins = {
+    -- Visual mode comment/uncomment
+    {
+        'preservim/nerdcommenter',
+        config = function ()
+            -- Use c/u to comment/uncomment the selection in visual mode
+            vim.keymap.set('v', 'c', ":call nerdcommenter#Comment('n', 'Comment')<CR>")
+            vim.keymap.set('v', 'u', ":call nerdcommenter#Comment('n', 'Uncomment')<CR>")
+        end,
+    },
+    -- File explorer
+    {
+        'preservim/nerdtree',
+        init = function ()
+            -- Close NERDTree when a file is opened
+            vim.g.NERDTreeQuitOnOpen = 1
+            -- Do not show bookmarks
+            vim.g.NERDTreeShowBookmarks = 0
+            -- Show files and hidden files in NREDTree
+            vim.g.NERDTreeShowFiles = 1
+            vim.g.NERDTreeShowHidden = 1
+            -- Show line numbers in NERDTree
+            vim.g.NERDTreeShowLineNumbers = 1
+        end,
+    },
+    -- Display git branch on statusline
+    'tpope/vim-fugitive',
+    -- Show vertical lines for indented blocks
+    {
+        'yggdroot/indentline',
+        init = function ()
+            -- Set the color
+            vim.g.indentLine_color_term = 'brown'
+            -- Set the character
+            vim.g.indentLine_char = '|'
+            -- Do not use in json or help files
+            --   NOTE: since this plugin uses vim's conceal feature, and that messes up
+            --   JSON quotes, it doens't really work in json files or markdown
+            vim.g.indentLine_fileTypeExclude = {'json', 'jsonc', 'help', 'markdown', 'markdown.mdx'}
+        end,
+    },
+    -- Highlight trailing whitespace
+    'ntpeters/vim-better-whitespace',
+    -- Allows swapping windows with <Leader>w
+    {
+        'wesQ3/vim-windowswap',
+        init = function ()
+            -- Prevent default bindings
+            vim.g.windowswap_map_keys = 0
+        end,
+        config = function ()
+            -- Use ,w to 'yank' and 'paste' windows
+            vim.keymap.set('n', '<Leader>w', ':call WindowSwap#EasyWindowSwap()<CR>', {silent = true})
+        end,
+    },
+    -- Better syntax highlighting for python
+    {
+        'vim-python/python-syntax',
+        init = function ()
+            -- Turn on all highlighting
+            vim.g.python_highlight_all = 1
+        end,
+    },
+    {
+        -- Makes the tabline pretty
+        'gcmt/taboo.vim',
+        init = function ()
+            -- Allows tab names to be saved in the session file
+            vim.opt.sessionoptions = {'blank', 'buffers', 'curdir', 'folds', 'globals', 'help', 'localoptions', 'options', 'resize', 'tabpages', 'terminal', 'winpos', 'winsize'}
+            -- Set the tab format for default tabs
+            vim.g.taboo_tab_format = '├%N%U╯%f %m'
+            -- Set the tab format for renamed tabs
+            vim.g.taboo_renamed_tab_format = '├%N%U╯%l %m'
+            -- Put a clock in the top-right corner of the tabline
+            vim.g.taboo_close_tabs_label = "%{substitute(strftime('%a %e %b %l:%M:%S %p'), '  ', ' ', 'g')}"
+            -- Update the clock whenever possible (when the cursor moves)
+            vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {pattern = '*', command = 'silent redrawtabline'})
+            -- Always show the tabline
+            vim.opt.showtabline = 2
+        end,
+        config = function ()
+            -- Redraw the tabline every minute to update the clock
+            vim.cmd([[
+                function RedrawTabline(timerID) abort
+                    silent redrawtabline
+                endfunction
+                call timer_start(60000, 'RedrawTabline', {'repeat': -1})
+            ]])
+        end,
+    },
+    -- Improve syntax coloring for JSX
+    'MaxMEllon/vim-jsx-pretty',
+    'leafgarland/typescript-vim',
+    'peitalin/vim-jsx-typescript',
+    -- Syntax highlighting for YANG files
+    'nathanalderson/yang.vim',
+    -- Syntax highlighting for .jsonc files
+    'kevinoid/vim-jsonc',
+    {
+        -- Autocomplete and syntax checking
+        'neoclide/coc.nvim',
+        branch = 'release',
+        config = function ()
+            -- ===
+            -- COC
+            -- ===
+            -- Install CoC extensions when the service starts
+            vim.g.coc_global_extensions = {'coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-pyright', 'coc-git', 'coc-prettier', 'coc-eslint', 'coc-clangd', 'coc-webview', 'coc-markdown-preview-enhanced', 'coc-sumneko-lua'}
+            -- Navigate the completion list with control + j/k in addition to control + n/p
+            vim.keymap.set('i', '<C-n>',
+                function()
+                    if vim.fn['coc#pum#visible']() then
+                        return vim.fn['coc#pum#next'](1)
+                    end
+                    return '<C-n>'
+                end,
+                {expr = true}
+            )
+            vim.keymap.set('i', '<C-p>',
+                function()
+                    if vim.fn['coc#pum#visible']() then
+                        return vim.fn['coc#pum#prev'](1)
+                    end
+                    return '<C-p>'
+                end,
+                {expr = true}
+            )
+            -- Move between errors
+            vim.keymap.set('n', '[[', '<Plug>(coc-diagnostic-prev)', {remap = true, silent = true})
+            vim.keymap.set('n', ']]', '<Plug>(coc-diagnostic-next)', {remap = true, silent = true})
+            -- " Allow the [[ and ]] to work in python
+            vim.g.no_python_maps = 1
+            -- Use :Check to get errors current buffer in location list
+            vim.api.nvim_create_user_command('Check', ':CocDiagnostics()<CR>', {bang = true})
+            -- GoTo code navigation.
+            vim.keymap.set('n', 'gd', '<Plug>(coc-definition)', {remap = true, silent = true})
+            vim.keymap.set('n', 'gy', '<Plug>(coc-type-definition)', {remap = true, silent = true})
+            vim.keymap.set('n', 'gi', '<Plug>(coc-implementation)', {remap = true, silent = true})
+            vim.keymap.set('n', 'gr', '<Plug>(coc-references)', {remap = true, silent = true})
+            -- jump between git changes (chunks)
+            vim.keymap.set('n', '[g', '<Plug>(coc-git-prevchunk)', {remap = true, silent = true})
+            vim.keymap.set('n', ']g', '<Plug>(coc-git-nextchunk)', {remap = true, silent = true})
+            -- jump between git conflicts
+            vim.keymap.set('n', '[c', '<Plug>(coc-git-prevconflict)', {remap = true, silent = true})
+            vim.keymap.set('n', ']c', '<Plug>(coc-git-nextconflict)', {remap = true, silent = true})
+            -- show git chunk diff
+            vim.keymap.set('n', 'gs', '<Plug>(coc-git-chunkinfo)', {remap = true, silent = true})
+            -- Shortcut for CocAction
+            vim.api.nvim_create_user_command('CocAction', 'normal <Plug>(coc-codeaction)', {bang = true})
+            -- Use K for hover-style documentation/help
+            function _G.show_docs()
+                local cw = vim.fn.expand('<cword>')
+                if vim.fn.index({'vim', 'help'}, vim.bo.filetype) >= 0 then
+                    vim.api.nvim_command('h ' .. cw)
+                elseif vim.api.nvim_eval('coc#rpc#ready()') then
+                    vim.fn.CocActionAsync('doHover')
+                else
+                    vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
+                end
+            end
+            vim.keymap.set('n', 'K', '<CMD>lua _G.show_docs()<CR>', {silent = true})
+            -- Highlight all references to the symbol where the cursor is
+            vim.api.nvim_create_autocmd('CursorHold', {pattern = '*', command = "silent call CocActionAsync('highlight')"})
+            vim.opt.updatetime = 100
+            -- Add command for renaming variables
+            vim.api.nvim_create_user_command('Rename', 'normal <Plug>(coc-rename)', {bang = true})
+            -- Add command for renaming files
+            vim.api.nvim_create_user_command('RenameFile', ':CocCommand workspace.renameCurrentFile', {bang = true})
+            -- Add command for organizing imports
+            vim.api.nvim_create_user_command('OrganizeImports', ":call CocAction('runCommand', 'editor.action.organizeImport')", {bang = true, nargs = 0})
+            -- Shortcut for perttier to format javascript/css
+            vim.api.nvim_create_user_command('Prettier', ':CocCommand prettier.formatFile', {bang = true, nargs = 0})
+            -- Shortcut for switching to C header files
+            vim.api.nvim_create_user_command('GHeader', 'CocCommand clangd.switchSourceHeader', {bang = true})
+            vim.api.nvim_create_user_command('Header', 'rightbelow sp | CocCommand clangd.switchSourceHeader', {bang = true})
+            vim.api.nvim_create_user_command('VHeader', 'rightbelow vsp | CocCommand clangd.switchSourceHeader', {bang = true})
+            -- Scroll popups with <C-f> and <C-b>
+            vim.keymap.set('n', '<C-f>', 'coc#float#scroll(1)', {silent = true, nowait = true, expr = true})
+            vim.keymap.set('n', '<C-b>', 'coc#float#scroll(0)', {silent = true, nowait = true, expr = true})
+        end,
+    },
+    {
+        -- Autoformatting for python
+        'psf/black',
+        init = function ()
+            vim.g.black_skip_magic_trailing_comma = 1
+        end,
+        config = function ()
+            vim.api.nvim_create_autocmd({'BufWritePre'}, {pattern = '*.py', command = "execute ':Black'"})
+        end,
+    },
+    -- Syntax highlighting for toml
+    'cespare/vim-toml',
+    {
+        -- Autoformatting for C files
+        'rhysd/vim-clang-format',
+        init = function ()
+            -- Set options for clang-format in case there is no .clang-format file
+            -- Note: BreakBeforeBraces: Attach doesn't attach enum braces
+            -- Note: IndentGotoLabels: true doesn't indent properly within switch
+            vim.g['clang_format#style_options'] = {
+                AccessModifierOffset = -2,
+                AlignAfterOpenBracket = "Align",
+                AlignConsecutiveAssignments = "false",
+                AlignConsecutiveBitFields = "true",
+                AlignConsecutiveDeclarations = "false",
+                AlignConsecutiveMacros = "true",
+                AlignEscapedNewlines = "Left",
+                AlignOperands = "Align",
+                AlignTrailingComments = "true",
+                AllowAllArgumentsOnNextLine = "true",
+                AllowAllConstructorInitializersOnNextLine = "false",
+                AllowAllParametersOfDeclarationOnNextLine = "true",
+                AllowShortBlocksOnASingleLine = "Never",
+                AllowShortCaseLabelsOnASingleLine = "false",
+                AllowShortEnumsOnASingleLine = "false",
+                AllowShortFunctionsOnASingleLine = "None",
+                AllowShortIfStatementsOnASingleLine = "Never",
+                AllowShortLambdasOnASingleLine = "None",
+                AllowShortLoopsOnASingleLine = "false",
+                AlwaysBreakAfterReturnType = "None",
+                AlwaysBreakBeforeMultilineStrings = "true",
+                AlwaysBreakTemplateDeclarations = "No",
+                BinPackArguments = "false",
+                BinPackParameters = "false",
+                BreakBeforeBinaryOperators = "None",
+                BreakBeforeBraces = "Attach",
+                BreakBeforeTernaryOperators = "false",
+                BreakConstructorInitializers = "BeforeColon",
+                BreakInheritanceList = "BeforeColon",
+                BreakStringLiterals = "true",
+                ColumnLimit = 80,
+                CompactNamespaces = "false",
+                ConstructorInitializerAllOnOneLineOrOnePerLine = "true",
+                ConstructorInitializerIndentWidth = 4,
+                ContinuationIndentWidth = 8,
+                Cpp11BracedListStyle = "true",
+                DeriveLineEnding = "true",
+                DerivePointerAlignment = "false",
+                DisableFormat = "false",
+                FixNamespaceComments = "true",
+                IncludeBlocks = "Merge",
+                IndentCaseBlocks = "true",
+                IndentCaseLabels = "true",
+                IndentExternBlock = "Indent",
+                IndentGotoLabels = "true",
+                IndentPPDirectives = "AfterHash",
+                IndentWidth = 4,
+                IndentWrappedFunctionNames = "false",
+                KeepEmptyLinesAtTheStartOfBlocks = "false",
+                Language = "Cpp",
+                MaxEmptyLinesToKeep = 1,
+                NamespaceIndentation = "All",
+                PenaltyReturnTypeOnItsOwnLine = 999,
+                PointerAlignment = "Left",
+                ReflowComments  = "true",
+                SortIncludes = "true",
+                SortUsingDeclarations = "true",
+                SpaceAfterCStyleCast = "false",
+                SpaceAfterLogicalNot = "false",
+                SpaceAfterTemplateKeyword = "false",
+                SpaceBeforeAssignmentOperators = "true",
+                SpaceBeforeCpp11BracedList = "true",
+                SpaceBeforeCtorInitializerColon = "true",
+                SpaceBeforeInheritanceColon = "true",
+                SpaceBeforeParens = "ControlStatements",
+                SpaceBeforeRangeBasedForLoopColon = "false",
+                SpaceBeforeSquareBrackets = "false",
+                SpaceInEmptyBlock = "false",
+                SpaceInEmptyParentheses = "false",
+                SpacesBeforeTrailingComments = 1,
+                SpacesInAngles = "false",
+                SpacesInCStyleCastParentheses = "false",
+                SpacesInConditionalStatement = "false",
+                SpacesInContainerLiterals = "false",
+                SpacesInParentheses = "false",
+                SpacesInSquareBrackets = "false",
+                Standard = "Cpp11",
+                TabWidth = 4,
+                UseCRLF = "false",
+                UseTab = "Never"
+            }
+        end,
+        config = function ()
+            -- Autoformat C and C++ files on save
+            vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'c,cpp', command = 'ClangFormatAutoEnable'})
+            vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'javascript,typescript,javascriptreact,typescriptreact', command = 'ClangFormatAutoDisable'})
+        end,
+    },
+    {
+        -- Folding in markdown
+        'masukomi/vim-markdown-folding',
+        init = function ()
+            -- Keep content on fold header
+            vim.g.markdown_fold_override_foldtext = 0
+        end,
+        config = function ()
+            -- Expand all folds by default
+            vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {pattern = '*.md,*.mdx', command = 'normal zR'})
+            -- Use nested folding for different header levels
+            vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'markdown', command = 'set foldexpr=NestedMarkdownFolds()'})
+        end,
+    },
+    -- Utility for editing surrounding symbols like quotes and xml tags
+    'tpope/vim-surround',
+    -- Allow f, t, F, and T to wrap across lines
+    'dahu/vim-fanfingtastic',
+    {
+        -- Show context of current function
+        'wellle/context.vim',
+        init = function ()
+            -- Turn off by default
+            vim.g.context_enabled = 0
+            vim.g.context_highlight_tag = '<hide>'
+        end,
+        config = function ()
+            -- Create a command to peek at the current context
+            vim.api.nvim_create_user_command('Context', 'normal :ContextPeek<CR>', {bang = true})
+        end,
+    },
+    -- Syntax highlighting for MDX files
+    'jxnblk/vim-mdx-js',
+    {
+        -- Welcome screen/screensaver
+        'folke/drop.nvim',
+        config = function ()
+            vim.api.nvim_create_autocmd({'VimEnter'}, {pattern = '*', callback =
+                function()
+                    require("drop").setup({
+                        theme = {
+                            symbols = {"*", "."},
+                            colors = {"blue", "lightblue", "darkblue", "white", "lightgray"}
+                        },
+                        max = 170,
+                        interval = 150,
+                        screensaver = 1000 * 10 * 60,
+                        filetypes = {},
+                    })
+                end
+            })
+        end,
+    },
+}
+require("lazy").setup(plugins, {})
 
 -- Add package to jump between html tags
 vim.cmd('packadd! matchit')
 
-
--- ==============
--- NERD COMMENTER
--- ==============
--- Use c/u to comment/uncomment the selection in visual mode
-vim.keymap.set('v', 'c', ":call nerdcommenter#Comment('n', 'Comment')<CR>")
-vim.keymap.set('v', 'u', ":call nerdcommenter#Comment('n', 'Uncomment')<CR>")
-
--- ========
--- NERDTREE
--- ========
--- Close NERDTree when a file is opened
-vim.g.NERDTreeQuitOnOpen = 1
--- Do not show bookmarks
-vim.g.NERDTreeShowBookmarks = 0
--- Show files and hidden files in NREDTree
-vim.g.NERDTreeShowFiles = 1
-vim.g.NERDTreeShowHidden = 1
--- Show line numbers in NERDTree
-vim.g.NERDTreeShowLineNumbers = 1
-
-
--- ==========
--- INDENTLINE
--- ==========
--- Set the color
-vim.g.indentLine_color_term = 'brown'
--- Set the character
-vim.g.indentLine_char = '|'
--- Do not use in json or help files
---   NOTE: since this plugin uses vim's conceal feature, and that messes up
---   JSON quotes, it doens't really work in json files or markdown
-vim.g.indentLine_fileTypeExclude = {'json', 'jsonc', 'help', 'markdown', 'markdown.mdx'}
-
--- ===========
--- WINDOW SWAP
--- ===========
--- Prevent default bindings
-vim.g.windowswap_map_keys = 0
--- Use ,w to 'yank' and 'paste' windows
-vim.keymap.set('n', '<Leader>w', ':call WindowSwap#EasyWindowSwap()<CR>', {silent = true})
-
--- =============
--- PYTHON-SYNTAX
--- =============
--- Turn on all highlighting
-vim.g.python_highlight_all = 1
-
--- =====
--- TABOO
--- =====
--- Allows tab names to be saved in the session file
-vim.opt.sessionoptions = {'blank', 'buffers', 'curdir', 'folds', 'globals', 'help', 'localoptions', 'options', 'resize', 'tabpages', 'terminal', 'winpos', 'winsize'}
--- Set the tab format for default tabs
-vim.g.taboo_tab_format = '├%N%U╯%f %m'
--- Set the tab format for renamed tabs
-vim.g.taboo_renamed_tab_format = '├%N%U╯%l %m'
--- Put a clock in the top-right corner of the tabline
-vim.g.taboo_close_tabs_label = "%{substitute(strftime('%a %e %b %l:%M:%S %p'), '  ', ' ', 'g')}"
--- Update the clock whenever possible (when the cursor moves)
-vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {pattern = '*', command = 'silent redrawtabline'})
--- Redraw the tabline every minute to update the clock
-vim.cmd([[
-    function RedrawTabline(timerID) abort
-        silent redrawtabline
-    endfunction
-    call timer_start(60000, 'RedrawTabline', {'repeat': -1})
-]])
--- Always show the tabline
-vim.opt.showtabline = 2
-
--- ===
--- COC
--- ===
--- Install CoC extensions when the service starts
-vim.g.coc_global_extensions = {'coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-pyright', 'coc-git', 'coc-prettier', 'coc-eslint', 'coc-clangd', 'coc-webview', 'coc-markdown-preview-enhanced', 'coc-sumneko-lua'}
--- Navigate the completion list with control + j/k in addition to control + n/p
-vim.keymap.set('i', '<C-n>',
-    function()
-        if vim.fn['coc#pum#visible']() then
-            return vim.fn['coc#pum#next'](1)
-        end
-        return '<C-n>'
-    end,
-    {expr = true}
-)
-vim.keymap.set('i', '<C-p>',
-    function()
-        if vim.fn['coc#pum#visible']() then
-            return vim.fn['coc#pum#prev'](1)
-        end
-        return '<C-p>'
-    end,
-    {expr = true}
-)
--- Move between errors
-vim.keymap.set('n', '[[', '<Plug>(coc-diagnostic-prev)', {remap = true, silent = true})
-vim.keymap.set('n', ']]', '<Plug>(coc-diagnostic-next)', {remap = true, silent = true})
--- " Allow the [[ and ]] to work in python
-vim.g.no_python_maps = 1
--- Use :Check to get errors current buffer in location list
-vim.api.nvim_create_user_command('Check', ':CocDiagnostics()<CR>', {bang = true})
--- GoTo code navigation.
-vim.keymap.set('n', 'gd', '<Plug>(coc-definition)', {remap = true, silent = true})
-vim.keymap.set('n', 'gy', '<Plug>(coc-type-definition)', {remap = true, silent = true})
-vim.keymap.set('n', 'gi', '<Plug>(coc-implementation)', {remap = true, silent = true})
-vim.keymap.set('n', 'gr', '<Plug>(coc-references)', {remap = true, silent = true})
--- jump between git changes (chunks)
-vim.keymap.set('n', '[g', '<Plug>(coc-git-prevchunk)', {remap = true, silent = true})
-vim.keymap.set('n', ']g', '<Plug>(coc-git-nextchunk)', {remap = true, silent = true})
--- jump between git conflicts
-vim.keymap.set('n', '[c', '<Plug>(coc-git-prevconflict)', {remap = true, silent = true})
-vim.keymap.set('n', ']c', '<Plug>(coc-git-nextconflict)', {remap = true, silent = true})
--- show git chunk diff
-vim.keymap.set('n', 'gs', '<Plug>(coc-git-chunkinfo)', {remap = true, silent = true})
--- Shortcut for CocAction
-vim.api.nvim_create_user_command('CocAction', 'normal <Plug>(coc-codeaction)', {bang = true})
--- Use K for hover-style documentation/help
-function _G.show_docs()
-    local cw = vim.fn.expand('<cword>')
-    if vim.fn.index({'vim', 'help'}, vim.bo.filetype) >= 0 then
-        vim.api.nvim_command('h ' .. cw)
-    elseif vim.api.nvim_eval('coc#rpc#ready()') then
-        vim.fn.CocActionAsync('doHover')
-    else
-        vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
-    end
-end
-vim.keymap.set('n', 'K', '<CMD>lua _G.show_docs()<CR>', {silent = true})
--- Highlight all references to the symbol where the cursor is
-vim.api.nvim_create_autocmd({'CursorHold'}, {pattern = '*', command = "silent call CocActionAsync('highlight')"})
-vim.opt.updatetime = 100
--- Add command for renaming variables
-vim.api.nvim_create_user_command('Rename', 'normal <Plug>(coc-rename)', {bang = true})
--- Add command for renaming files
-vim.api.nvim_create_user_command('RenameFile', ':CocCommand workspace.renameCurrentFile', {bang = true})
--- Add command for organizing imports
-vim.api.nvim_create_user_command('OrganizeImports', ":call CocAction('runCommand', 'editor.action.organizeImport')", {bang = true, nargs = 0})
--- Shortcut for perttier to format javascript/css
-vim.api.nvim_create_user_command('Prettier', ':CocCommand prettier.formatFile', {bang = true, nargs = 0})
--- Shortcut for switching to C header files
-vim.api.nvim_create_user_command('GHeader', 'CocCommand clangd.switchSourceHeader', {bang = true})
-vim.api.nvim_create_user_command('Header', 'rightbelow sp | CocCommand clangd.switchSourceHeader', {bang = true})
-vim.api.nvim_create_user_command('VHeader', 'rightbelow vsp | CocCommand clangd.switchSourceHeader', {bang = true})
--- Scroll popups with <C-f> and <C-b>
-vim.keymap.set('n', '<C-f>', 'coc#float#scroll(1)', {silent = true, nowait = true, expr = true})
-vim.keymap.set('n', '<C-b>', 'coc#float#scroll(0)', {silent = true, nowait = true, expr = true})
-
--- =====
--- BLACK
--- =====
-vim.api.nvim_create_autocmd({'BufWritePre'}, {pattern = '*.py', command = "execute ':Black'"})
-vim.g.black_skip_magic_trailing_comma = 1
-
--- ================
--- VIM-CLANG-FORMAT
--- ================
--- Set options for clang-format in case there is no .clang-format file
--- Note: BreakBeforeBraces: Attach doesn't attach enum braces
--- Note: IndentGotoLabels: true doesn't indent properly within switch
-vim.g['clang_format#style_options'] = {
-    AccessModifierOffset = -2,
-    AlignAfterOpenBracket = "Align",
-    AlignConsecutiveAssignments = "false",
-    AlignConsecutiveBitFields = "true",
-    AlignConsecutiveDeclarations = "false",
-    AlignConsecutiveMacros = "true",
-    AlignEscapedNewlines = "Left",
-    AlignOperands = "Align",
-    AlignTrailingComments = "true",
-    AllowAllArgumentsOnNextLine = "true",
-    AllowAllConstructorInitializersOnNextLine = "false",
-    AllowAllParametersOfDeclarationOnNextLine = "true",
-    AllowShortBlocksOnASingleLine = "Never",
-    AllowShortCaseLabelsOnASingleLine = "false",
-    AllowShortEnumsOnASingleLine = "false",
-    AllowShortFunctionsOnASingleLine = "None",
-    AllowShortIfStatementsOnASingleLine = "Never",
-    AllowShortLambdasOnASingleLine = "None",
-    AllowShortLoopsOnASingleLine = "false",
-    AlwaysBreakAfterReturnType = "None",
-    AlwaysBreakBeforeMultilineStrings = "true",
-    AlwaysBreakTemplateDeclarations = "No",
-    BinPackArguments = "false",
-    BinPackParameters = "false",
-    BreakBeforeBinaryOperators = "None",
-    BreakBeforeBraces = "Attach",
-    BreakBeforeTernaryOperators = "false",
-    BreakConstructorInitializers = "BeforeColon",
-    BreakInheritanceList = "BeforeColon",
-    BreakStringLiterals = "true",
-    ColumnLimit = 80,
-    CompactNamespaces = "false",
-    ConstructorInitializerAllOnOneLineOrOnePerLine = "true",
-    ConstructorInitializerIndentWidth = 4,
-    ContinuationIndentWidth = 8,
-    Cpp11BracedListStyle = "true",
-    DeriveLineEnding = "true",
-    DerivePointerAlignment = "false",
-    DisableFormat = "false",
-    FixNamespaceComments = "true",
-    IncludeBlocks = "Merge",
-    IndentCaseBlocks = "true",
-    IndentCaseLabels = "true",
-    IndentExternBlock = "Indent",
-    IndentGotoLabels = "true",
-    IndentPPDirectives = "AfterHash",
-    IndentWidth = 4,
-    IndentWrappedFunctionNames = "false",
-    KeepEmptyLinesAtTheStartOfBlocks = "false",
-    Language = "Cpp",
-    MaxEmptyLinesToKeep = 1,
-    NamespaceIndentation = "All",
-    PenaltyReturnTypeOnItsOwnLine = 999,
-    PointerAlignment = "Left",
-    ReflowComments  = "true",
-    SortIncludes = "true",
-    SortUsingDeclarations = "true",
-    SpaceAfterCStyleCast = "false",
-    SpaceAfterLogicalNot = "false",
-    SpaceAfterTemplateKeyword = "false",
-    SpaceBeforeAssignmentOperators = "true",
-    SpaceBeforeCpp11BracedList = "true",
-    SpaceBeforeCtorInitializerColon = "true",
-    SpaceBeforeInheritanceColon = "true",
-    SpaceBeforeParens = "ControlStatements",
-    SpaceBeforeRangeBasedForLoopColon = "false",
-    SpaceBeforeSquareBrackets = "false",
-    SpaceInEmptyBlock = "false",
-    SpaceInEmptyParentheses = "false",
-    SpacesBeforeTrailingComments = 1,
-    SpacesInAngles = "false",
-    SpacesInCStyleCastParentheses = "false",
-    SpacesInConditionalStatement = "false",
-    SpacesInContainerLiterals = "false",
-    SpacesInParentheses = "false",
-    SpacesInSquareBrackets = "false",
-    Standard = "Cpp11",
-    TabWidth = 4,
-    UseCRLF = "false",
-    UseTab = "Never"
-}
--- Autoformat C and C++ files on save
-vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'c,cpp', command = 'ClangFormatAutoEnable'})
-vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'javascript,typescript,javascriptreact,typescriptreact', command = 'ClangFormatAutoDisable'})
-
--- ====================
--- VIM-MARKDOWN-FOLDING
--- ====================
--- Keep content on fold header
-vim.g.markdown_fold_override_foldtext = 0
--- Expand all folds by default
-vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {pattern = '*.md,*.mdx', command = 'normal zR'})
--- Use nested folding for different header levels
-vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'markdown', command = 'set foldexpr=NestedMarkdownFolds()'})
-
--- =======
--- CONTEXT
--- =======
-vim.g.context_enabled = 0
-vim.g.context_highlight_tag = '<hide>'
-vim.api.nvim_create_user_command('Context', 'normal :ContextPeek<CR>', {bang = true})
-
--- ====
--- DROP
--- ====
-vim.api.nvim_create_autocmd({'VimEnter'}, {pattern = '*', callback =
-    function()
-        require("drop").setup({
-            theme = {
-                symbols = {"*", "."},
-                colors = {"black", "red"}
-            },
-            max = 170,
-            interval = 150,
-            screensaver = 1000 * 2 * 60,
-            filetypes = {},
-        })
-    end
-})
-
--- =====
--- SNEAK
--- =====
-vim.g['sneak#s_next'] = 1
-vim.g['sneak#use_ic_scs'] = 1
 
 -- ==============
 -- Autoformatting
@@ -636,10 +651,6 @@ vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'java', callback =
 vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'c,cpp', callback =
     function()
         vim.keymap.set('i', 'serr<TAB>', 'fprintf(stderr, "\\n");<ESC>4hi', {buffer = 0})
-    end
-})
-vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'c,cpp', callback =
-    function()
         vim.keymap.set('i', 'sout<TAB>', 'printf("\\n");<ESC>4hi', {buffer = 0})
     end
 })
