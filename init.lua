@@ -61,6 +61,8 @@ vim.cmd("Plug 'dahu/vim-fanfingtastic'")
 vim.cmd("Plug 'wellle/context.vim'")
 -- Syntax highlighting for MDX files
 vim.cmd("Plug 'jxnblk/vim-mdx-js'")
+-- Welcome screen
+vim.cmd("Plug 'folke/drop.nvim'")
 -- Re-map the s motion to move around based on 2 characters at a time
 --vim.cmd("Plug 'justinmk/vim-sneak'")
 vim.fn['plug#end']()
@@ -330,6 +332,24 @@ vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'markdown', command = 'set 
 vim.g.context_enabled = 0
 vim.g.context_highlight_tag = '<hide>'
 vim.api.nvim_create_user_command('Context', 'normal :ContextPeek<CR>', {bang = true})
+
+-- ====
+-- DROP
+-- ====
+vim.api.nvim_create_autocmd({'VimEnter'}, {pattern = '*', callback =
+    function()
+        require("drop").setup({
+            theme = {
+                symbols = {"*", "."},
+                colors = {"black", "red"}
+            },
+            max = 170,
+            interval = 150,
+            screensaver = 1000 * 2 * 60,
+            filetypes = {},
+        })
+    end
+})
 
 -- =====
 -- SNEAK
