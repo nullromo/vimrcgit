@@ -658,9 +658,11 @@ vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'c,cpp', callback =
     function()
         vim.keymap.set('i', 'serr<TAB>', 'fprintf(stderr, "\\n");<ESC>4hi', {buffer = 0})
         vim.keymap.set('i', 'sout<TAB>', 'printf("\\n");<ESC>4hi', {buffer = 0})
+        vim.keymap.set('i', 'clog<TAB>', 'printf("\\n");<ESC>4hi', {buffer = 0})
     end
 })
 vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'javascript,typescript,javascriptreact,typescriptreact', command = 'inoremap <buffer> clog<TAB> console.log();<ESC>hi'})
+vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'javascript,typescript,javascriptreact,typescriptreact', command = 'inoremap <buffer> sout<TAB> console.log();<ESC>hi'})
 -- Close all windows in a tab using qt
 vim.keymap.set('c', 'qt<CR>', 'tabclose<CR>')
 -- Open a terminal in a vertial split
