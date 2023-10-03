@@ -601,7 +601,7 @@ vim.keymap.set('n', '0', 'g0')
 vim.keymap.set('n', '^', 'g^')
 vim.keymap.set('n', '$', 'g$')
 -- Use space to center the screen
-vim.keymap.set('n', '<space>', 'zz')
+vim.keymap.set({'n', 'v'}, '<space>', 'zz')
 -- Center the screen after searching
 vim.keymap.set('n', 'n', 'nzzlN')
 vim.keymap.set('n', 'N', 'NzzlN')
