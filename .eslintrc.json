@@ -17,13 +17,14 @@
         },
         "ecmaVersion": 12,
         "sourceType": "module",
-        "project": "./tsconfig.json"
+        "project": ["./tsconfig.json", "./tsconfig.eslint.json"]
     },
     "plugins": [
         "react",
         "@typescript-eslint",
         "import",
-        "sort-keys-fix"
+        "sort-keys-fix",
+        "react-hooks"
     ],
     "settings": {
         "react": {
@@ -382,6 +383,7 @@
         "@typescript-eslint/no-unsafe-assignment": "error",
         "@typescript-eslint/no-unsafe-call": "error",
         "@typescript-eslint/no-unsafe-declaration-merging": "error",
+        "@typescript-eslint/no-unsafe-enum-comparison": "error",
         "@typescript-eslint/no-unsafe-member-access": "error",
         "@typescript-eslint/no-unsafe-return": "error",
         "@typescript-eslint/no-unused-expressions": ["error"],
@@ -569,6 +571,8 @@
         "import/order": ["error", {"groups": ["builtin", "external", "parent", "sibling", "index"]}],
         "import/prefer-default-export": "off",
         "import/unambiguous": "warn",
-        "sort-keys-fix/sort-keys-fix": ["warn", "asc", {"natural": true}]
+        "sort-keys-fix/sort-keys-fix": ["warn", "asc", { "natural": true }],
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "off"
     }
 }
