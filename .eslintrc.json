@@ -35,7 +35,7 @@
         "accessor-pairs": "off",
         "array-bracket-newline": "off",
         "array-bracket-spacing": "error",
-        "array-callback-return": ["error", {"checkForEach": true}],
+        "array-callback-return": ["error", { "checkForEach": true }],
         "array-element-newline": "off",
         "arrow-body-style": ["error", "always"],
         "arrow-parens": "error",
@@ -43,7 +43,7 @@
         "block-scoped-var": "error",
         "block-spacing": "off",
         "brace-style": "off",
-        "camelcase": ["error", {"allow": ["^_$"]}],
+        "camelcase": ["error", { "allow": ["^_$"] }],
         "capitalized-comments": "off",
         "class-methods-use-this": "off",
         "comma-dangle": "off",
@@ -51,7 +51,7 @@
         "comma-style": "error",
         "complexity": "off",
         "computed-property-spacing": "error",
-        "consistent-return": ["error", {"treatUndefinedAsUnspecified": true}],
+        "consistent-return": ["error", { "treatUndefinedAsUnspecified": true }],
         "consistent-this": "error",
         "constructor-super": "error",
         "curly": "error",
@@ -127,7 +127,7 @@
         "no-dupe-keys": "error",
         "no-duplicate-case": "error",
         "no-duplicate-imports": "off",
-        "no-else-return": ["error", {"allowElseIf": false}],
+        "no-else-return": ["error", { "allowElseIf": false }],
         "no-empty": "error",
         "no-empty-character-class": "error",
         "no-empty-function": "off",
@@ -216,12 +216,18 @@
         "no-underscore-dangle": "error",
         "no-unexpected-multiline": "off",
         "no-unmodified-loop-condition": "error",
-        "no-unneeded-ternary": ["error", {"defaultAssignment": false}],
+        "no-unneeded-ternary": ["error", { "defaultAssignment": false }],
         "no-unreachable": "error",
         "no-unreachable-loop": "error",
         "no-unsafe-finally": "error",
-        "no-unsafe-negation": ["error", {"enforceForOrderingRelations": true}],
-        "no-unsafe-optional-chaining": ["error", {"disallowArithmeticOperators": true}],
+        "no-unsafe-negation": [
+            "error",
+            { "enforceForOrderingRelations": true }
+        ],
+        "no-unsafe-optional-chaining": [
+            "error",
+            { "disallowArithmeticOperators": true }
+        ],
         "no-unused-expressions": "off",
         "no-unused-labels": "warn",
         "no-unused-private-class-members": "warn",
@@ -230,7 +236,10 @@
         "no-useless-backreference": "error",
         "no-useless-call": "error",
         "no-useless-catch": "warn",
-        "no-useless-computed-key": ["error", {"enforceForClassMembers": true}],
+        "no-useless-computed-key": [
+            "error",
+            { "enforceForClassMembers": true }
+        ],
         "no-useless-concat": "error",
         "no-useless-constructor": "off",
         "no-useless-escape": "error",
@@ -246,7 +255,7 @@
         "object-curly-spacing": "off",
         "object-property-newline": "off",
         "object-shorthand": ["error", "always"],
-        "one-var": ["error", {"initialized": "never"}],
+        "one-var": ["error", { "initialized": "never" }],
         "one-var-declaration-per-line": "off",
         "operator-assignment": "off",
         "operator-linebreak": "off",
@@ -261,11 +270,14 @@
         "prefer-object-has-own": "error",
         "prefer-object-spread": "warn",
         "prefer-promise-reject-errors": "error",
-        "prefer-regex-literals": ["error", {"disallowRedundantWrapping": true}],
+        "prefer-regex-literals": [
+            "error",
+            { "disallowRedundantWrapping": true }
+        ],
         "prefer-rest-params": "error",
         "prefer-spread": "error",
         "prefer-template": "error",
-        "quote-props": ["error", "as-needed", {"unnecessary": true}],
+        "quote-props": ["error", "as-needed", { "unnecessary": true }],
         "quotes": "off",
         "radix": "error",
         "require-atomic-updates": "error",
@@ -277,7 +289,7 @@
         "semi-spacing": "off",
         "semi-style": "off",
         "sort-imports": "off",
-        "sort-keys": ["warn", "asc", {"natural": true}],
+        "sort-keys": ["warn", "asc", { "natural": true }],
         "sort-vars": "warn",
         "space-before-blocks": "off",
         "space-before-function-paren": "off",
@@ -291,7 +303,7 @@
         "template-curly-spacing": "off",
         "template-tag-spacing": "off",
         "unicode-bom": "off",
-        "use-isnan": ["error", {"enforceForIndexOf": true}],
+        "use-isnan": ["error", { "enforceForIndexOf": true }],
         "valid-typeof": "error",
         "vars-on-top": "off",
         "wrap-iife": "error",
@@ -299,7 +311,10 @@
         "yield-star-spacing": "off",
         "yoda": "error",
         "@typescript-eslint/adjacent-overload-signatures": "error",
-        "@typescript-eslint/array-type": ["error", {"default": "array-simple"}],
+        "@typescript-eslint/array-type": [
+            "error",
+            { "default": "array-simple" }
+        ],
         "@typescript-eslint/await-thenable": "error",
         "@typescript-eslint/ban-ts-comment": "error",
         "@typescript-eslint/ban-tslint-comment": "error",
@@ -307,18 +322,39 @@
         "@typescript-eslint/brace-style": "error",
         "@typescript-eslint/class-literal-property-style": ["error", "fields"],
         "@typescript-eslint/block-spacing": "error",
-        "@typescript-eslint/comma-dangle": ["error", {"arrays": "always-multiline", "objects": "always-multiline", "imports": "always-multiline", "exports": "always-multiline", "functions": "always-multiline", "enums": "always-multiline", "generics": "ignore", "tuples": "always-multiline"}],
+        "@typescript-eslint/comma-dangle": [
+            "error",
+            {
+                "arrays": "always-multiline",
+                "objects": "always-multiline",
+                "imports": "always-multiline",
+                "exports": "always-multiline",
+                "functions": "always-multiline",
+                "enums": "always-multiline",
+                "generics": "ignore",
+                "tuples": "always-multiline"
+            }
+        ],
         "@typescript-eslint/comma-spacing": "error",
         "@typescript-eslint/consistent-generic-constructors": "error",
-        "@typescript-eslint/consistent-indexed-object-style": ["error", "record"],
-        "@typescript-eslint/consistent-type-assertions": ["error", {"assertionStyle": "as", "objectLiteralTypeAssertions": "never"}],
+        "@typescript-eslint/consistent-indexed-object-style": [
+            "error",
+            "record"
+        ],
+        "@typescript-eslint/consistent-type-assertions": [
+            "error",
+            { "assertionStyle": "as", "objectLiteralTypeAssertions": "never" }
+        ],
         "@typescript-eslint/consistent-type-definitions": "off",
         "@typescript-eslint/consistent-type-exports": "warn",
         "@typescript-eslint/consistent-type-imports": "warn",
         "@typescript-eslint/default-param-last": ["error"],
         "@typescript-eslint/dot-notation": ["error"],
         "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/explicit-member-accessibility": ["error", {"accessibility": "explicit"}],
+        "@typescript-eslint/explicit-member-accessibility": [
+            "error",
+            { "accessibility": "explicit" }
+        ],
         "@typescript-eslint/explicit-module-boundary-types": ["off"],
         "@typescript-eslint/func-call-spacing": "error",
         "@typescript-eslint/indent": "off",
@@ -326,7 +362,11 @@
         "@typescript-eslint/key-spacing": "off",
         "@typescript-eslint/keyword-spacing": "off",
         "@typescript-eslint/lines-around-comment": "off",
-        "@typescript-eslint/lines-between-class-members": ["error", "always", {"exceptAfterOverload": true}],
+        "@typescript-eslint/lines-between-class-members": [
+            "error",
+            "always",
+            { "exceptAfterOverload": true }
+        ],
         "@typescript-eslint/member-delimiter-style": ["error"],
         "@typescript-eslint/member-ordering": "off",
         "@typescript-eslint/method-signature-style": "error",
@@ -338,7 +378,10 @@
         "@typescript-eslint/no-dupe-class-members": ["error"],
         "@typescript-eslint/no-duplicate-enum-values": "error",
         "@typescript-eslint/no-duplicate-type-constituents": "error",
-        "@typescript-eslint/no-duplicate-imports": ["error", {"includeExports": true}],
+        "@typescript-eslint/no-duplicate-imports": [
+            "error",
+            { "includeExports": true }
+        ],
         "@typescript-eslint/no-dynamic-delete": "error",
         "@typescript-eslint/no-empty-function": ["error"],
         "@typescript-eslint/no-empty-interface": "warn",
@@ -346,7 +389,10 @@
         "@typescript-eslint/no-extra-non-null-assertion": "error",
         "@typescript-eslint/no-extra-parens": "off",
         "@typescript-eslint/no-extra-semi": ["error"],
-        "@typescript-eslint/no-extraneous-class": ["error", {"allowStaticOnly": true}],
+        "@typescript-eslint/no-extraneous-class": [
+            "error",
+            { "allowStaticOnly": true }
+        ],
         "@typescript-eslint/no-floating-promises": "error",
         "@typescript-eslint/no-for-in-array": "error",
         "@typescript-eslint/no-implicit-any-catch": "error",
@@ -387,7 +433,10 @@
         "@typescript-eslint/no-unsafe-member-access": "error",
         "@typescript-eslint/no-unsafe-return": "error",
         "@typescript-eslint/no-unused-expressions": ["error"],
-        "@typescript-eslint/no-unused-vars": ["warn", {"argsIgnorePattern": "^_+$", "varsIgnorePattern": "^_+$"}],
+        "@typescript-eslint/no-unused-vars": [
+            "warn",
+            { "argsIgnorePattern": "^_+$", "varsIgnorePattern": "^_+$" }
+        ],
         "@typescript-eslint/no-use-before-define": ["error"],
         "@typescript-eslint/no-useless-constructor": ["error"],
         "@typescript-eslint/no-useless-empty-export": "error",
@@ -413,10 +462,20 @@
         "@typescript-eslint/prefer-string-starts-ends-with": "error",
         "@typescript-eslint/prefer-ts-expect-error": "error",
         "@typescript-eslint/promise-function-async": "error",
-        "@typescript-eslint/quotes": ["error", "single", {"avoidEscape": true}],
-        "@typescript-eslint/require-array-sort-compare": ["error", {"ignoreStringArrays": true}],
+        "@typescript-eslint/quotes": [
+            "error",
+            "single",
+            { "avoidEscape": true }
+        ],
+        "@typescript-eslint/require-array-sort-compare": [
+            "error",
+            { "ignoreStringArrays": true }
+        ],
         "@typescript-eslint/require-await": "error",
-        "@typescript-eslint/restrict-plus-operands": ["error", {"checkCompoundAssignments": true}],
+        "@typescript-eslint/restrict-plus-operands": [
+            "error",
+            { "checkCompoundAssignments": true }
+        ],
         "@typescript-eslint/restrict-template-expressions": "off",
         "@typescript-eslint/return-await": "off",
         "@typescript-eslint/semi": "error",
@@ -440,25 +499,47 @@
         "react/forbid-dom-props": "off",
         "react/forbid-elements": "off",
         "react/forbid-foreign-prop-types": "error",
-        "react/forbid-prop-types": ["error", {"checkContextTypes": true, "checkChildContextTypes": true}],
-        "react/function-component-definition": ["error", {"namedComponents": "arrow-function", "unnamedComponents": "arrow-function"}],
+        "react/forbid-prop-types": [
+            "error",
+            { "checkContextTypes": true, "checkChildContextTypes": true }
+        ],
+        "react/function-component-definition": [
+            "error",
+            {
+                "namedComponents": "arrow-function",
+                "unnamedComponents": "arrow-function"
+            }
+        ],
         "react/hook-use-state": "error",
         "react/iframe-missing-sandbox": "error",
         "react/jsx-boolean-value": ["error", "always"],
         "react/jsx-child-element-spacing": "warn",
         "react/jsx-closing-bracket-location": "error",
         "react/jsx-closing-tag-location": "off",
-        "react/jsx-curly-brace-presence": ["error", {"props": "never", "children": "ignore", "propElementValues": "always"}],
+        "react/jsx-curly-brace-presence": [
+            "error",
+            {
+                "props": "never",
+                "children": "ignore",
+                "propElementValues": "always"
+            }
+        ],
         "react/jsx-curly-newline": "error",
         "react/jsx-curly-spacing": "error",
         "react/jsx-equals-spacing": "error",
-        "react/jsx-filename-extension": ["error", {"allow": "as-needed", "extensions": [".tsx", ".jsx"]}],
+        "react/jsx-filename-extension": [
+            "error",
+            { "allow": "as-needed", "extensions": [".tsx", ".jsx"] }
+        ],
         "react/jsx-first-prop-new-line": "off",
         "react/jsx-fragments": "error",
         "react/jsx-handler-names": "off",
         "react/jsx-indent": "off",
         "react/jsx-indent-props": "off",
-        "react/jsx-key": ["error", {"checkFragmentShorthand": true, "checkKeyMustBeforeSpread": true}],
+        "react/jsx-key": [
+            "error",
+            { "checkFragmentShorthand": true, "checkKeyMustBeforeSpread": true }
+        ],
         "react/jsx-max-depth": "off",
         "react/jsx-max-props-per-line": "off",
         "react/jsx-newline": "off",
@@ -471,12 +552,19 @@
         "react/jsx-no-script-url": "error",
         "react/jsx-no-target-blank": "error",
         "react/jsx-no-undef": "error",
-        "react/jsx-no-useless-fragment": ["warn", {"allowExpressions": true}],
+        "react/jsx-no-useless-fragment": ["warn", { "allowExpressions": true }],
         "react/jsx-one-expression-per-line": "off",
         "react/jsx-pascal-case": "error",
         "react/jsx-props-no-multi-spaces": "error",
         "react/jsx-props-no-spreading": "off",
-        "react/jsx-sort-props": ["warn", {"callbacksLast": true, "shorthandFirst": true, "reservedFirst": true}],
+        "react/jsx-sort-props": [
+            "warn",
+            {
+                "callbacksLast": true,
+                "shorthandFirst": true,
+                "reservedFirst": true
+            }
+        ],
         "react/jsx-tag-spacing": "error",
         "react/jsx-uses-react": "off",
         "react/jsx-uses-vars": "error",
@@ -521,10 +609,20 @@
         "react/require-default-props": "error",
         "react/require-optimization": "off",
         "react/require-render-return": "error",
-        "react/self-closing-comp": ["warn", {"component": true, "html": true}],
+        "react/self-closing-comp": [
+            "warn",
+            { "component": true, "html": true }
+        ],
         "react/sort-comp": "warn",
         "react/sort-default-props": "warn",
-        "react/sort-prop-types": ["warn", {"callbacksLast": true, "requiredFirst": true, "sortShapeProp": true}],
+        "react/sort-prop-types": [
+            "warn",
+            {
+                "callbacksLast": true,
+                "requiredFirst": true,
+                "sortShapeProp": true
+            }
+        ],
         "react/state-in-constructor": "error",
         "react/static-property-placement": "error",
         "react/style-prop-object": "error",
@@ -568,7 +666,10 @@
         "import/no-unused-modules": "error",
         "import/no-useless-path-segments": "error",
         "import/no-webpack-loader-syntax": "error",
-        "import/order": ["error", {"groups": ["builtin", "external", "parent", "sibling", "index"]}],
+        "import/order": [
+            "error",
+            { "groups": ["builtin", "external", "parent", "sibling", "index"] }
+        ],
         "import/prefer-default-export": "off",
         "import/unambiguous": "warn",
         "sort-keys-fix/sort-keys-fix": ["warn", "asc", { "natural": true }],
