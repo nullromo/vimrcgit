@@ -627,10 +627,9 @@ vim.keymap.set('v', 'i{', '<ESC>{jV}k')
 -- Add an alias for the scriptnames command
 vim.keymap.set('c', 'scripts<CR>', 'scriptnames<CR>')
 -- Allow for accidental capital letters when saving or quitting
-vim.keymap.set('c', 'W<CR>', 'w<CR>')
-vim.keymap.set('c', 'X<CR>', 'x<CR>')
-vim.keymap.set('c', 'Q<CR>', 'q<CR>')
-vim.keymap.set('c', 'W<CR>', 'w<CR>')
+vim.keymap.set('c', 'W<CR>', "getcmdtype() =~ '^[:]$' ? 'w<CR>' : 'W<CR>'", {expr = true})
+vim.keymap.set('c', 'X<CR>', "getcmdtype() =~ '^[:]$' ? 'x<CR>' : 'X<CR>'", {expr = true})
+vim.keymap.set('c', 'Q<CR>', "getcmdtype() =~ '^[:]$' ? 'q<CR>' : 'Q<CR>'", {expr = true})
 -- Custom function for scrolling 1/4 of the screen
 vim.cmd([[
     function ScrollQuarter(move) abort
