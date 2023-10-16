@@ -578,7 +578,11 @@ vim.keymap.set('t', '<C-k>', '<C-w>k')
 vim.keymap.set('t', '<C-j>', '<C-w>j')
 vim.keymap.set('t', '<C-h>', '<C-w>h')
 vim.keymap.set('t', '<C-l>', '<C-w>l')
-
+-- Move around in insert mode faster
+vim.keymap.set('i', '<C-k>', '<C-o>k')
+vim.keymap.set('i', '<C-j>', '<C-o>j')
+vim.keymap.set('i', '<C-h>', '<C-o>h')
+vim.keymap.set('i', '<C-l>', '<C-o>l')
 -- Use ; for command mode
 vim.keymap.set('n', ';', ':')
 -- Use ; for command mode in terminal windows
