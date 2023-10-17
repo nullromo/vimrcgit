@@ -424,16 +424,16 @@ local plugins = {
         dependencies = {
             'williamboman/mason.nvim'
         },
-        config = function()
-            -- For some reason, having an empty function here makes this plugin
-            -- load after its dependency
-        end,
         opts = {
             ensure_installed = {
                 'lua_ls'
             },
             automatic_installation = true,
         },
+        config = function()
+            -- For some reason, having an empty function here makes this plugin
+            -- load after its dependency
+        end,
     },
     {
         -- LSP configuration
@@ -442,13 +442,22 @@ local plugins = {
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
         },
-        --opts = {
-            --lua_ls = {
-                --Lua = {
-                    -- options here?
-                --},
-            --},
-        --},
+        opts = {
+            -- this will get passed into the config function as the second argument
+        },
+        config = function(_, opts)
+            require('lspconfig').lua_ls.setup({
+                capabilities = vim.lsp.protocol.make_client_capabilities(),
+                on_attach = function()
+                    -- do some stuff here
+                end,
+                settings = {
+                    Lua = {
+                        -- lua options here?
+                    },
+                },
+            })
+        end,
     },
     {
         -- Status updater for LSP
