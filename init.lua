@@ -366,7 +366,7 @@ local plugins = {
         end,
     },
     {
-        -- ???
+        -- Tool for moving around the screen more easily
         'folke/flash.nvim',
         event = 'VeryLazy',
         opts = {
