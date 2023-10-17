@@ -130,7 +130,7 @@ local plugins = {
             -- COC
             -- ===
             -- Install CoC extensions when the service starts
-            vim.g.coc_global_extensions = {'coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-pyright', 'coc-git', 'coc-prettier', 'coc-eslint', 'coc-clangd', 'coc-webview', 'coc-markdown-preview-enhanced', 'coc-sumneko-lua'}
+            vim.g.coc_global_extensions = {'coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-pyright', 'coc-git', 'coc-prettier', 'coc-eslint', 'coc-clangd', 'coc-webview', 'coc-markdown-preview-enhanced'}
             -- Navigate the completion list with control + j/k in addition to control + n/p
             vim.keymap.set('i', '<C-n>',
                 function()
@@ -413,6 +413,51 @@ local plugins = {
             --{ "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
         },
     },
+    {
+        -- Installer for language servers
+        'williamboman/mason.nvim',
+        lazy = false,
+    },
+    {
+        -- Connector for language servers
+        'williamboman/mason-lspconfig.nvim',
+        dependencies = {
+            'williamboman/mason.nvim'
+        },
+        config = function()
+            -- For some reason, having an empty function here makes this plugin
+            -- load after its dependency
+        end,
+        opts = {
+            ensure_installed = {
+                'lua_ls'
+            },
+            automatic_installation = true,
+        },
+    },
+    {
+        -- LSP configuration
+        'neovim/nvim-lspconfig',
+        dependencies = {
+            'williamboman/mason.nvim',
+            'williamboman/mason-lspconfig.nvim',
+        },
+        --opts = {
+            --lua_ls = {
+                --Lua = {
+                    -- options here?
+                --},
+            --},
+        --},
+    },
+    {
+        -- Status updater for LSP
+        'j-hui/fidget.nvim',
+        tag = 'legacy',
+        event = 'LspAttach',
+    },
+    -- Type hints and such for development of vim itself
+    'folke/neodev.nvim',
 }
 require("lazy").setup(plugins, {})
 
