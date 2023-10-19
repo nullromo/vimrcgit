@@ -12,6 +12,6 @@ return function()
             -- Show line numbers in NERDTree
             vim.g.NERDTreeShowLineNumbers = 1
         end,
-        event = 'VeryLazy',
+        lazy = false,
     }
 end

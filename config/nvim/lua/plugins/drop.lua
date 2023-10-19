@@ -17,5 +17,6 @@ return function()
                 end
             })
         end,
+        event = 'VeryLazy',
     }
 end

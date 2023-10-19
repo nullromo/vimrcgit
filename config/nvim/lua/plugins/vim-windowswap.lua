@@ -9,5 +9,11 @@ return function()
             -- Use ,w to 'yank' and 'paste' windows
             vim.keymap.set('n', '<Leader>w', ':call WindowSwap#EasyWindowSwap()<CR>', {silent = true})
         end,
+        keys = {
+            {
+                '<Leader>w',
+                mode = 'n',
+            },
+        },
     }
 end

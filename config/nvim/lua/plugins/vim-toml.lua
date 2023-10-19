@@ -1,3 +1,8 @@
 return function()
-    return 'cespare/vim-toml'
+    return {
+        'cespare/vim-toml',
+        ft = {
+            'toml',
+        },
+    }
 end

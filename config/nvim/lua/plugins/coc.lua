@@ -80,5 +80,6 @@ return function()
             vim.keymap.set('n', '<C-f>', 'coc#float#scroll(1)', {silent = true, nowait = true, expr = true})
             vim.keymap.set('n', '<C-b>', 'coc#float#scroll(0)', {silent = true, nowait = true, expr = true})
         end,
+        lazy = false,
     }
 end

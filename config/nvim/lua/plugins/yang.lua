@@ -1,3 +1,8 @@
 return function()
-    return 'nathanalderson/yang.vim'
+    return {
+        'nathanalderson/yang.vim',
+        ft = {
+            'yang',
+        },
+    }
 end

@@ -14,5 +14,6 @@ return function()
             -- For some reason, having an empty function here makes this plugin
             -- load after its dependency
         end,
+        event = 'VeryLazy',
     }
 end

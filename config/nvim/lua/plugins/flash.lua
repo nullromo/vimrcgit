@@ -1,7 +1,6 @@
 return function()
     return {
         'folke/flash.nvim',
-        event = 'VeryLazy',
         opts = {
             label = {
                 -- only use lowercase letters for jump labels
@@ -37,13 +36,27 @@ return function()
                 motion = true,
             },
         },
-        keys = {
+        config = function(_, opts)
+            require('flash').setup(opts)
+            vim.keymap.set({'n', 'o', 'x'}, '<C-f>', function() require('flash').jump() end)
+            vim.keymap.set({'o'}, 'r', function() require('flash').remote() end)
+        end,
+        --keys = {
             -- use C-f to activate flash during normal mode, operator pending mode, and visual mode
-            { "<C-f>", mode = { "n", "o", "x" }, function() require("flash").jump() end, desc = "Flash" },
             --{ "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
             -- use r to activate flash in operator pending mode
-            { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
             --{ "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-        },
+        --},
+        --keys = {
+            --{
+                --'<C-f>',
+                --mode = {'n', 'o', 'x'},
+            --},
+            --{
+                --'r',
+                --mode = {'o', 'x'},
+            --},
+        --},
+        event = 'VeryLazy',
     }
 end

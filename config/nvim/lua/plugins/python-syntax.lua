@@ -5,5 +5,8 @@ return function()
             -- Turn on all highlighting
             vim.g.python_highlight_all = 1
         end,
+        ft = {
+            'python',
+        },
     }
 end

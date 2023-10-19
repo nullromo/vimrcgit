@@ -93,5 +93,9 @@ return function()
             vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'c,cpp', command = 'ClangFormatAutoEnable'})
             vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'javascript,typescript,javascriptreact,typescriptreact', command = 'ClangFormatAutoDisable'})
         end,
+        ft = {
+            'c',
+            'cpp',
+        },
     }
 end

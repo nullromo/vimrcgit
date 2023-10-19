@@ -21,5 +21,6 @@ return function()
                 },
             })
         end,
+        event = 'VeryLazy',
     }
 end

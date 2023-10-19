@@ -24,5 +24,6 @@ return function()
                 call timer_start(60000, 'RedrawTabline', {'repeat': -1})
             ]])
         end,
+        lazy = false,
     }
 end

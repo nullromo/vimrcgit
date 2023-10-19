@@ -11,5 +11,8 @@ return function()
             -- Use nested folding for different header levels
             vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'markdown', command = 'set foldexpr=NestedMarkdownFolds()'})
         end,
+        ft = {
+            'markdown',
+        },
     }
 end

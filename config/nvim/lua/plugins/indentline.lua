@@ -11,5 +11,7 @@ return function()
             --   JSON quotes, it doens't really work in json files or markdown
             vim.g.indentLine_fileTypeExclude = {'json', 'jsonc', 'help', 'markdown', 'markdown.mdx'}
         end,
+        lazy = false,
+        --event = 'VeryLazy',
     }
 end

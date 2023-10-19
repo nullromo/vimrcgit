@@ -1,3 +1,6 @@
 return function()
-    return 'ntpeters/vim-better-whitespace'
+    return {
+        'ntpeters/vim-better-whitespace',
+        event = 'VeryLazy',
+    }
 end
