@@ -125,3 +125,9 @@ execute 'hi StatusLineMetaNC ctermfg=black ctermbg=' . statusLineBackgroundNC
 " Color overrides for CoC
 hi CocErrorSign ctermfg=yellow
 hi CocInfoSign ctermfg=lightblue
+
+" Color overrides for flash.nvim
+hi link FlashBackdrop Comment
+hi FlashMatch ctermfg=red ctermbg=black
+    hi link FlashCurrent FlashMatch
+hi FlashLabel ctermbg=lightgray ctermfg=black
