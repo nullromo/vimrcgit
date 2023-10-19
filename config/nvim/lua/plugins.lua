@@ -49,7 +49,7 @@ return function()
         require('plugins.vim-markdown-folding')(),
         -- utility for editing surrounding symbols like quotes and xml tags
         require('plugins.vim-surround')(),
-        -- allow f, t, f, and t to wrap across lines
+        -- allow f, t, F, and T to wrap across lines
         require('plugins.vim-fanfingtastic')(),
         -- show context of current function
         require('plugins.context')(),
