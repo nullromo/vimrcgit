@@ -20,7 +20,7 @@ return function()
                     enabled = false,
                 },
                 char = {
-                    autohide = true,
+                    autohide = false,
                     search = {
                         wrap = true,
                     },
