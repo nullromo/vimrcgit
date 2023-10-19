@@ -12,7 +12,7 @@ alias sql='mysql --user=root --password=password --host=127.0.0.1 --protocol=TCP
 alias tree='tree -I node_modules --dirsfirst'
 
 # search without looking into certain folders
-alias search='grep -irn --exclude-dir=node_modules/ --exclude-dir=.git/ --exclude=Session.vim --exclude-dir=dist/ --exclude-dir=build/ --exclude-dir=build-touchscreen/ --exclude-dir=coverage/ --exclude=package-lock.json --exclude-dir=generated-docs/ --exclude=.eslintcache --exclude-dir=data/logs/ --exclude=*.svg --exclude=json.hpp --exclude-dir=third-party-libraries'
+alias search='grep -irn --exclude-dir=node_modules/ --exclude-dir=.git/ --exclude=Session.vim --exclude-dir=dist/ --exclude-dir=build/ --exclude-dir=build-touchscreen/ --exclude-dir=coverage/ --exclude=package-lock.json --exclude-dir=generated-docs/ --exclude=.eslintcache --exclude-dir=data/logs/ --exclude=*.svg --exclude=json.hpp --exclude-dir=third-party-libraries --exclude-dir=docker'
 alias searchcs='search --no-ignore-case'
 
 # update all packages
@@ -50,3 +50,7 @@ connect() {
 alias cat='batcat'
 alias catcat='\cat'
 alias catc='catcat'
+
+# easy command for managing config files
+alias vimrcgit='/usr/bin/git --git-dir="$HOME/vimrcgit" --work-tree="$HOME"'
+alias vgit='vimrcgit'
