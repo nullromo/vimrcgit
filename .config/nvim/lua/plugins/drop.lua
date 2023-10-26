@@ -4,7 +4,7 @@ return function()
         config = function ()
             vim.api.nvim_create_autocmd({'VimEnter'}, {pattern = '*', callback =
                 function()
-                    require("drop").setup({
+                    require('drop').setup({
                         theme = {
                             symbols = {"*", "."},
                             colors = {"blue", "lightblue", "darkblue", "white", "lightgray"}

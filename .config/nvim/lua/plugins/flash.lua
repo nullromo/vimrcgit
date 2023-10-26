@@ -38,24 +38,14 @@ return function()
         },
         config = function(_, opts)
             require('flash').setup(opts)
+            -- use C-f to activate flash during normal mode, operator pending mode, and visual mode
             vim.keymap.set({'n', 'o', 'x'}, '<C-f>', function() require('flash').jump() end)
+            -- use r to activate remote flash in operator pending mode
             vim.keymap.set({'o'}, 'r', function() require('flash').remote() end)
         end,
         --keys = {
-            -- use C-f to activate flash during normal mode, operator pending mode, and visual mode
             --{ "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-            -- use r to activate flash in operator pending mode
             --{ "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-        --},
-        --keys = {
-            --{
-                --'<C-f>',
-                --mode = {'n', 'o', 'x'},
-            --},
-            --{
-                --'r',
-                --mode = {'o', 'x'},
-            --},
         --},
         event = 'VeryLazy',
     }
