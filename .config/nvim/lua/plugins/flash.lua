@@ -30,6 +30,12 @@ return function()
                             label = "FlashMatch",
                         },
                     },
+                    char_actions = function(motion)
+                        return {
+                            [motion:lower()] = 'right',
+                            [motion:upper()] = 'left',
+                        }
+                    end,
                 },
             },
             remote_op = {
