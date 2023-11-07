@@ -46,7 +46,7 @@ return function()
         -- autoformatting for c files
         require('plugins.vim-clang-format')(),
         -- folding in markdown
-        require('plugins.vim-markdown-folding')(),
+        --require('plugins.vim-markdown-folding')(),
         -- utility for editing surrounding symbols like quotes and xml tags
         require('plugins.vim-surround')(),
         -- allow f, t, F, and T to wrap across lines
