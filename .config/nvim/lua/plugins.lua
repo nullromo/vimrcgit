@@ -69,6 +69,8 @@ return function()
         require('plugins.fidget')(),
         -- type hints and such for development of vim itself
         require('plugins.neodev')(),
+        -- searcher
+        require('plugins.telescope')(),
     }
     require("lazy").setup(plugins, {})
 
