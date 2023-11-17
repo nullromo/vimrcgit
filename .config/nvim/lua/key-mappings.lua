@@ -100,7 +100,22 @@ return function()
     vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'javascript,typescript,javascriptreact,typescriptreact', command = 'inoremap <buffer> clog<TAB> console.log();<ESC>hi'})
     vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'javascript,typescript,javascriptreact,typescriptreact', command = 'inoremap <buffer> sout<TAB> console.log();<ESC>hi'})
     -- Close all windows in a tab using qt
-    vim.keymap.set('c', 'qt<CR>', 'tabclose<CR>')
+    vim.keymap.set('c', 'qt<CR>',
+        function()
+            -- exit command mode and close the current tab
+            local tabCloseOK, result = pcall(
+                function()
+                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<ESC>', true, false, true), 'n', false)
+                    return vim.cmd('tabclose')
+                end
+            )
+            -- if closing the current tab failed and the resulting error message complains about the tab being the last tab, exit vim
+            if (not tabCloseOK and string.find(result, 'Cannot close last tab page')) then
+                vim.print('Closing last tab page by exiting vim')
+                vim.cmd('qa')
+            end
+        end
+    )
     -- Open a terminal in a vertial split
     vim.keymap.set('c', 'vt', 'vertical terminal')
     -- Disable default Ex mode mapping
