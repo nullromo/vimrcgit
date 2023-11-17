@@ -116,6 +116,8 @@ return function()
             end
         end
     )
+    -- Open a new tab with ,t
+    vim.keymap.set('n', '<leader>t', ':tabnew<CR>')
     -- Open a terminal in a vertial split
     vim.keymap.set('c', 'vt', 'vertical terminal')
     -- Disable default Ex mode mapping
