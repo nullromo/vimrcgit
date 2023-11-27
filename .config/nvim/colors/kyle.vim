@@ -58,7 +58,7 @@ execute 'hi TabLineFill ctermfg=' . statusLineBackgroundNC
 execute 'hi TabLineSel cterm=NONE ctermfg=lightblue ctermbg=' . statusLineBackground
 hi Terminal     cterm=NONE
 hi Title        cterm=bold ctermfg=darkgreen
-hi Visual       cterm=reverse
+hi Visual       cterm=reverse ctermbg=gray
    hi link IncSearch Visual
 hi VisualNOS    cterm=NONE
 hi WarningMsg   term=standout cterm=bold ctermfg=darkred
