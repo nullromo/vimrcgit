@@ -9,4 +9,6 @@ return function()
     vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {pattern = 'Jenkinsfile', command = 'set filetype=groovy'})
     -- Highlight system.config file as JSON
     vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {pattern = 'system.config', command = 'set filetype=json'})
+    -- Don't allow hidden modified buffers
+    vim.opt.hidden = false
 end
