@@ -15,23 +15,125 @@ return function()
             'nvim-telescope/telescope-live-grep-args.nvim',
         },
         config = function()
-            require('telescope').setup()
+            -- import stuff from telescope
+            local telescope = require('telescope')
+            local telescopeShortcuts = require('telescope-live-grep-args.shortcuts')
+            local telescopeBuiltins = require('telescope.builtin')
+            local telescopeState = require('telescope.state')
+            local telescopeActionState = require('telescope.actions.state')
+            local telescopeActionSet = require('telescope.actions.set')
+
+            -- function that scrolls the telescope preview window by 1 line up or down
+            local scrollSingleLine = function(bufferNumber, down)
+                local previewer = telescopeActionState.get_current_picker(bufferNumber).previewer
+                local status = telescopeState.get_status(bufferNumber)
+                if (type(previewer) ~= 'table' or previewer.scroll_fn == nil or status.preview_win == nil) then
+                    return
+                end
+                previewer:scroll_fn(down and 1 or -1)
+            end
+
+            -- mappings for scrolling the telescope preview window up and down
+            local singleLineScrollMappings = {
+                ['<C-e>'] = function(bufferNumber) scrollSingleLine(bufferNumber, true) end,
+                ['<C-y>'] = function(bufferNumber) scrollSingleLine(bufferNumber, false) end,
+            }
+
+            -- opens the selected item in a new tab (in applicable pickers) and resumes telescope
+            local openFileInNewTab = function(bufferNumber)
+                telescopeActionSet.select(bufferNumber, 'tab')
+                vim.cmd('normal gT')
+                vim.cmd('Telescope resume')
+            end
+
+            -- main telescope setup/config
+            telescope.setup({
+                defaults = {
+                    mappings = {
+                        -- use the scroll up and down mappings in insert and normal modes
+                        i = singleLineScrollMappings,
+                        n = singleLineScrollMappings,
+                    },
+                },
+                pickers = {
+                    find_files = {
+                        mappings = {
+                            -- override the default <C-t> behavior in the find_files function to open the file in a new tab and switch back to the old tab to resume telescope
+                            i = {
+                                ['<C-t>'] = openFileInNewTab,
+                            },
+                            n = {
+                                ['<C-t>'] = openFileInNewTab,
+                            },
+                        },
+                    },
+                },
+            })
+
             -- only load the fzf extension if ripgrep is installed
             if (vim.fn.executable('rg') == 1) then
-                require('telescope').load_extension('fzf')
+                telescope.load_extension('fzf')
             else
                 print("WARNING: ripgrep ('rg') is not installed, so fzf from telescope will not work.")
             end
-            require('telescope').load_extension('live_grep_args')
+            telescope.load_extension('live_grep_args')
 
             -- use ,* to live grep for the word under the cursor
             vim.keymap.set('n', '<leader>*', function()
-                require('telescope-live-grep-args.shortcuts').grep_word_under_cursor({
+                telescopeShortcuts.grep_word_under_cursor({
                     -- ignore case
                     postfix = ' -i',
                 })
             end)
-            vim.keymap.set('v', '<leader>*', require('telescope-live-grep-args.shortcuts').grep_visual_selection)
+            vim.keymap.set('v', '<leader>*', telescopeShortcuts.grep_visual_selection)
+
+            -- use :Search to start telescope live_grep_args
+            vim.api.nvim_create_user_command('Search',
+                telescope.extensions.live_grep_args.live_grep_args,
+                {bang = true}
+            )
+
+            -- use :File to start telescope find_files
+            vim.api.nvim_create_user_command('File',
+                telescopeBuiltins.find_files,
+                {bang = true}
+            )
+
+            -- use :Gs to start telescope git_status
+            vim.api.nvim_create_user_command('Gs',
+                telescopeBuiltins.git_status,
+                {bang = true}
+            )
+
+            -- use :Help to search vim's help pages
+            vim.api.nvim_create_user_command('Help',
+                telescopeBuiltins.help_tags,
+                {bang = true}
+            )
+
+            -- use :ColorMapSearch to search for tags in the colorscheme
+            vim.api.nvim_create_user_command('ColorMapSearch',
+                telescopeBuiltins.highlights,
+                {bang = true}
+            )
+
+            -- use :Marks to search through vim's marks
+            vim.api.nvim_create_user_command('Marks',
+                telescopeBuiltins.marks,
+                {bang = true}
+            )
+
+            -- use :Registers to search through vim's registers
+            vim.api.nvim_create_user_command('Registers',
+                telescopeBuiltins.registers,
+                {bang = true}
+            )
+
+            -- use :Ts to resume telescope
+            vim.api.nvim_create_user_command('Ts',
+                telescopeBuiltins.resume,
+                {bang = true}
+            )
         end,
         event = 'VeryLazy',
     }
