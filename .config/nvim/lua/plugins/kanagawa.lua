@@ -1,7 +1,5 @@
 return function()
     local sumiInk0 = '#16161D'
-    local sumiInk1 = '#1F1F28'
-    local sumiInk4 = '#54546D'
     local dragonBlue = '#658594'
     local waveBlue2 = '#2D4F67'
     local oldWhite = '#C8C093'
@@ -30,6 +28,15 @@ return function()
         config = function()
             require('kanagawa').setup({
                 theme = 'wave',
+                colors = {
+                    theme = {
+                        all = {
+                            ui = {
+                                bg_gutter = 'none',
+                            },
+                        },
+                    },
+                },
             })
             -- enable the colorscheme
             vim.o.background = ''
@@ -40,7 +47,6 @@ return function()
             vim.api.nvim_set_hl(0, 'TabLine',     { bg = sumiInk0 })
             vim.api.nvim_set_hl(0, 'TabLineFill', { bg = sumiInk0 })
             vim.api.nvim_set_hl(0, 'TabLineSel',  { bg = waveBlue2 })
-            vim.api.nvim_set_hl(0, 'LineNr',      { fg = sumiInk4, bg = sumiInk1 })
             vim.api.nvim_set_hl(0, 'CurSearch', { fg = 'black', bg = peachRed })
             vim.api.nvim_set_hl(0, 'Search', { fg = sumiInk0, bg = roninYellow })
             vim.api.nvim_set_hl(0, 'IncSearch', { link = 'Search' })
