@@ -7,6 +7,8 @@ return function()
     local oldWhite = '#C8C093'
     local autumnYellow = '#DCA561'
     local autumnGreen = '#76946A'
+    local roninYellow = '#FF9E3B'
+    local peachRed = '#FF5D62'
     return {
         'rebelot/kanagawa.nvim',
         init = function()
@@ -21,6 +23,9 @@ return function()
             vim.api.nvim_set_hl(0, 'StatusLinePercentNC',       { fg = autumnYellow, bg = sumiInk0  })
             vim.api.nvim_set_hl(0, 'StatusLineMeta',            { fg = 'white',      bg = waveBlue2 })
             vim.api.nvim_set_hl(0, 'StatusLineMetaNC',          { fg = dragonBlue,   bg = sumiInk0  })
+
+            -- highlight groups for flash.nvim
+            vim.api.nvim_set_hl(0, 'FlashLabel',                { fg = 'black',      bg = peachRed  })
         end,
         config = function()
             require('kanagawa').setup({
@@ -30,12 +35,15 @@ return function()
             vim.o.background = ''
             vim.cmd.colorscheme('kanagawa')
 
-            -- modify the statusline and tabline highlight colors
+            -- modify parts of the colorscheme
             vim.api.nvim_set_hl(0, 'StatusLine',  { bg = waveBlue2 })
             vim.api.nvim_set_hl(0, 'TabLine',     { bg = sumiInk0 })
             vim.api.nvim_set_hl(0, 'TabLineFill', { bg = sumiInk0 })
             vim.api.nvim_set_hl(0, 'TabLineSel',  { bg = waveBlue2 })
             vim.api.nvim_set_hl(0, 'LineNr',      { fg = sumiInk4, bg = sumiInk1 })
+            vim.api.nvim_set_hl(0, 'CurSearch', { fg = 'black', bg = peachRed })
+            vim.api.nvim_set_hl(0, 'Search', { fg = sumiInk0, bg = roninYellow })
+            vim.api.nvim_set_hl(0, 'IncSearch', { link = 'Search' })
         end,
     }
 end
