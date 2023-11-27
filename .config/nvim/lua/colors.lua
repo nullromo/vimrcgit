@@ -1,8 +1,6 @@
 return function()
     -- Enable syntax coloring
     vim.opt.syntax = 'on'
-    -- Set the color scheme
-    vim.cmd.colorscheme('kyle')
     -- Highlights matching parentheses, brackets, etc. on hover
     vim.opt.showmatch = true
     -- Highlight the current line in insert mode

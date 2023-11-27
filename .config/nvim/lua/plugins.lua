@@ -71,6 +71,8 @@ return function()
         require('plugins.neodev')(),
         -- searcher
         require('plugins.telescope')(),
+        -- colorscheme
+        require('plugins.kanagawa')(),
     }
     require("lazy").setup(plugins, {})
 

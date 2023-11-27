@@ -1,17 +1,21 @@
 {
-  "[css][javascript][typescript][javascriptreact][typescriptreact][markdown]": {
-    "coc.preferences.formatOnSave": true
-  },
-  "python.linting.pylintEnabled": true,
-  "python.pythonPath": "/usr/bin/python",
-  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/12.0.1/clangd_12.0.1/bin/clangd",
-  "[c][cpp]": {
-    "semanticTokens.enable": true
-  },
-  "html.autoClosingTags": false,
-  "typescript.autoClosingTags": false,
-  "javascript.autoClosingTags": false,
-  "suggest.noselect": true,
-  "pyright.inlayHints.functionReturnTypes": false,
-  "pyright.inlayHints.variableTypes": false
+    "[css][javascript][typescript][javascriptreact][typescriptreact][markdown]": {
+        "coc.preferences.formatOnSave": true
+    },
+    "python.linting.pylintEnabled": true,
+    "python.pythonPath": "/usr/bin/python",
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/12.0.1/clangd_12.0.1/bin/clangd",
+    "[c][cpp]": {
+        "semanticTokens.enable": true
+    },
+    "html.autoClosingTags": false,
+    "typescript.autoClosingTags": false,
+    "javascript.autoClosingTags": false,
+    "suggest.noselect": true,
+    "pyright.inlayHints.functionReturnTypes": false,
+    "pyright.inlayHints.variableTypes": false,
+    "git.addedSign.hlGroup": "GitSignsAdd",
+    "git.changedSign.hlGroup": "GitSignsChange",
+    "git.removedSign.hlGroup": "GitSignsDelete",
+    "git.topRemovedSign.hlGroup": "GitSignsDelete"
 }
