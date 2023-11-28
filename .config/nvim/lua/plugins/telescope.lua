@@ -89,7 +89,22 @@ return function()
 
             -- use :Search to start telescope live_grep_args
             vim.api.nvim_create_user_command('Search',
-                telescope.extensions.live_grep_args.live_grep_args,
+                function()
+                    telescope.extensions.live_grep_args.live_grep_args({
+                        vimgrep_arguments = {
+                            'rg',
+                            -- default required arguments
+                            '--color=never',
+                            '--no-heading',
+                            '--with-filename',
+                            '--line-number',
+                            '--column',
+                            '--smart-case',
+                            -- additional argument to search through hidden files
+                            '--hidden'
+                        }
+                    })
+                end,
                 {bang = true}
             )
 
