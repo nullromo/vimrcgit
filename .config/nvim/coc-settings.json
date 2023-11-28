@@ -17,5 +17,6 @@
     "git.addedSign.hlGroup": "GitSignsAdd",
     "git.changedSign.hlGroup": "GitSignsChange",
     "git.removedSign.hlGroup": "GitSignsDelete",
-    "git.topRemovedSign.hlGroup": "GitSignsDelete"
+    "git.topRemovedSign.hlGroup": "GitSignsDelete",
+    "git.changeRemovedSign.hlGroup": "GitSingsChange"
 }
