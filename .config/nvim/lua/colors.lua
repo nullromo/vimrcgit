@@ -6,7 +6,7 @@ return function()
     -- Highlight the current line in insert mode
     vim.api.nvim_create_autocmd({'InsertEnter'}, {pattern = '*', command = 'set cul'})
     vim.api.nvim_create_autocmd({'InsertLeave'}, {pattern = '*', command = 'set nocul'})
-    vim.api.nvim_create_autocmd({'BufRead'}, {pattern = '*', command = 'set nocul'})
+    vim.api.nvim_create_autocmd({'BufEnter'}, {pattern = '*', command = 'set nocul'})
     -- Turn spell-checking on when editing a .notes file
     vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {pattern = '*', command = 'set nospell'})
     vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {pattern = '*.notes,*.md,*.mdx', command = 'set spell'})
