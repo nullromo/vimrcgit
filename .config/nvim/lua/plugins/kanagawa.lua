@@ -38,6 +38,7 @@ return function()
                     },
                 },
             })
+
             -- enable the colorscheme
             vim.o.background = ''
             vim.cmd.colorscheme('kanagawa')

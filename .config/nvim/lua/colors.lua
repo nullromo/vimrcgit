@@ -13,5 +13,5 @@ return function()
     -- Always show all characters in markdown files
     vim.api.nvim_create_autocmd({'BufEnter', 'BufRead', 'BufNewFile'}, {pattern = '*.md,*.mdx,*.json', command = 'set conceallevel=0'})
     -- Set highlighting for coc to be just bold
-    vim.cmd.highlight({'CocHighlightText', 'cterm=bold'})
+    vim.cmd.highlight('CocHighlightText', 'gui=bold')
 end
