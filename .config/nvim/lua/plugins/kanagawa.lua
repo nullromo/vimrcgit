@@ -1,5 +1,6 @@
 return function()
     local sumiInk0 = '#16161D'
+    local sumiInk4 = '#54546D'
     local dragonBlue = '#658594'
     local waveBlue2 = '#2D4F67'
     local oldWhite = '#C8C093'
@@ -44,13 +45,22 @@ return function()
             vim.cmd.colorscheme('kanagawa')
 
             -- modify parts of the colorscheme
+            -- statusline background
             vim.api.nvim_set_hl(0, 'StatusLine',  { bg = waveBlue2 })
-            vim.api.nvim_set_hl(0, 'TabLine',     { bg = sumiInk0 })
+            -- tabline background
             vim.api.nvim_set_hl(0, 'TabLineFill', { bg = sumiInk0 })
+            -- unselected tab title background
+            vim.api.nvim_set_hl(0, 'TabLine',     { bg = sumiInk0 })
+            -- selected tab background
             vim.api.nvim_set_hl(0, 'TabLineSel',  { bg = waveBlue2 })
-            vim.api.nvim_set_hl(0, 'CurSearch', { fg = 'black', bg = peachRed })
+            -- search highlight color
             vim.api.nvim_set_hl(0, 'Search', { fg = sumiInk0, bg = roninYellow })
+            -- search term that is under the cursor
+            vim.api.nvim_set_hl(0, 'CurSearch', { fg = 'black', bg = peachRed })
+            -- search term that is being typed out
             vim.api.nvim_set_hl(0, 'IncSearch', { link = 'Search' })
+            -- line that separates vertical splits
+            vim.api.nvim_set_hl(0, 'WinSeparator', { fg = sumiInk4 })
         end,
     }
 end
