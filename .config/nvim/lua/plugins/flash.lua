@@ -12,25 +12,29 @@ return function()
                 before = true,
             },
             highlight = {
+                -- don't blank out the entire screen when using flash
                 backdrop = false,
             },
             modes = {
                 search = {
+                    -- don't do flash when not doing flash
                     enabled = false,
                 },
                 char = {
-                    autohide = false,
                     search = {
+                        -- wrap around the end of the document
                         wrap = true,
                     },
                     highlight = {
+                        -- don't blank out the entire screen when using flash
                         backdrop = false,
-                        matches = false,
                         groups = {
-                            label = "FlashMatch",
+                            -- highlight the characters in orange instead of red
+                            label = 'FlashMatch',
                         },
                     },
                     char_actions = function(motion)
+                        -- make f, t, F, and T move in the correct directions
                         return {
                             [motion:lower()] = 'right',
                             [motion:upper()] = 'left',
@@ -38,20 +42,19 @@ return function()
                     end,
                 },
             },
-            remote_op = {
-                motion = true,
-            },
         },
         config = function(_, opts)
             require('flash').setup(opts)
+
             -- use C-f to activate flash during normal mode, operator pending mode, and visual mode
             vim.keymap.set({'n', 'o', 'x'}, '<C-f>', function() require('flash').jump() end)
+
             -- use r to activate remote flash in operator pending mode
             vim.keymap.set({'o'}, 'r', function() require('flash').remote() end)
         end,
         --keys = {
-            --{ "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-            --{ "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+            --{ 'S', mode = { 'n', 'o', 'x' }, function() require('flash').treesitter() end, desc = 'Flash Treesitter' },
+            --{ 'R', mode = { 'o', 'x' }, function() require('flash').treesitter_search() end, desc = 'Treesitter Search' },
         --},
         event = 'VeryLazy',
     }
