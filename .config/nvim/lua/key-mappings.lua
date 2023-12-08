@@ -65,7 +65,7 @@ return function()
     vim.keymap.set('c', 'Q<CR>', "getcmdtype() =~ '^[:]$' ? 'q<CR>' : 'Q<CR>'", {expr = true})
     -- Custom function for scrolling 1/4 of the screen
     vim.cmd([[
-        function ScrollQuarter(move) abort
+        function! ScrollQuarter(move) abort
             let height = winheight(0)
             if a:move == 'up'
                 let scrollKey = "\<C-Y>"
