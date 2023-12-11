@@ -39,13 +39,6 @@ return function()
     vim.keymap.set('n', '$', 'g$')
     -- Use space to center the screen
     vim.keymap.set({'n', 'v'}, '<space>', 'zz')
-    -- Center the screen after searching
-    vim.keymap.set('n', 'n', 'nzzlN')
-    vim.keymap.set('n', 'N', 'NzzlN')
-    vim.keymap.set('n', '*', '*zzlN')
-    vim.keymap.set('n', '#', '#zzlN')
-    -- When using *, just start the search without going to the next match
-    vim.keymap.set('n', '*', '*N')
     -- Use , + direction to resize windows
     vim.keymap.set('n', '<Leader>h', ':vertical resize +3<CR>')
     vim.keymap.set('n', '<Leader>j', ':resize +3<CR>')
