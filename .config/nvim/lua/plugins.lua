@@ -74,6 +74,8 @@ return function()
         require('plugins.telescope')(),
         -- colorscheme
         require('plugins.kanagawa')(),
+        -- search highlighting tool
+        require('plugins.cash')(),
     }
     require('lazy').setup(plugins, {})
 
