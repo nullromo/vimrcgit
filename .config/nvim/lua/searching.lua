@@ -16,7 +16,7 @@ return function()
     vim.keymap.set('n', 'n', 'nzz')
     vim.keymap.set('n', 'N', 'Nzz')
 
-    -- color constants
+    -- color constants taken from kanagawa.nvim
     local sumiInk0 = '#16161D'
     local fujiWhite = '#DCD7BA'
     local roninYellow = '#FF9E3B'
@@ -157,6 +157,7 @@ return function()
 
         -- if the user didn't enter a number, do nothing
         if userNumber == nil then
+            vim.notify('Enter a number to use multi-search')
             return
         end
 
@@ -216,7 +217,8 @@ return function()
         { expr = true }
     )
 
-    -- Use // in visual mode to search for what is highlighted. Also integrate with custom function
+    -- Use // in visual mode to search for what is highlighted. Also integrate
+    -- with custom function
     vim.keymap.set(
         'v',
         '//',
@@ -227,7 +229,8 @@ return function()
             -- 1. yank the selected text (y)
             -- 2. begin a search and set very nomagic (/\V)
             -- 3. enter the contents of the expression register (<C-r>=)
-            -- 4. escape slashes and backslashes from the contents of the " register (escape(@", '/\')<CR>)
+            -- 4. escape slashes and backslashes from the contents of the "
+            --    register (escape(@", '/\')<CR>)
             -- 5. enter the search (<CR>)
             return 'y/\\V<C-r>=escape(@",\'/\\\')<CR><CR>'
         end,
