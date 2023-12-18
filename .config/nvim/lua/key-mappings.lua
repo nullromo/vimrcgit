@@ -123,4 +123,6 @@ return function()
     -- Switch p and P in visual mode
     vim.keymap.set('x', 'p', 'P')
     vim.keymap.set('x', 'P', 'p')
+    -- Open help windows to the left by default without having to use :vertical
+    vim.api.nvim_create_autocmd({'FileType'}, { pattern = 'help', command = 'wincmd H' })
 end
