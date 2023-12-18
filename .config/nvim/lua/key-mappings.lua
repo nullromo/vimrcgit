@@ -120,4 +120,7 @@ return function()
     -- Add shortcuts for typing arrow functions in JavaScript and TypeScript
     vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'javascript,typescript,javascriptreact,typescriptreact', command = 'inoremap <C-=> () => {<CR>.<CR>}<ESC>kA<backspace>'})
     vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'javascript,typescript,javascriptreact,typescriptreact', command = 'inoremap <C-0> ) => {<CR>.<CR>})<ESC>kA<backspace>'})
+    -- Switch p and P in visual mode
+    vim.keymap.set('x', 'p', 'P')
+    vim.keymap.set('x', 'P', 'p')
 end
