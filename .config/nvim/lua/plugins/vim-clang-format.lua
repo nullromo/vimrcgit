@@ -90,8 +90,18 @@ return function()
         end,
         config = function ()
             -- Autoformat C and C++ files on save
-            vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'c,cpp', command = 'ClangFormatAutoEnable'})
-            vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'javascript,typescript,javascriptreact,typescriptreact', command = 'ClangFormatAutoDisable'})
+            vim.api.nvim_create_autocmd({ 'WinEnter', 'FileType' }, {
+                callback = function()
+                    local ft = vim.bo.filetype
+                    if ft == 'cpp' or ft == 'c' then
+                        vim.notify('clang enabled')
+                        vim.cmd('ClangFormatAutoEnable')
+                    else
+                        vim.notify('clang disabled')
+                        vim.cmd('ClangFormatAutoDisable')
+                    end
+                end,
+            })
         end,
         ft = {
             'c',
