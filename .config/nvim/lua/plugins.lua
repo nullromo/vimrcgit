@@ -23,7 +23,7 @@ return function()
         -- show vertical lines for indented blocks
         require('plugins.indentline')(),
         -- highlight trailing whitespace
-        require('plugins.vim-better-whitespace')(),
+        --require('plugins.vim-better-whitespace')(), -- note: this plugin messes with cash.nvim. See https://github.com/ntpeters/vim-better-whitespace/issues/162 for details.
         -- allows swapping windows with <leader>w
         require('plugins.vim-windowswap')(),
         -- better syntax highlighting for python
