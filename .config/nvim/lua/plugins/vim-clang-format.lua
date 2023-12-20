@@ -94,10 +94,8 @@ return function()
                 callback = function()
                     local ft = vim.bo.filetype
                     if ft == 'cpp' or ft == 'c' then
-                        vim.notify('clang enabled')
                         vim.cmd('ClangFormatAutoEnable')
                     else
-                        vim.notify('clang disabled')
                         vim.cmd('ClangFormatAutoDisable')
                     end
                 end,
