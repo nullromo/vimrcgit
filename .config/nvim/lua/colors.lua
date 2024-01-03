@@ -1,4 +1,6 @@
 return function()
+    local sumiInk3 = '#363646'
+
     -- Enable syntax coloring
     vim.opt.syntax = 'on'
     -- Highlights matching parentheses, brackets, etc. on hover
@@ -14,4 +16,6 @@ return function()
     vim.api.nvim_create_autocmd({'BufEnter', 'BufRead', 'BufNewFile'}, {pattern = '*.md,*.mdx,*.json', command = 'set conceallevel=0'})
     -- Set highlighting for coc to be just bold
     vim.cmd.highlight('CocHighlightText', 'gui=bold')
+    -- Set coc autocomplete highlighted line color
+    vim.api.nvim_set_hl(0, 'CocMenuSel', { bg = sumiInk3 })
 end
