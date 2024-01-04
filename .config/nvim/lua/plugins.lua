@@ -79,6 +79,26 @@ return function()
         -- search highlighting tool
         require('plugins.cash')(),
     }
+
+    -- load fewer plugins when using firenvim
+    if vim.g.started_by_firenvim == true then
+        plugins = {
+            require('plugins.nerdcommenter')(),
+            require('plugins.vim-fugitive')(),
+            require('plugins.indentline')(),
+            require('plugins.vim-windowswap')(),
+            require('plugins.taboo')(),
+            require('plugins.vim-surround')(),
+            require('plugins.vim-fanfingtastic')(),
+            require('plugins.drop')(),
+            require('plugins.flash')(),
+            require('plugins.telescope')(),
+            require('plugins.kanagawa')(),
+            require('plugins.cash')(),
+            -- use vim in the browser
+            require('plugins.firenvim')(),
+        }
+    end
     require('lazy').setup(plugins, {})
 
     -- Add package to jump between html tags
