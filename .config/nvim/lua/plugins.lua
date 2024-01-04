@@ -60,6 +60,8 @@ return function()
         require('plugins.drop')(),
         -- tool for moving around the screen more easily
         require('plugins.flash')(),
+        -- core utility for language server functionality
+        require('plugins.nvim-treesitter')(),
         -- installer for language servers
         require('plugins.mason')(),
         -- connector for language servers
