@@ -2,7 +2,7 @@ return function()
     return {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
-        config = function ()
+        config = function()
             require('nvim-treesitter.configs').setup({
                 -- language parsers to install
                 ensure_installed = {
