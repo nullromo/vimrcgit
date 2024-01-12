@@ -78,6 +78,8 @@ return function()
         require('plugins.kanagawa')(),
         -- search highlighting tool
         require('plugins.cash')(),
+        -- maintain window sizes when resizing vim
+        require('plugins.bufresize')(),
     }
 
     -- load fewer plugins when using firenvim
