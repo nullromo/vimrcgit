@@ -101,6 +101,8 @@ return function()
             require('plugins.firenvim')(),
         }
     end
+
+    -- set up plugins
     require('lazy').setup(plugins, {})
 
     -- Add package to jump between html tags
