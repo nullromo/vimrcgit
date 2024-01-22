@@ -80,6 +80,8 @@ return function()
         require('plugins.cash')(),
         -- maintain window sizes when resizing vim
         require('plugins.bufresize')(),
+        -- file browser for editing file names/permissions
+        require('plugins.oil')(),
     }
 
     -- load fewer plugins when using firenvim
