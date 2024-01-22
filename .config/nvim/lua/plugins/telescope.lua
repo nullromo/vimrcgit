@@ -145,7 +145,7 @@ return function()
             )
 
             -- use :Ts to resume telescope
-            vim.api.nvim_create_user_command('Ts',
+            vim.api.nvim_create_user_command('Tr',
                 telescopeBuiltins.resume,
                 {bang = true}
             )
