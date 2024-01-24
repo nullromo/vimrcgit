@@ -38,37 +38,27 @@ return function()
                 { desc = 'Spider insert mode ge motion' }
             )
 
-            -- When exiting insert mode, the cursor moves back 1 space. Insert
-            -- mode mappings that need to exit insert mode have to begin with an
-            -- l motion to counteract this. However, if the cursor is in column
-            -- 1, then the l is not necessary and may cause problems
-            local doMotion = function(motion)
-                -- check if the cursor is in the first column
-                if (vim.fn.col('.') == 1) then
-                    return '<ESC>' .. motion .. 'i'
-                end
-                return '<ESC>l' .. motion .. 'i'
-            end
+            local motionFromInsertMode = require('util').motionFromInsertMode
 
             -- use <C-S-w>, <C-S-e>, <C-S-b>, and <C-g>E in insert mode to mimic
             -- normal mode W, E, B, and gE
             vim.keymap.set('i', '<C-S-w>', function()
-                    doMotion('W')
+                    return motionFromInsertMode('W')
                 end,
                 { expr = true, desc = 'Insert mode W motion' }
             )
             vim.keymap.set('i', '<C-S-e>', function()
-                    doMotion('E')
+                    return motionFromInsertMode('E')
                 end,
                 { expr = true, desc = 'Insert mode E motion' }
             )
             vim.keymap.set('i', '<C-S-b>', function()
-                    doMotion('B')
+                    return motionFromInsertMode('B')
                 end,
                 { expr = true, desc = 'Insert mode B motion' }
             )
             vim.keymap.set('i', '<C-g>E', function()
-                    doMotion('gE')
+                    return motionFromInsertMode('gE')
                 end,
                 { expr = true, desc = 'Insert mode gE motion' }
             )

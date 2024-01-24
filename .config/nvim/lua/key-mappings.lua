@@ -16,6 +16,14 @@ return function()
     vim.keymap.set('i', '<C-j>', '<C-o>j')
     vim.keymap.set('i', '<C-h>', '<C-o>h')
     vim.keymap.set('i', '<C-l>', '<C-o>l')
+    vim.keymap.set('i', '<C-n>', function()
+            return require('util').motionFromInsertMode('n')
+        end, { expr = true }
+    )
+    vim.keymap.set('i', '<C-S-n>', function()
+            return require('util').motionFromInsertMode('N')
+        end, { expr = true }
+    )
     -- Use ; for command mode
     vim.keymap.set('n', ';', ':')
     -- Use ; for command mode in terminal windows
