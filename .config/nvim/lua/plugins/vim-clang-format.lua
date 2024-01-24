@@ -99,6 +99,7 @@ return function()
                         vim.cmd('ClangFormatAutoDisable')
                     end
                 end,
+                desc = 'format C/C++ files on save',
             })
         end,
         ft = {

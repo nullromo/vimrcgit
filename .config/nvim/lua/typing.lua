@@ -18,7 +18,7 @@ return function()
     -- Make the backspace key work
     vim.opt.backspace = {'indent', 'eol', 'start'}
     -- Auto-insert } when typing {<CR> in insert mode
-    vim.keymap.set('i', '{<CR>', '{<CR><CR>}<ESC>kcc')
+    vim.keymap.set('i', '{<CR>', '{<CR><CR>}<ESC>kcc', { desc = 'auto-insert }' })
     -- Use <S-CR> to insert a newline above the current line in insert mode
-    vim.keymap.set('i', '<S-CR>', '<ESC>O')
+    vim.keymap.set('i', '<S-CR>', '<ESC>O', { desc = 'insert newline above current line' })
 end

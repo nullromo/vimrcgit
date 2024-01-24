@@ -90,8 +90,8 @@ return function()
                     -- ignore case
                     postfix = ' -i',
                 })
-            end)
-            vim.keymap.set('v', '<leader>*', telescopeShortcuts.grep_visual_selection)
+            end, { desc = 'live grep under cursor from normal mode' })
+            vim.keymap.set('v', '<leader>*', telescopeShortcuts.grep_visual_selection, { desc = 'live grep under cursor from visual mode' })
 
             -- use :Search to start telescope live_grep_args
             vim.api.nvim_create_user_command('Search',
@@ -111,49 +111,49 @@ return function()
                         }
                     })
                 end,
-                {bang = true}
+                { bang = true, desc = 'telescope grep' }
             )
 
             -- use :File to start telescope find_files
             vim.api.nvim_create_user_command('File',
                 telescopeBuiltins.find_files,
-                {bang = true}
+                { bang = true, desc = 'telescope find file' }
             )
 
             -- use :Gs to start telescope git_status
             vim.api.nvim_create_user_command('Gs',
                 telescopeBuiltins.git_status,
-                {bang = true}
+                { bang = true, desc = 'telescope git status' }
             )
 
             -- use :Help to search vim's help pages
             vim.api.nvim_create_user_command('Help',
                 telescopeBuiltins.help_tags,
-                {bang = true}
+                { bang = true, desc = 'telescope help' }
             )
 
             -- use :ColorMapSearch to search for tags in the colorscheme
             vim.api.nvim_create_user_command('ColorMapSearch',
                 telescopeBuiltins.highlights,
-                {bang = true}
+                { bang = true, desc = 'telescope highlights' }
             )
 
             -- use :Marks to search through vim's marks
             vim.api.nvim_create_user_command('Marks',
                 telescopeBuiltins.marks,
-                {bang = true}
+                { bang = true, desc = 'telescope marks' }
             )
 
             -- use :Registers to search through vim's registers
             vim.api.nvim_create_user_command('Registers',
                 telescopeBuiltins.registers,
-                {bang = true}
+                { bang = true, desc = 'telescope registers' }
             )
 
             -- use :Ts to resume telescope
             vim.api.nvim_create_user_command('Tr',
                 telescopeBuiltins.resume,
-                {bang = true}
+                { bang = true, desc = 'telescope resume' }
             )
         end,
         event = 'VeryLazy',

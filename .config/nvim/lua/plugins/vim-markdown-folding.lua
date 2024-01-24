@@ -7,9 +7,22 @@ return function()
         end,
         config = function ()
             -- Expand all folds by default
-            vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {pattern = '*.md,*.mdx', command = 'normal zR'})
+            vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' },
+                {
+                    pattern = '*.md,*.mdx',
+                    command = 'normal zR',
+                    desc = 'expand all folds by default',
+                }
+            )
+
             -- Use nested folding for different header levels
-            vim.api.nvim_create_autocmd({'FileType'}, {pattern = 'markdown', command = 'set foldexpr=NestedMarkdownFolds()'})
+            vim.api.nvim_create_autocmd({ 'FileType'} ,
+                {
+                    pattern = 'markdown',
+                    command = 'set foldexpr=NestedMarkdownFolds()',
+                    desc = 'use nested folding',
+                }
+            )
         end,
         ft = {
             'markdown',

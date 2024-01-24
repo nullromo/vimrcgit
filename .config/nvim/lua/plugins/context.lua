@@ -8,7 +8,8 @@ return function()
         end,
         config = function ()
             -- Create a command to peek at the current context
-            vim.api.nvim_create_user_command('Context', 'normal :ContextPeek<CR>', {bang = true})
+            vim.api.nvim_create_user_command('Context', 'normal :ContextPeek<CR>',
+                { bang = true, desc = 'Context peek' })
         end,
         cmd = 'Context',
     }

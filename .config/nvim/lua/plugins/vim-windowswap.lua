@@ -7,7 +7,9 @@ return function()
         end,
         config = function ()
             -- Use ,w to 'yank' and 'paste' windows
-            vim.keymap.set('n', '<Leader>w', ':call WindowSwap#EasyWindowSwap()<CR>', {silent = true})
+            vim.keymap.set('n', '<Leader>w', ':call WindowSwap#EasyWindowSwap()<CR>',
+                { silent = true, desc = 'window swap' }
+            )
         end,
         keys = {
             {

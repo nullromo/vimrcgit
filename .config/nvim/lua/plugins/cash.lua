@@ -9,7 +9,7 @@ return function()
             -- use <Leader>v to print debug info
             vim.keymap.set('n', '<Leader>v', function()
                 cash.printDebugInfo()
-            end)
+            end, { desc = 'cash debug' })
         end,
     }
 end

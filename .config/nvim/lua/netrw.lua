@@ -8,5 +8,7 @@ return function()
     -- Open files in the netrw window
     vim.g.netrw_browse_split = 0
     -- Use the :Tree command to open netrw in Vim's working directory
-    vim.api.nvim_create_user_command('Tree', ":execute 'Vexplore' getcwd()", {bang = true, nargs = 0})
+    vim.api.nvim_create_user_command('Tree', ":execute 'Vexplore' getcwd()",
+        { bang = true, nargs = 0, desc = 'open netrw tree' }
+    )
 end

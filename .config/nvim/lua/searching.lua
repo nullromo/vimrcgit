@@ -11,10 +11,10 @@ return function()
     vim.opt.wildmenu = true
     -- Add terms to the current search with + (NOTE: the normal mapping for + is
     -- just moving between lines)
-    vim.keymap.set('n', '+', '/<C-r>/\\|')
+    vim.keymap.set('n', '+', '/<C-r>/\\|', { desc = 'add to current search' })
     -- Center the screen after searching
-    vim.keymap.set('n', 'n', 'nzz')
-    vim.keymap.set('n', 'N', 'Nzz')
+    vim.keymap.set('n', 'n', 'nzz', { desc = 'center screen after searching forward' })
+    vim.keymap.set('n', 'N', 'Nzz', { desc = 'center screen after searching backward' })
 
     -- Use // in visual mode to search for what is highlighted. Also integrate
     -- with custom function
@@ -33,6 +33,6 @@ return function()
             -- 5. enter the search (<CR>)
             return 'y/\\V<C-r>=escape(@",\'/\\\')<CR><CR>'
         end,
-        { expr = true }
+        { expr = true, desc = 'search for visual selection' }
     )
 end
