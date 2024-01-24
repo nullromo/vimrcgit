@@ -63,11 +63,6 @@ return function()
     vim.keymap.set('n', '<Leader>l', ':vertical resize -3<CR>', { desc = 'window size decrease horizontally' })
 
     -- Normally <C-w>| and <C-w>_ maximize windows. Use <C-w>- and <C-w>\ to minimize
-    -- Select current block from visual mode
-    vim.keymap.set('v', 'i}', '<ESC>{jV}k')
-    vim.keymap.set('v', 'i{', '<ESC>{jV}k')
-    -- Add an alias for the scriptnames command
-    vim.keymap.set('c', 'scripts<CR>', 'scriptnames<CR>')
     vim.keymap.set('n', '<C-w>-', ':resize 0<CR>', { desc = 'minimize window' })
     vim.keymap.set('n', '<C-w>\\', ':vertical resize 0<CR>', { desc = 'maximize window' })
 
