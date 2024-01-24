@@ -10,13 +10,13 @@ return function()
                 { 'n', 'x' },
                 'w',
                 "<cmd>lua require('spider').motion('w')<CR>",
-	            { desc = 'Spider w motion' }
+                { desc = 'Spider w motion' }
             )
             vim.keymap.set(
-	            { 'n', 'x' },
-	            'e',
-	            "<cmd>lua require('spider').motion('e')<CR>",
-	            { desc = 'Spider e motion' }
+                { 'n', 'x' },
+                'e',
+                "<cmd>lua require('spider').motion('e')<CR>",
+                { desc = 'Spider e motion' }
             )
             vim.keymap.set(
                 { 'n', 'x' },
