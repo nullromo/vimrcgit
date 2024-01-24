@@ -57,6 +57,7 @@ return function()
                 },
                 pickers = {
                     find_files = {
+                        disable_devicons = true,
                         mappings = {
                             -- override the default <C-t> behavior in the find_files function to open the file in a new tab and switch back to the old tab to resume telescope
                             i = {
@@ -66,6 +67,11 @@ return function()
                                 ['<C-t>'] = openFileInNewTab,
                             },
                         },
+                    },
+                },
+                extensions = {
+                    live_grep_args = {
+                        disable_devicons = true,
                     },
                 },
             })
