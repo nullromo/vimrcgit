@@ -4,6 +4,9 @@ return function()
         enable = false,
         event = 'VeryLazy',
         config = function()
+            require('spider').setup({
+                skipInsignificantPunctuation = false,
+            })
             -- map w, e, b, and ge for normal and visual modes only. W, E, B,
             -- and gE function normally
             vim.keymap.set({ 'n', 'x' }, 'w',
