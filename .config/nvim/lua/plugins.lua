@@ -82,6 +82,8 @@ return function()
         require('plugins.bufresize')(),
         -- file browser for editing file names/permissions
         require('plugins.oil')(),
+        -- make w, e, and b behave better
+        require('plugins.spider')(),
     }
 
     -- load fewer plugins when using firenvim
