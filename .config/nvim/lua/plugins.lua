@@ -84,6 +84,8 @@ return function()
         require('plugins.oil')(),
         -- make w, e, and b behave better
         require('plugins.spider')(),
+        -- nvim auto formatter
+        require('plugins.conform')(),
     }
 
     -- load fewer plugins when using firenvim
