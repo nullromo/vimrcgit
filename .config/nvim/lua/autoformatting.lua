@@ -9,8 +9,8 @@ return function()
         }
     )
 
-    -- Make it so that markdown files are formatted properly with gq and also while
-    -- typing in the file (automatically). See :h fo-table for details.
+    -- Make it so that markdown files are formatted properly with gq and also
+    -- while typing in the file (automatically). See :h fo-table for details.
     vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' },
         {
             pattern = '*.md',
@@ -19,7 +19,8 @@ return function()
         }
     )
 
-    -- Make it so that comments and code are formatted properly with gq in C files
+    -- Make it so that comments and code are formatted properly with gq in C
+    -- and JS files
     vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' },
         {
             pattern = '*.c,*.cpp,*.h,*.hpp,*.js,*.ts,*.jsx,*.tsx',
