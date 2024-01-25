@@ -54,3 +54,4 @@ alias catc='catcat'
 # easy command for managing config files
 alias vimrcgit='/usr/bin/git --git-dir="$HOME/vimrcgit" --work-tree="$HOME"'
 alias vgit='vimrcgit'
+alias vlg='lazygit --git-dir="$HOME/vimrcgit" --work-tree="$HOME"'
