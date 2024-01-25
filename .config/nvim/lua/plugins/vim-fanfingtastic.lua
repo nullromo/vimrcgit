@@ -1,19 +1,6 @@
 return function()
     return {
         'dahu/vim-fanfingtastic',
-        keys = {
-            {
-                'f',
-            },
-            {
-                'F',
-            },
-            {
-                't',
-            },
-            {
-                'T',
-            },
-        },
+        keys = { { 'f' }, { 'F' }, { 't' }, { 'T' } },
     }
 end

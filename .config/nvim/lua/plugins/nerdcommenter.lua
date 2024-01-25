@@ -1,12 +1,18 @@
 return function()
     return {
         'preservim/nerdcommenter',
-        config = function ()
+        config = function()
             -- Use c/u to comment/uncomment the selection in visual mode
-            vim.keymap.set('v', 'c', ":call nerdcommenter#Comment('n', 'Comment')<CR>",
+            vim.keymap.set(
+                'v',
+                'c',
+                ":call nerdcommenter#Comment('n', 'Comment')<CR>",
                 { desc = 'nerdcommenter comment' }
             )
-            vim.keymap.set('v', 'u', ":call nerdcommenter#Comment('n', 'Uncomment')<CR>",
+            vim.keymap.set(
+                'v',
+                'u',
+                ":call nerdcommenter#Comment('n', 'Uncomment')<CR>",
                 { desc = 'nerdcommenter uncomment' }
             )
         end,
@@ -17,7 +23,7 @@ return function()
             },
             {
                 'u',
-                mode = 'v'
+                mode = 'v',
             },
         },
     }

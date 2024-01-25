@@ -1,13 +1,16 @@
 return function()
     return {
         'wesQ3/vim-windowswap',
-        init = function ()
+        init = function()
             -- Prevent default bindings
             vim.g.windowswap_map_keys = 0
         end,
-        config = function ()
+        config = function()
             -- Use ,w to 'yank' and 'paste' windows
-            vim.keymap.set('n', '<Leader>w', ':call WindowSwap#EasyWindowSwap()<CR>',
+            vim.keymap.set(
+                'n',
+                '<Leader>w',
+                ':call WindowSwap#EasyWindowSwap()<CR>',
                 { silent = true, desc = 'window swap' }
             )
         end,

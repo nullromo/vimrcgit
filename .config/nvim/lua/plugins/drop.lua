@@ -1,11 +1,17 @@
 return function()
     return {
         'folke/drop.nvim',
-        config = function ()
+        config = function()
             require('drop').setup({
                 theme = {
-                    symbols = {"*", "."},
-                    colors = {"blue", "lightblue", "darkblue", "white", "lightgray"}
+                    symbols = { '*', '.' },
+                    colors = {
+                        'blue',
+                        'lightblue',
+                        'darkblue',
+                        'white',
+                        'lightgray',
+                    },
                 },
                 max = 170,
                 interval = 150,

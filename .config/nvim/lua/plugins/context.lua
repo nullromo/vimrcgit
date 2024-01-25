@@ -1,15 +1,18 @@
 return function()
     return {
         'wellle/context.vim',
-        init = function ()
+        init = function()
             -- Turn off by default
             vim.g.context_enabled = 0
             vim.g.context_highlight_tag = '<hide>'
         end,
-        config = function ()
+        config = function()
             -- Create a command to peek at the current context
-            vim.api.nvim_create_user_command('Context', 'normal :ContextPeek<CR>',
-                { bang = true, desc = 'Context peek' })
+            vim.api.nvim_create_user_command(
+                'Context',
+                'normal :ContextPeek<CR>',
+                { bang = true, desc = 'Context peek' }
+            )
         end,
         cmd = 'Context',
     }

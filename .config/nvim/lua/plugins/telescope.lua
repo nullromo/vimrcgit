@@ -17,17 +17,25 @@ return function()
         config = function()
             -- import stuff from telescope
             local telescope = require('telescope')
-            local telescopeShortcuts = require('telescope-live-grep-args.shortcuts')
+            local telescopeShortcuts =
+                require('telescope-live-grep-args.shortcuts')
             local telescopeBuiltins = require('telescope.builtin')
             local telescopeState = require('telescope.state')
             local telescopeActionState = require('telescope.actions.state')
             local telescopeActionSet = require('telescope.actions.set')
 
-            -- function that scrolls the telescope preview window by 1 line up or down
+            -- function that scrolls the telescope preview window by 1 line up
+            -- or down
             local scrollSingleLine = function(bufferNumber, down)
-                local previewer = telescopeActionState.get_current_picker(bufferNumber).previewer
+                local previewer = telescopeActionState.get_current_picker(
+                    bufferNumber
+                ).previewer
                 local status = telescopeState.get_status(bufferNumber)
-                if (type(previewer) ~= 'table' or previewer.scroll_fn == nil or status.preview_win == nil) then
+                if
+                    type(previewer) ~= 'table'
+                    or previewer.scroll_fn == nil
+                    or status.preview_win == nil
+                then
                     return
                 end
                 previewer:scroll_fn(down and 1 or -1)
@@ -35,11 +43,16 @@ return function()
 
             -- mappings for scrolling the telescope preview window up and down
             local singleLineScrollMappings = {
-                ['<C-e>'] = function(bufferNumber) scrollSingleLine(bufferNumber, true) end,
-                ['<C-y>'] = function(bufferNumber) scrollSingleLine(bufferNumber, false) end,
+                ['<C-e>'] = function(bufferNumber)
+                    scrollSingleLine(bufferNumber, true)
+                end,
+                ['<C-y>'] = function(bufferNumber)
+                    scrollSingleLine(bufferNumber, false)
+                end,
             }
 
-            -- opens the selected item in a new tab (in applicable pickers) and resumes telescope
+            -- opens the selected item in a new tab (in applicable pickers) and
+            -- resumes telescope
             local openFileInNewTab = function(bufferNumber)
                 telescopeActionSet.select(bufferNumber, 'tab')
                 vim.cmd('normal gT')
@@ -50,7 +63,8 @@ return function()
             telescope.setup({
                 defaults = {
                     mappings = {
-                        -- use the scroll up and down mappings in insert and normal modes
+                        -- use the scroll up and down mappings in insert and
+                        -- normal modes
                         i = singleLineScrollMappings,
                         n = singleLineScrollMappings,
                     },
@@ -59,7 +73,10 @@ return function()
                     find_files = {
                         disable_devicons = true,
                         mappings = {
-                            -- override the default <C-t> behavior in the find_files function to open the file in a new tab and switch back to the old tab to resume telescope
+                            -- override the default <C-t> behavior in the
+                            -- find_files function to open the file in a new tab
+                            -- and switch back to the old tab to resume
+                            -- telescope
                             i = {
                                 ['<C-t>'] = openFileInNewTab,
                             },
@@ -77,10 +94,12 @@ return function()
             })
 
             -- only load the fzf extension if ripgrep is installed
-            if (vim.fn.executable('rg') == 1) then
+            if vim.fn.executable('rg') == 1 then
                 telescope.load_extension('fzf')
             else
-                print("WARNING: ripgrep ('rg') is not installed, so fzf from telescope will not work.")
+                print(
+                    "WARNING: ripgrep ('rg') is not installed, so fzf from telescope will not work."
+                )
             end
             telescope.load_extension('live_grep_args')
 
@@ -91,67 +110,76 @@ return function()
                     postfix = ' -i',
                 })
             end, { desc = 'live grep under cursor from normal mode' })
-            vim.keymap.set('v', '<leader>*', telescopeShortcuts.grep_visual_selection, { desc = 'live grep under cursor from visual mode' })
-
-            -- use :Search to start telescope live_grep_args
-            vim.api.nvim_create_user_command('Search',
-                function()
-                    telescope.extensions.live_grep_args.live_grep_args({
-                        vimgrep_arguments = {
-                            'rg',
-                            -- default required arguments
-                            '--color=never',
-                            '--no-heading',
-                            '--with-filename',
-                            '--line-number',
-                            '--column',
-                            '--smart-case',
-                            -- additional argument to search through hidden files
-                            '--hidden'
-                        }
-                    })
-                end,
-                { bang = true, desc = 'telescope grep' }
+            vim.keymap.set(
+                'v',
+                '<leader>*',
+                telescopeShortcuts.grep_visual_selection,
+                { desc = 'live grep under cursor from visual mode' }
             )
 
+            -- use :Search to start telescope live_grep_args
+            vim.api.nvim_create_user_command('Search', function()
+                telescope.extensions.live_grep_args.live_grep_args({
+                    vimgrep_arguments = {
+                        'rg',
+                        -- default required arguments
+                        '--color=never',
+                        '--no-heading',
+                        '--with-filename',
+                        '--line-number',
+                        '--column',
+                        '--smart-case',
+                        -- additional argument to search through hidden files
+                        '--hidden',
+                    },
+                })
+            end, { bang = true, desc = 'telescope grep' })
+
             -- use :File to start telescope find_files
-            vim.api.nvim_create_user_command('File',
+            vim.api.nvim_create_user_command(
+                'File',
                 telescopeBuiltins.find_files,
                 { bang = true, desc = 'telescope find file' }
             )
 
             -- use :Gs to start telescope git_status
-            vim.api.nvim_create_user_command('Gs',
+            vim.api.nvim_create_user_command(
+                'Gs',
                 telescopeBuiltins.git_status,
                 { bang = true, desc = 'telescope git status' }
             )
 
             -- use :Help to search vim's help pages
-            vim.api.nvim_create_user_command('Help',
+            vim.api.nvim_create_user_command(
+                'Help',
                 telescopeBuiltins.help_tags,
                 { bang = true, desc = 'telescope help' }
             )
 
             -- use :ColorMapSearch to search for tags in the colorscheme
-            vim.api.nvim_create_user_command('ColorMapSearch',
+            vim.api.nvim_create_user_command(
+                'ColorMapSearch',
                 telescopeBuiltins.highlights,
                 { bang = true, desc = 'telescope highlights' }
             )
 
             -- use :Marks to search through vim's marks
-            vim.api.nvim_create_user_command('Marks',
+            vim.api.nvim_create_user_command(
+                'Marks',
                 telescopeBuiltins.marks,
                 { bang = true, desc = 'telescope marks' }
             )
 
             -- use :Registers to search through vim's registers
-            vim.api.nvim_create_user_command('Registers',
+            vim.api.nvim_create_user_command(
+                'Registers',
                 telescopeBuiltins.registers,
                 { bang = true, desc = 'telescope registers' }
             )
 
             -- use :Ts to resume telescope
-            vim.api.nvim_create_user_command('Tr',
+            vim.api.nvim_create_user_command(
+                'Tr',
                 telescopeBuiltins.resume,
                 { bang = true, desc = 'telescope resume' }
             )

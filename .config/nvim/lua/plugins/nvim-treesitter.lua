@@ -59,6 +59,6 @@ return function()
                 -- extra modules for treesitter
                 modules = {},
             })
-        end
+        end,
     }
 end

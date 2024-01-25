@@ -3,7 +3,7 @@ vim.api.nvim_clear_autocmds({})
 -- Disable vi compatibility
 vim.opt.compatible = false
 -- Use , as the leader key
-vim.g.mapleader = ","
+vim.g.mapleader = ','
 -- Use this for WSL default terminal emulator (non wsltty)
 -- https://vi.stackexchange.com/questions/28269/command-already-typed-in-when-i-open-vim
 --vim.cmd("set t_u7=")

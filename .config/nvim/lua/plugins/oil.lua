@@ -15,9 +15,9 @@ return function()
                 },
                 view_options = {
                     show_hidden = true,
-                    sort = { { "name", "asc" } },
+                    sort = { { 'name', 'asc' } },
                 },
-            });
-        end
+            })
+        end,
     }
 end

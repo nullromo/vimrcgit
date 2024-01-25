@@ -5,7 +5,7 @@ return {
     -- necessary and may cause problems
     motionFromInsertMode = function(motion)
         -- check if the cursor is in the first column
-        if (vim.fn.col('.') == 1) then
+        if vim.fn.col('.') == 1 then
             return '<ESC>' .. motion .. 'i'
         end
         return '<ESC>l' .. motion .. 'i'

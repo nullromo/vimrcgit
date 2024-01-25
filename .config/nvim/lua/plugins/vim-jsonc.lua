@@ -1,8 +1,6 @@
 return function()
     return {
         'kevinoid/vim-jsonc',
-        ft = {
-            'jsonc',
-        },
+        ft = { 'jsonc' },
     }
 end
