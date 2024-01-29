@@ -86,6 +86,8 @@ return function()
         require('plugins.spider')(),
         -- nvim auto formatter
         require('plugins.conform')(),
+        -- utility for editing surrounding symbols like quotes and xml tags
+        require('plugins.mini-surround')(),
     }
 
     -- load fewer plugins when using firenvim
