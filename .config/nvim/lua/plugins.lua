@@ -88,6 +88,8 @@ return function()
         require('plugins.conform')(),
         -- utility for editing surrounding symbols like quotes and xml tags
         require('plugins.mini-surround')(),
+        -- mark jumping plugin
+        require('plugins.mark-radar')(),
         -- buffer jumping plugin
         require('plugins.bufjump')(),
     }

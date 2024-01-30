@@ -12,6 +12,7 @@
   "indentline": { "branch": "master", "commit": "b96a75985736da969ac38b72a7716a8c57bdde98" },
   "kanagawa.nvim": { "branch": "master", "commit": "c19b9023842697ec92caf72cd3599f7dd7be4456" },
   "lazy.nvim": { "branch": "main", "commit": "aedcd79811d491b60d0a6577a9c1701063c2a609" },
+  "mark-radar.nvim": { "branch": "main", "commit": "d02fa5e776f45224b41c58ef55e71aa6983b166d" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "b9084b1f42f790d6230dc66dbcb6bcc35b148552" },
   "mason.nvim": { "branch": "main", "commit": "9c9416817c9f4e6f333c749327a1ed5355cfab61" },
   "mini.surround": { "branch": "main", "commit": "5ceb6a12d3761bc719fbdad5432c89333deb1498" },
