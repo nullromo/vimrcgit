@@ -88,6 +88,8 @@ return function()
         require('plugins.conform')(),
         -- utility for editing surrounding symbols like quotes and xml tags
         require('plugins.mini-surround')(),
+        -- buffer jumping plugin
+        require('plugins.bufjump')(),
     }
 
     -- load fewer plugins when using firenvim
