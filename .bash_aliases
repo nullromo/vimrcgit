@@ -18,9 +18,6 @@ alias searchcs='search --no-ignore-case'
 # update all packages
 alias updateall='sudo sh -c "apt-get update && apt-get upgrade -y && apt-get autoremove --purge -y"'
 
-# use the new version of pyang, not the one that came with ConfD
-alias pyang='/usr/local/bin/pyang'
-
 # always view all branches in gitk and always run in the background
 alias gitk='gitk --all &'
 
