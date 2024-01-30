@@ -19,9 +19,9 @@ return function()
         desc = 'un-highlight cursor line when leaving insert mode',
     })
     vim.api.nvim_create_autocmd({ 'BufEnter' }, {
-        pattern = '*',
+        pattern = '?',
         command = 'set nocursorline',
-        desc = 'un-highlight cursor line when entering a buffer',
+        desc = 'un-highlight cursor line when entering a buffer that has a filetype',
     })
 
     -- Turn spell-checking on when editing a .notes file
