@@ -16,6 +16,7 @@ return function()
                 'coc-clangd',
                 'coc-webview',
                 'coc-markdown-preview-enhanced',
+                'coc-lua',
             }
 
             -- navigate the completion list with control + j/k in addition to
