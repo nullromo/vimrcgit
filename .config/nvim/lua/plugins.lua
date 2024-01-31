@@ -70,8 +70,6 @@ return function()
         require('plugins.nvim-lspconfig')(),
         -- status updater for lsp
         require('plugins.fidget')(),
-        -- type hints and such for development of vim itself
-        require('plugins.neodev')(),
         -- searcher
         require('plugins.telescope')(),
         -- colorscheme
