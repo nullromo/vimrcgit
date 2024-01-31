@@ -92,6 +92,8 @@ return function()
         require('plugins.mark-radar')(),
         -- buffer jumping plugin
         require('plugins.bufjump')(),
+        -- notification UI element
+        require('plugins.notify')(),
     }
 
     -- load fewer plugins when using firenvim
