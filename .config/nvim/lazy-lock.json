@@ -22,7 +22,7 @@
   "nerdtree": { "branch": "master", "commit": "bc606c43e2d8ef0987d6d3d1ec8c17360a2e29d5" },
   "nui.nvim": { "branch": "main", "commit": "35da9ca1de0fc4dda96c2e214d93d363c145f418" },
   "nvim-lspconfig": { "branch": "master", "commit": "8917d2c830e04bf944a699b8c41f097621283828" },
-  "nvim-notify": { "branch": "master", "commit": "80b67b265530632505193553d05127ae7fe09ddd" },
+  "nvim-notify": { "branch": "main", "commit": "ae1d9b65b6f5b8cb60daaf1cfd2e0f0fbd330590" },
   "nvim-spider": { "branch": "main", "commit": "dc371a116041c49ae6d3813f6e1722c2dcdabdcf" },
   "nvim-treesitter": { "branch": "master", "commit": "81660800352ecab6a2e95f4ca30d637df1f3765e" },
   "nvim-web-devicons": { "branch": "master", "commit": "b427ac5f9dff494f839e81441fb3f04a58cbcfbc" },
