@@ -44,8 +44,6 @@ return function()
         require('plugins.black')(),
         -- syntax highlighting for toml
         require('plugins.vim-toml')(),
-        -- autoformatting for c files
-        require('plugins.vim-clang-format')(),
         -- folding in markdown
         --require('plugins.vim-markdown-folding')(),
         -- utility for editing surrounding symbols like quotes and xml tags
