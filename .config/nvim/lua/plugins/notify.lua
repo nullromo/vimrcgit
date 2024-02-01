@@ -19,7 +19,7 @@ return function()
                 level = 2,
                 minimum_width = 50,
                 render = 'compact',
-                stages = 'fade_in_slide_out',
+                stages = 'static',
                 time_formats = {
                     notification = '%T',
                     notification_history = '%FT%T',
