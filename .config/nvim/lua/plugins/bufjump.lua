@@ -3,8 +3,8 @@ return function()
         'kwkarlwang/bufjump.nvim',
         config = function()
             require('bufjump').setup({
-                forward = '<M-n>',
-                backward = '<M-p>',
+                forward = '<M-i>',
+                backward = '<M-o>',
                 on_success = nil,
             })
         end,
