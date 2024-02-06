@@ -1,6 +1,6 @@
 return function()
     return {
-        'nullromo/mark-radar.nvim',
+        'winston0410/mark-radar.nvim',
         config = function()
             require('mark-radar').setup({
                 text_position = 'inline',
