@@ -1,4 +1,95 @@
 return function()
+    local motionFromInsertMode = require('util').motionFromInsertMode
+
+    -- delete a keymap, but ignore the error message that there was no keymap
+    -- to delete
+    local silentKeymapDelete = function(modes, lhs, opts)
+        local ok, result = pcall(function()
+            vim.keymap.del(modes, lhs, opts)
+        end)
+        local errorMessage = '' .. result
+        -- if there was an error and it did not contain the string 'No such
+        -- mapping', then notify the error
+        if not ok and not string.find(errorMessage, 'No such mapping') then
+            vim.notify(errorMessage)
+        end
+    end
+
+    local addSpiderMappings = function()
+        -- map w, e, b, and ge for normal and visual modes only. W, E, B, and gE
+        -- function normally
+        vim.keymap.set(
+            { 'n', 'x' },
+            'w',
+            "<cmd>lua require('spider').motion('w')<CR>",
+            { desc = 'Spider w motion' }
+        )
+        vim.keymap.set(
+            { 'n', 'x' },
+            'e',
+            "<cmd>lua require('spider').motion('e')<CR>",
+            { desc = 'Spider e motion' }
+        )
+        vim.keymap.set(
+            { 'n', 'x' },
+            'b',
+            "<cmd>lua require('spider').motion('b')<CR>",
+            { desc = 'Spider b motion' }
+        )
+        vim.keymap.set(
+            { 'n', 'x' },
+            'ge',
+            "<cmd>lua require('spider').motion('ge')<CR>",
+            { desc = 'Spider ge motion' }
+        )
+
+        -- use <C-w>, <C-b>, and <C-g>e in insert mode to mimic normal mode w,
+        -- b, and ge. Insert mode <C-e> already has a use (copies the charater
+        -- from the line below)
+        silentKeymapDelete('i', '<C-w>')
+        vim.keymap.set(
+            'i',
+            '<C-w>',
+            "<cmd>lua require('spider').motion('w')<CR>",
+            { desc = 'Spider insert mode w motion' }
+        )
+        silentKeymapDelete('i', '<C-b>')
+        vim.keymap.set(
+            'i',
+            '<C-b>',
+            "<cmd>lua require('spider').motion('b')<CR>",
+            { desc = 'Spider insert mode b motion' }
+        )
+        silentKeymapDelete('i', '<C-g>e')
+        vim.keymap.set(
+            'i',
+            '<C-g>e',
+            "<cmd>lua require('spider').motion('ge')<CR>",
+            { desc = 'Spider insert mode ge motion' }
+        )
+    end
+
+    local removeSpiderMappings = function()
+        silentKeymapDelete({ 'n', 'x' }, 'w')
+        silentKeymapDelete({ 'n', 'x' }, 'e')
+        silentKeymapDelete({ 'n', 'x' }, 'b')
+        silentKeymapDelete({ 'n', 'x' }, 'ge')
+        silentKeymapDelete('i', '<C-w>')
+        vim.keymap.set('i', '<C-w>', function()
+            return motionFromInsertMode('w')
+        end, { expr = true, desc = 'Insert mode w motion' })
+        silentKeymapDelete('i', '<C-b>')
+        vim.keymap.set('i', '<C-b>', function()
+            return motionFromInsertMode('b')
+        end, { expr = true, desc = 'Insert mode b motion' })
+        silentKeymapDelete('i', '<C-g>e')
+        vim.keymap.set('i', '<C-g>e', function()
+            return motionFromInsertMode('ge')
+        end, { expr = true, desc = 'Insert mode ge motion' })
+    end
+
+    local spiderModeEnabled = true
+
     return {
         'chrisgrieser/nvim-spider',
         enable = false,
@@ -7,58 +98,34 @@ return function()
             require('spider').setup({
                 skipInsignificantPunctuation = false,
             })
-            -- map w, e, b, and ge for normal and visual modes only. W, E, B,
-            -- and gE function normally
-            vim.keymap.set(
-                { 'n', 'x' },
-                'w',
-                "<cmd>lua require('spider').motion('w')<CR>",
-                { desc = 'Spider w motion' }
-            )
-            vim.keymap.set(
-                { 'n', 'x' },
-                'e',
-                "<cmd>lua require('spider').motion('e')<CR>",
-                { desc = 'Spider e motion' }
-            )
-            vim.keymap.set(
-                { 'n', 'x' },
-                'b',
-                "<cmd>lua require('spider').motion('b')<CR>",
-                { desc = 'Spider b motion' }
-            )
-            vim.keymap.set(
-                { 'n', 'x' },
-                'ge',
-                "<cmd>lua require('spider').motion('ge')<CR>",
-                { desc = 'Spider ge motion' }
-            )
 
-            -- use <C-w>, <C-b>, and <C-g>e in insert mode to mimic normal mode
-            -- w, b, and ge. Insert mode <C-e> already has a use
-            vim.keymap.set(
-                'i',
-                '<C-w>',
-                "<cmd>lua require('spider').motion('w')<CR>",
-                { desc = 'Spider insert mode w motion' }
-            )
-            vim.keymap.set(
-                'i',
-                '<C-b>',
-                "<cmd>lua require('spider').motion('b')<CR>",
-                { desc = 'Spider insert mode b motion' }
-            )
-            vim.keymap.set(
-                'i',
-                '<C-g>e',
-                "<cmd>lua require('spider').motion('ge')<CR>",
-                { desc = 'Spider insert mode ge motion' }
-            )
-
-            local motionFromInsertMode = require('util').motionFromInsertMode
+            -- create user commands to turn spider on and off
+            vim.api.nvim_create_user_command('SpiderEnable', function()
+                if not spiderModeEnabled then
+                    spiderModeEnabled = true
+                    addSpiderMappings()
+                end
+            end, { bang = true, desc = 'Enable spider' })
+            vim.api.nvim_create_user_command('SpiderDisable', function()
+                if spiderModeEnabled then
+                    spiderModeEnabled = false
+                    removeSpiderMappings()
+                end
+            end, { bang = true, desc = 'Disable spider' })
+            vim.api.nvim_create_user_command('SpiderToggle', function()
+                if spiderModeEnabled then
+                    spiderModeEnabled = false
+                    removeSpiderMappings()
+                else
+                    spiderModeEnabled = true
+                    addSpiderMappings()
+                end
+            end, { bang = true, desc = 'Toggle spider' })
 
             -- use <C-S-w>, <C-S-e>, <C-S-b>, and <C-g>E in insert mode to mimic
-            -- normal mode W, E, B, and gE
+            -- normal mode W, E, B, and gE. These are not really part of
+            -- spider.nvim, but they are configured here because they are
+            -- closely related
             vim.keymap.set('i', '<C-S-w>', function()
                 return motionFromInsertMode('W')
             end, { expr = true, desc = 'Insert mode W motion' })
