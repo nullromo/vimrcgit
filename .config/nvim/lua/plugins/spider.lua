@@ -7,7 +7,7 @@ return function()
         local ok, result = pcall(function()
             vim.keymap.del(modes, lhs, opts)
         end)
-        local errorMessage = '' .. result
+        local errorMessage = '' .. (result or '')
         -- if there was an error and it did not contain the string 'No such
         -- mapping', then notify the error
         if not ok and not string.find(errorMessage, 'No such mapping') then
@@ -88,7 +88,7 @@ return function()
         end, { expr = true, desc = 'Insert mode ge motion' })
     end
 
-    local spiderModeEnabled = true
+    local spiderModeEnabled = false
 
     return {
         'chrisgrieser/nvim-spider',
@@ -101,24 +101,32 @@ return function()
 
             -- create user commands to turn spider on and off
             vim.api.nvim_create_user_command('SpiderEnable', function()
-                if not spiderModeEnabled then
+                if spiderModeEnabled then
+                    vim.notify('Spider already enabled')
+                else
                     spiderModeEnabled = true
                     addSpiderMappings()
+                    vim.notify('Spider enabled')
                 end
             end, { bang = true, desc = 'Enable spider' })
             vim.api.nvim_create_user_command('SpiderDisable', function()
                 if spiderModeEnabled then
                     spiderModeEnabled = false
                     removeSpiderMappings()
+                    vim.notify('Spider disabled')
+                else
+                    vim.notify('Spider already disabled')
                 end
             end, { bang = true, desc = 'Disable spider' })
             vim.api.nvim_create_user_command('SpiderToggle', function()
                 if spiderModeEnabled then
                     spiderModeEnabled = false
                     removeSpiderMappings()
+                    vim.notify('Spider disabled')
                 else
                     spiderModeEnabled = true
                     addSpiderMappings()
+                    vim.notify('Spider enabled')
                 end
             end, { bang = true, desc = 'Toggle spider' })
 
