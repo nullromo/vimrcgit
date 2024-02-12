@@ -88,8 +88,6 @@ return function()
         require('plugins.mark-radar')(),
         -- buffer jumping plugin
         require('plugins.bufjump')(),
-        -- give me a hard time
-        require('plugins.hardtime')(),
         -- notification UI element
         require('plugins.notify')(),
     }
