@@ -90,6 +90,8 @@ return function()
         require('plugins.bufjump')(),
         -- notification UI element
         require('plugins.notify')(),
+        -- extends <C-a> and <C-x> to toggle booleans
+        require('plugins.boole')(),
     }
 
     -- load fewer plugins when using firenvim
