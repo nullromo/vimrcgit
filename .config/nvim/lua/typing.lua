@@ -1,7 +1,7 @@
 return function()
     -- Enable line numbering
     vim.opt.nu = true
-    vim.opt.relativenumber = true
+    vim.opt.relativenumber = false
 
     -- Set length of a tab
     vim.opt.tabstop = 4
