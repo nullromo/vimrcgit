@@ -1,5 +1,6 @@
 {
   "black": { "branch": "main", "commit": "8fe602b1fa91dc6db682d1dba79a8a7341597271" },
+  "boole.nvim": { "branch": "main", "commit": "7b4a3dae28e3b2497747aa840439e9493cabdc49" },
   "bufjump.nvim": { "branch": "master", "commit": "a020f81bb82f758da51594a07bfcb9635a6b0f73" },
   "bufresize.nvim": { "branch": "master", "commit": "3b19527ab936d6910484dcc20fb59bdb12322d8b" },
   "cash.nvim": { "branch": "dev", "commit": "ff644af311aba5b0e8dabcafd7f600176169970b" },
@@ -12,7 +13,7 @@
   "indentline": { "branch": "master", "commit": "b96a75985736da969ac38b72a7716a8c57bdde98" },
   "kanagawa.nvim": { "branch": "master", "commit": "c19b9023842697ec92caf72cd3599f7dd7be4456" },
   "lazy.nvim": { "branch": "main", "commit": "aedcd79811d491b60d0a6577a9c1701063c2a609" },
-  "mark-radar.nvim": { "branch": "master", "commit": "ae271a781e1f42f9d5bddcc4ffe97633526a6166" },
+  "mark-radar.nvim": { "branch": "master", "commit": "bf27e13ce18eb5f34d61d8ea7d91adccb24f2090" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "b9084b1f42f790d6230dc66dbcb6bcc35b148552" },
   "mason.nvim": { "branch": "main", "commit": "9c9416817c9f4e6f333c749327a1ed5355cfab61" },
   "mini.surround": { "branch": "main", "commit": "5ceb6a12d3761bc719fbdad5432c89333deb1498" },
