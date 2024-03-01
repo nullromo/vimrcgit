@@ -60,7 +60,7 @@ return function()
     end, { expr = true, desc = 'previous search match in insert mode' })
 
     -- Use ; for command mode
-    vim.keymap.set('n', ';', ':', { desc = 'enter ex mode' })
+    vim.keymap.set({ 'n', 'v' }, ';', ':', { desc = 'enter ex mode' })
     -- Use ; for command mode in terminal windows
     vim.keymap.set(
         't',
