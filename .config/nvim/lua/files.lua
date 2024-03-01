@@ -24,4 +24,23 @@ return function()
 
     -- Don't allow hidden modified buffers
     vim.opt.hidden = false
+
+    -- Set up folds based on indentation
+    vim.api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
+        pattern = '*',
+        callback = function()
+            vim.opt_local.foldmethod = 'indent'
+        end,
+        desc = 'Enable folding while not in insert mode',
+    })
+    vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, {
+        pattern = '*',
+        callback = function()
+            vim.opt_local.foldmethod = 'manual'
+        end,
+        desc = 'Disable folding while in insert mode',
+    })
+
+    -- Open all folds by default
+    vim.opt.foldlevelstart = 99
 end
