@@ -148,7 +148,7 @@ local findSSSS = function(forward)
     end
 
     -- jump to new position
-    vim.cmd('normal ' .. jump .. 'G')
+    vim.api.nvim_win_set_cursor(0, { jump, vim.fn.col('.') - 1 })
 end
 
 -- find next ssss section user command
