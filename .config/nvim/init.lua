@@ -34,6 +34,8 @@ require('commands')()
 --   mask.nvim: mask off certain lines (except it doesn't really do that)
 -- for now it's called 'ssss' as a placeholder
 -- TODO: deal with multiple buffers
+-- TODO: the hiddenLines doesn't work when the buffer is modified and lines are added
+-- TODO: jumping should skip a whole block of connected hidden lines, not just go to the next single line
 
 -- extmark namespace
 local ssssNamespace = vim.api.nvim_create_namespace('ssss')
@@ -127,6 +129,39 @@ vim.api.nvim_create_user_command('SSSSUnhide', function(args)
     unSSSSLines(args.line1, args.line2)
 end, { range = true, desc = 'Un-SSSS lines' })
 
+-- find next ssss'd section
+local findSSSS = function(forward)
+    local currentLine = vim.fn.line('.')
+    local maxLines = vim.fn.line('$')
+    local jump = nil
+    for i = 1, maxLines, 1 do
+        -- for forward, use i; for backward, use (maxLines - i)
+        local line = forward and (((i + currentLine - 1) % maxLines) + 1)
+            or (((maxLines - i + currentLine - 1) % maxLines) + 1)
+        if hiddenLines[line] ~= nil then
+            jump = line
+            break
+        end
+    end
+    if jump == nil then
+        return
+    end
+
+    -- jump to new position
+    vim.cmd('normal ' .. jump .. 'G')
+end
+
+-- find next ssss section user command
+vim.api.nvim_create_user_command('SSSSNext', function()
+    findSSSS(true)
+end, { desc = 'Find next SSSS' })
+
+-- find previous ssss section user command
+vim.api.nvim_create_user_command('SSSSPrevious', function()
+    findSSSS(false)
+end, { desc = 'Find prev SSSS' })
+
+-- set keymaps
 vim.keymap.set({ 'n', 'v' }, '<Leader>s', ':SSSSHide<CR>', { desc = 'SSSS' })
 vim.keymap.set(
     { 'n', 'v' },
@@ -134,3 +169,5 @@ vim.keymap.set(
     ':SSSSUnhide<CR>',
     { desc = 'un-SSSS' }
 )
+vim.keymap.set('n', ']a', ':SSSSNext<CR>', { desc = 'SSSS next' })
+vim.keymap.set('n', '[a', ':SSSSPrevious<CR>', { desc = 'SSSS next' })
