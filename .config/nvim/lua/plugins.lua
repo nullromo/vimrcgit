@@ -111,6 +111,10 @@ return function()
             require('plugins.telescope')(),
             require('plugins.kanagawa')(),
             require('plugins.cash')(),
+            require('plugins.spider')(),
+            require('plugins.mini-surround')(),
+            require('plugins.mark-radar')(),
+            require('plugins.boole')(),
             -- use vim in the browser
             require('plugins.firenvim')(),
         }
