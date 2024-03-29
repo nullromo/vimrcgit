@@ -92,6 +92,8 @@ return function()
         require('plugins.notify')(),
         -- extends <C-a> and <C-x> to toggle booleans
         require('plugins.boole')(),
+        -- get github/gitlab links from code using <Leader>gb
+        require('plugins.gitlinker')(),
     }
 
     -- load fewer plugins when using firenvim
