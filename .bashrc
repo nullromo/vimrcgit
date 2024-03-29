@@ -167,6 +167,9 @@ export DOCKER_HOST=tcp://localhost:2375
 # add sqlcmd to path
 export PATH="$PATH:/opt/mssql-tools/bin"
 
+## add /usr/lib to library search path to find mysql c++ library
+export LD_LIBRARY_PATH=/usr/lib
+
 # add confd to path
 source /opt/confd/confdrc
 
@@ -186,3 +189,6 @@ printf '\033[3 q'
 . /home/kkovacs/z/z.sh
 
 export EDITOR=vim
+
+# source rust thingy
+. "$HOME/.cargo/env"
