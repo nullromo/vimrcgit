@@ -44,7 +44,7 @@ connect() {
 }
 
 # use bat instead of cat
-alias cat='batcat'
+alias cat='batcat --paging=never'
 alias catcat='\cat'
 alias catc='catcat'
 
