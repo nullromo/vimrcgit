@@ -48,12 +48,18 @@ return function()
         '<C-\\><C-o>h',
         { desc = 'move in insert mode left' }
     )
-    vim.keymap.set(
-        'i',
-        '<C-l>',
-        '<C-o>l',
-        { desc = 'move in insert mode right' }
-    )
+    vim.keymap.set('i', '<C-l>', function()
+        local currentColumn = vim.fn.col('.')
+        local maxColumn = vim.fn.strlen(vim.fn.getline('.'))
+        -- if at the end of the line, <C-o>l will not be able to move 1 position
+        -- forward. TODO: would be nice to be able to do this without leaving
+        -- insert mode for the purposes of the . command
+        if currentColumn >= maxColumn then
+            return '<ESC>A'
+        else
+            return '<C-o>l'
+        end
+    end, { expr = true, desc = 'move in insert mode right' })
     vim.keymap.set('i', '<C-/>', function()
         return require('util').motionFromInsertMode('n')
     end, { expr = true, desc = 'next search match in insert mode' })
