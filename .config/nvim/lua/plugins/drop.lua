@@ -13,8 +13,8 @@ return function()
                         'lightgray',
                     },
                 },
-                max = 170,
-                interval = 150,
+                max = 20,
+                interval = 110,
                 screensaver = 1000 * 10 * 60,
                 filetypes = {},
             })
