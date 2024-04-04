@@ -30,6 +30,7 @@ return function()
         end,
         config = function()
             require('kanagawa').setup({
+                undercurl = false,
                 theme = 'wave',
                 colors = {
                     theme = {
