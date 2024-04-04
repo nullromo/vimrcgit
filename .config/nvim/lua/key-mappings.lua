@@ -43,7 +43,9 @@ return function()
     vim.keymap.set(
         'i',
         '<C-h>',
-        '<C-o>h',
+        -- need to use <C-\> here because if you use this mapping from the last
+        -- position in the line, it will move 2 characters to the left
+        '<C-\\><C-o>h',
         { desc = 'move in insert mode left' }
     )
     vim.keymap.set(
