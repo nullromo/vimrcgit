@@ -31,7 +31,14 @@ require('commands')()
 --   shades.nvim: putting on shades to dim lines or turning lines into ghosts
 --   check-off.nvim/checkoff.nvim/checkov.nvim/checklist.nvim: checking things off
 --   cover-up.nvim: hiding lines
+--   tint.nvim: making lines dark
 --   mask.nvim: mask off certain lines (except it doesn't really do that)
+--   cloak.nvim: cloak certain parts of the code
+--   cull.nvim: Cover Up Lines (l-something)
+--   flag.nvim: Flag Lines (a-something g-something)
+--   fly.nvim: Flag Lines, Yessir!
+--   sly.nvim: Shade Lines, Yessir!
+--   MarLin.nvim: Mark Lines
 -- for now it's called 'ssss' as a placeholder
 -- TODO: deal with multiple buffers
 -- TODO: the hiddenLines doesn't work when the buffer is modified and lines are added
@@ -52,11 +59,25 @@ vim.cmd.highlight('SSSSSign', 'guifg=' .. waveBlue2)
 local hiddenLines = {}
 
 -- options
-ssssOptions = {
+local ssssOptions = {
     signText = '',
     --signText = ' x',
     --signText = '😎',
     --signText = '🕶️',
+    --signText = '🧥',
+    --signText = '🕵️',
+    --signText = '🕴️',
+    --signText = '🙈',
+    --signText = '😵',
+    --signText = '✖️',
+    --signText = '❌',
+    --signText = '❎',
+    --signText = '☠️',
+    --signText = '🙅',
+    --signText = '🚩',
+    --signText = '🔴',
+    --signText = '➡️',
+    --signText = '📍',
 }
 
 -- ssss line
