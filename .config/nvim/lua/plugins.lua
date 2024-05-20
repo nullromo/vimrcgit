@@ -94,6 +94,8 @@ return function()
         require('plugins.boole')(),
         -- get github/gitlab links from code using <Leader>gb
         require('plugins.gitlinker')(),
+        -- SQL plugin
+        require('plugins.dadbod')(),
     }
 
     -- load fewer plugins when using firenvim
