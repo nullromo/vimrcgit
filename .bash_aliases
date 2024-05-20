@@ -19,7 +19,7 @@ alias searchcs='search --no-ignore-case'
 alias updateall='sudo sh -c "apt-get update && apt-get upgrade -y && apt-get autoremove --purge -y"'
 
 # always view all branches in gitk and always run in the background
-alias gitk='gitk --all &'
+alias gitk='gitk --all &> /dev/null &'
 
 # use gs for git status
 alias gs='git status'
