@@ -43,6 +43,7 @@ require('commands')()
 -- TODO: deal with multiple buffers
 -- TODO: the hiddenLines doesn't work when the buffer is modified and lines are added
 -- TODO: jumping should skip a whole block of connected hidden lines, not just go to the next single line
+-- TODO: there should be a way to highlight lines in addition to lowlighting them
 
 -- extmark namespace
 local ssssNamespace = vim.api.nvim_create_namespace('ssss')
