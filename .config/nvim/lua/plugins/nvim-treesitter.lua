@@ -59,6 +59,14 @@ return function()
                 -- extra modules for treesitter
                 modules = {},
             })
+
+            -- for some reason, treesitter seems to be setting the conceallevel
+            -- of help files to 2. It should be set to 0
+            vim.api.nvim_create_autocmd({ 'FileType' }, {
+                pattern = 'help',
+                command = 'set conceallevel=0',
+                desc = 'Do not conceal help',
+            })
         end,
     }
 end
