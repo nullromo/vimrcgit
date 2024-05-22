@@ -60,8 +60,10 @@ return function()
                 modules = {},
             })
 
-            -- for some reason, treesitter seems to be setting the conceallevel
-            -- of help files to 2. It should be set to 0
+            -- for some reason, treesitter seems to be hiding some text in help
+            -- files. The conceallevel is set to 2 from vim itself, but for
+            -- some reason the text is the same color as the background. One
+            -- way around this is to just set conceallevel to 0
             vim.api.nvim_create_autocmd({ 'FileType' }, {
                 pattern = 'help',
                 command = 'set conceallevel=0',
