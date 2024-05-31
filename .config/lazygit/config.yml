@@ -1,0 +1,7 @@
+gui:
+  showFileTree: false
+  showCommandLog: false
+  showBottomLine: false
+git:
+  log:
+    showGraph: 'always'
