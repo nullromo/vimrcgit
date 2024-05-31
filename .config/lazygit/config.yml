@@ -2,6 +2,8 @@ gui:
   showFileTree: false
   showCommandLog: false
   showBottomLine: false
+  expandFocusedSidePanel: true
+  showBranchCommitHash: true
 git:
   log:
     showGraph: 'always'
