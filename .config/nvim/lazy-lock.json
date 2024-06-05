@@ -1,7 +1,7 @@
 {
   "black": { "branch": "main", "commit": "8fe602b1fa91dc6db682d1dba79a8a7341597271" },
   "boole.nvim": { "branch": "main", "commit": "7b4a3dae28e3b2497747aa840439e9493cabdc49" },
-  "bufjump.nvim": { "branch": "master", "commit": "a020f81bb82f758da51594a07bfcb9635a6b0f73" },
+  "bufjump.nvim": { "branch": "master", "commit": "ae2728a77defbd27e9e5ef64c854fb0813ffba01" },
   "bufresize.nvim": { "branch": "master", "commit": "3b19527ab936d6910484dcc20fb59bdb12322d8b" },
   "cash.nvim": { "branch": "main", "commit": "119a7c3d807ab390b5e98665fdf7237a8807bb3b" },
   "coc.nvim": { "branch": "release", "commit": "7b9e1ef0a1399907c51d23b6080b94a5aba4a654" },
