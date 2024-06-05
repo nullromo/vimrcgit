@@ -4,6 +4,7 @@ gui:
   showBottomLine: false
   expandFocusedSidePanel: true
   showBranchCommitHash: true
+  expandedSidePanelWeight: 33
 git:
   log:
     showGraph: 'always'
