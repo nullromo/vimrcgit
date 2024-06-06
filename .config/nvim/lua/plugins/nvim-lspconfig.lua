@@ -4,10 +4,10 @@ return function()
         dependencies = {
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
-            'folke/neodev.nvim',
+            'folke/lazydev.nvim',
         },
         config = function()
-            require('neodev').setup({})
+            require('lazydev').setup({})
             require('lspconfig').lua_ls.setup({
                 capabilities = vim.lsp.protocol.make_client_capabilities(),
                 on_attach = function()
