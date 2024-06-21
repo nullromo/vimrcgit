@@ -14,6 +14,7 @@
     "suggest.noselect": true,
     "pyright.inlayHints.functionReturnTypes": false,
     "pyright.inlayHints.variableTypes": false,
+    "pyright.inlayHints.parameterTypes": false,
     "git.addedSign.hlGroup": "GitSignsAdd",
     "git.changedSign.hlGroup": "GitSignsChange",
     "git.removedSign.hlGroup": "GitSignsDelete",
