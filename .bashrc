@@ -150,7 +150,12 @@ if [ "$MYSQL_RUNNING" == " * MySQL is stopped." ]; then
 fi
 
 # allow X11 to work
-export DISPLAY="$(grep nameserver /etc/resolv.conf | sed 's/nameserver //'):0.0"
+# old way was to use resolv.conf
+#export DISPLAY="$(grep nameserver /etc/resolv.conf | sed 's/nameserver //'):0.0"
+# newer way was to use ip route list
+export DISPLAY=$(ip route list default | awk '{print $3}'):0
+# newest way is to just let WSLg take over and you don't need to do anything. No X server required. However, there are major performance issues
+
 export LIBGL_ALWAYS_INDIRECT=1
 
 export XDG_RUNTIME_DIR='/tmp/runtime-kkovacs/'
