@@ -31,6 +31,7 @@ return function()
                         groups = {
                             -- highlight the characters in orange instead of red
                             label = 'FlashMatch',
+                            match = 'FlashLabel',
                         },
                     },
                     char_actions = function(motion)
