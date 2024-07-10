@@ -96,6 +96,8 @@ return function()
         require('plugins.gitlinker')(),
         -- SQL plugin
         require('plugins.dadbod')(),
+        -- fancier search UI
+        require('plugins.hlslens')(),
     }
 
     -- load fewer plugins when using firenvim
@@ -117,6 +119,7 @@ return function()
             require('plugins.mini-surround')(),
             require('plugins.mark-radar')(),
             require('plugins.boole')(),
+            require('plugins.hlslens')(),
             -- use vim in the browser
             require('plugins.firenvim')(),
         }
