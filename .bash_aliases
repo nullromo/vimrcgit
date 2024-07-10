@@ -52,3 +52,6 @@ alias catc='catcat'
 alias vimrcgit='/usr/bin/git --git-dir="$HOME/vimrcgit" --work-tree="$HOME"'
 alias vgit='vimrcgit'
 alias vlg='lazygit --git-dir="$HOME/vimrcgit" --work-tree="$HOME"'
+
+# use j to check jobs
+alias j='jobs'
