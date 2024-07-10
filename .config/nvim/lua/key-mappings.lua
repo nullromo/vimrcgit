@@ -1,7 +1,4 @@
 return function()
-    -- Use jk to exit insert mode
-    vim.keymap.set('i', 'jk', '<ESC>', { desc = 'leave insert mode' })
-
     -- Move between windows faster
     vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'move to window above' })
     vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'move to window below' })
