@@ -1,4 +1,6 @@
 return function()
+    local winterBlue = '#252535'
+    local fujiGray = '#727169'
     return {
         'kevinhwang91/nvim-hlslens',
         config = function()
@@ -7,8 +9,16 @@ return function()
 
             -- set up colors
             vim.api.nvim_set_hl(0, 'HlSearchNear', { link = 'FlashLabel' })
-            vim.api.nvim_set_hl(0, 'HlSearchLens', { link = 'WildMenu' })
-            vim.api.nvim_set_hl(0, 'HlSearchLensNear', { link = 'WildMenu' })
+            vim.api.nvim_set_hl(
+                0,
+                'HlSearchLens',
+                { fg = fujiGray, bg = winterBlue }
+            )
+            vim.api.nvim_set_hl(
+                0,
+                'HlSearchLensNear',
+                { link = 'HlSearchLens' }
+            )
 
             -- trigger hlslens when searching forwards or backwards
             vim.keymap.set('n', 'n', function()
