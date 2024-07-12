@@ -88,7 +88,10 @@ return function()
         end, { expr = true, desc = 'Insert mode ge motion' })
     end
 
+    -- initialize with spider mode disabled
     local spiderModeEnabled = false
+    -- call removeSpiderMappings to set up the non-spider mode mappings for <C-w>, <C-b>, etc.
+    removeSpiderMappings()
 
     return {
         'chrisgrieser/nvim-spider',
