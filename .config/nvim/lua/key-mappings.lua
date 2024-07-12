@@ -303,7 +303,7 @@ return function()
     -- Disable default Ex mode mapping
     vim.keymap.set('n', 'Q', '<nop>', { desc = 'disable Q' })
 
-    -- Use C-c to copy selection to the system clipboard
+    -- Use <C-c> to copy selection to the system clipboard
     vim.keymap.set(
         'v',
         '<C-c>',
