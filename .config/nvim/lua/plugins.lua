@@ -96,8 +96,6 @@ return function()
         require('plugins.gitlinker')(),
         -- SQL plugin
         require('plugins.dadbod')(),
-        -- map jk to escape without delay
-        require('plugins.better-escape')(),
         -- fancier search UI
         require('plugins.hlslens')(),
     }
@@ -121,7 +119,6 @@ return function()
             require('plugins.mini-surround')(),
             require('plugins.mark-radar')(),
             require('plugins.boole')(),
-            require('plugins.better-escape')(),
             require('plugins.hlslens')(),
             -- use vim in the browser
             require('plugins.firenvim')(),
