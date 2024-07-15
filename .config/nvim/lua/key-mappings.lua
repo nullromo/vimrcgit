@@ -333,4 +333,7 @@ return function()
         command = 'wincmd H',
         desc = 'open help windows to the left',
     })
+
+    -- Go to end of line NOT including the newline character
+    vim.keymap.set('v', '$', 'g_')
 end
