@@ -46,4 +46,9 @@ return function()
         -- 5. enter the search (<CR>)
         return "y/\\V<C-r>=escape(@\",'/\\')<CR><CR>"
     end, { expr = true, desc = 'search for visual selection' })
+
+    -- Use <C-/> as a shortcut for :nohlsearch to hide the search highlighting
+    vim.keymap.set('n', '<C-/>', function()
+        vim.cmd.nohlsearch()
+    end)
 end
