@@ -338,5 +338,10 @@ return function()
     })
 
     -- Go to end of line NOT including the newline character
-    vim.keymap.set('v', '$', 'g_')
+    vim.keymap.set(
+        'v',
+        '$',
+        'g_',
+        { desc = 'do not include newline at end of line' }
+    )
 end
