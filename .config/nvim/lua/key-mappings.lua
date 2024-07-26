@@ -197,10 +197,14 @@ return function()
         "getcmdtype() =~ '^[:]$' ? 'x<CR>' : 'X<CR>'",
         { expr = true, desc = 'quit with X' }
     )
+
+    -- Use :Q for :cquit. Sometimes you might want vim to exit with a non-zero
+    -- exit code (for example, you are using vimdiff and you don't want to save
+    -- any changes). In this case, you can use :cq.
     vim.keymap.set(
         'c',
         'Q<CR>',
-        "getcmdtype() =~ '^[:]$' ? 'q<CR>' : 'Q<CR>'",
+        "getcmdtype() =~ '^[:]$' ? 'cquit<CR>' : 'Q<CR>'",
         { expr = true, desc = 'close file with Q' }
     )
 
