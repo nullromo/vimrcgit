@@ -1,3 +1,9 @@
+customCommands:
+  - key: "M"
+    command: "git mergetool {{ .SelectedFile.Name }}"
+    context: "files"
+    loadingText: "opening git mergetool"
+    subprocess: true
 gui:
   showFileTree: false
   showCommandLog: false
