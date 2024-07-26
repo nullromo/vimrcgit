@@ -182,7 +182,9 @@ return function()
         { desc = 'maximize window' }
     )
 
-    -- Allow for accidental capital letters when saving or quitting
+    -- Allow for accidental capital letters when saving or quitting. Command
+    -- mode applies to both : commands and / commands, so check the cmdtype
+    -- first
     vim.keymap.set(
         'c',
         'W<CR>',
