@@ -1,0 +1,15 @@
+[user]
+	email = kylerobertkovacs@gmail.com
+	name = Kyle Kovacs
+[core]
+	editor = vim
+[init]
+	defaultBranch = main
+[diff]
+	tool = kdiff3
+[merge]
+	tool = nvim
+[mergetool "nvim"]
+    cmd = nvim -c "DiffviewOpen"
+[mergetool]
+	keepBackup = false
