@@ -98,6 +98,8 @@ return function()
         require('plugins.dadbod')(),
         -- fancier search UI
         require('plugins.hlslens')(),
+        -- diff viewer
+        require('plugins.diffview')(),
     }
 
     -- load fewer plugins when using firenvim
