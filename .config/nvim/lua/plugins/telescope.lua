@@ -42,13 +42,14 @@ return function()
             end
 
             -- mappings for scrolling the telescope preview window up and down
-            local singleLineScrollMappings = {
+            local telescopeMappings = {
                 ['<C-e>'] = function(bufferNumber)
                     scrollSingleLine(bufferNumber, true)
                 end,
                 ['<C-y>'] = function(bufferNumber)
                     scrollSingleLine(bufferNumber, false)
                 end,
+                ['<C-f>'] = require('telescope.actions').to_fuzzy_refine,
             }
 
             -- opens the selected item in a new tab (in applicable pickers) and
@@ -65,8 +66,8 @@ return function()
                     mappings = {
                         -- use the scroll up and down mappings in insert and
                         -- normal modes
-                        i = singleLineScrollMappings,
-                        n = singleLineScrollMappings,
+                        i = telescopeMappings,
+                        n = telescopeMappings,
                     },
                 },
                 pickers = {
