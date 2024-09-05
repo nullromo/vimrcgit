@@ -24,7 +24,7 @@ return function()
                     notification = '%T',
                     notification_history = '%FT%T',
                 },
-                timeout = 2000,
+                timeout = 5000,
                 top_down = false,
             })
             vim.notify = require('notify')
