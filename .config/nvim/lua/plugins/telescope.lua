@@ -13,6 +13,7 @@ return function()
                 end,
             },
             'nvim-telescope/telescope-live-grep-args.nvim',
+            'xiyaowong/telescope-emoji.nvim',
         },
         config = function()
             -- import stuff from telescope
@@ -103,6 +104,7 @@ return function()
                 )
             end
             telescope.load_extension('live_grep_args')
+            telescope.load_extension('emoji')
 
             -- use ,* to live grep for the word under the cursor
             vim.keymap.set('n', '<leader>*', function()
@@ -184,6 +186,11 @@ return function()
                 telescopeBuiltins.resume,
                 { bang = true, desc = 'telescope resume' }
             )
+
+            -- use :Emoji to search through emoji
+            vim.api.nvim_create_user_command('Emoji', function()
+                telescope.extensions.emoji.emoji()
+            end, { desc = 'telescope emoji' })
         end,
         event = 'VeryLazy',
     }
