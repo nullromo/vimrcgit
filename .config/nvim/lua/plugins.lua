@@ -102,6 +102,8 @@ return function()
         require('plugins.diffview')(),
         -- find-and-replacer
         require('plugins.spectre')(),
+        -- auto-close unused buffers
+        require('plugins.hbac')(),
     }
 
     -- load fewer plugins when using firenvim

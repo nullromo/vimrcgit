@@ -110,6 +110,7 @@ return function()
             end
             telescope.load_extension('live_grep_args')
             telescope.load_extension('emoji')
+            telescope.load_extension('hbac')
 
             -- use ,* to live grep for the word under the cursor
             vim.keymap.set('n', '<leader>*', function()
@@ -196,6 +197,11 @@ return function()
             vim.api.nvim_create_user_command('Emoji', function()
                 telescope.extensions.emoji.emoji()
             end, { desc = 'telescope emoji' })
+
+            -- use :Hbac to search through hbac pin status
+            vim.api.nvim_create_user_command('Hbac', function()
+                telescope.extensions.hbac.buffers()
+            end, { desc = 'hbac search' })
         end,
         event = 'VeryLazy',
     }
