@@ -92,6 +92,11 @@ return function()
                     live_grep_args = {
                         disable_devicons = true,
                     },
+                    emoji = {
+                        action = function(emoji)
+                            vim.api.nvim_put({ emoji.value }, 'c', false, true)
+                        end,
+                    },
                 },
             })
 
