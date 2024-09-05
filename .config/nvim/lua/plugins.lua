@@ -100,6 +100,8 @@ return function()
         require('plugins.hlslens')(),
         -- diff viewer
         require('plugins.diffview')(),
+        -- find-and-replacer
+        require('plugins.spectre')(),
     }
 
     -- load fewer plugins when using firenvim
