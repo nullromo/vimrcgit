@@ -269,12 +269,12 @@ return function()
     })
     vim.api.nvim_create_autocmd({ 'FileType' }, {
         pattern = 'javascript,typescript,javascriptreact,typescriptreact',
-        command = 'inoremap <buffer> clog<TAB> console.log();<ESC>hi',
+        command = 'inoremap <buffer> clog<TAB> console.log();<Left><Left>',
         desc = 'javascript println clog',
     })
     vim.api.nvim_create_autocmd({ 'FileType' }, {
         pattern = 'javascript,typescript,javascriptreact,typescriptreact',
-        command = 'inoremap <buffer> sout<TAB> console.log();<ESC>hi',
+        command = 'inoremap <buffer> sout<TAB> console.log();<Left><Left>',
         desc = 'javascript println sout',
     })
 
