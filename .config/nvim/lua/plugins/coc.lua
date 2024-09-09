@@ -164,10 +164,43 @@ return function()
             )
 
             -- add command for organizing imports
+            vim.api.nvim_create_user_command('OrganizeImports', function()
+                vim.cmd(
+                    "call CocAction('runCommand', 'editor.action.organizeImport')"
+                )
+                -- In JS/TS files, the tsserver's organizeImport feature will
+                -- disagree with eslint's import/order rule. To fix this, an
+                -- eslint auto-fix needs to be run after the organizeImport is
+                -- finished
+                if
+                    vim.bo.filetype == 'typescript'
+                    or vim.bo.filetype == 'typescriptreact'
+                then
+                    -- Note, this will not work because CoC does not know about
+                    -- the eslint action until a few hundred ms after the
+                    -- organizeImport is finished. So it will hit this line, do
+                    -- nothing, and then the eslint errors will pop up after
+                    -- that. The "eslint.autoFixOnSave" option in CocConfig
+                    -- will take care of autofixing, and there is also the
+                    -- :AutoFixAll user command below to run the autofixer
+                    -- manually. See
+                    -- https://github.com/neoclide/coc.nvim/issues/5136 for
+                    -- more info
+                    vim.cmd(
+                        "call CocAction('runCommand', 'eslint.executeAutofix')"
+                    )
+                end
+            end, {
+                bang = true,
+                nargs = 0,
+                desc = 'CoC organize imports',
+            })
+
+            -- shortcut for auto-fixing eslint errors
             vim.api.nvim_create_user_command(
-                'OrganizeImports',
-                ":call CocAction('runCommand', 'editor.action.organizeImport')",
-                { bang = true, nargs = 0, desc = 'CoC organize imports' }
+                'AutoFixAll',
+                "call CocAction('runCommand', 'eslint.executeAutofix')",
+                { bang = true, desc = 'Auto-fix all eslint errors' }
             )
 
             -- shortcut for perttier to format javascript/css
