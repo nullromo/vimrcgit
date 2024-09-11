@@ -22,12 +22,20 @@ return function()
 
             -- trigger hlslens when searching forwards or backwards
             vim.keymap.set('n', 'n', function()
-                vim.cmd('normal! ' .. vim.v.count1 .. 'nzz')
-                hlslens.start()
+                local ok, result = pcall(function()
+                    vim.cmd('normal! ' .. vim.v.count1 .. 'nzz')
+                end)
+                if ok then
+                    hlslens.start()
+                end
             end, { silent = true, desc = 'hlslens forward search' })
             vim.keymap.set('n', 'N', function()
-                vim.cmd('normal! ' .. vim.v.count1 .. 'Nzz')
-                hlslens.start()
+                local ok, result = pcall(function()
+                    vim.cmd('normal! ' .. vim.v.count1 .. 'Nzz')
+                end)
+                if ok then
+                    hlslens.start()
+                end
             end, { silent = true, desc = 'hlslens backward search' })
 
             -- TODO: These are not working because they conflict with my other cash.nvim mappings
