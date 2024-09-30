@@ -255,6 +255,20 @@ return function()
         nnoremap <silent> <C-U> :call ScrollQuarter('up')<CR>
         nnoremap <silent> <C-D> :call ScrollQuarter('down')<CR>
     ]])
+    local ScrollSidewaysChunk = function(move)
+        local amount = math.floor(vim.fn.winwidth(0) / 8)
+        if move == 'left' then
+            vim.cmd('normal! ' .. amount .. 'zh')
+        elseif move == 'right' then
+            vim.cmd('normal! ' .. amount .. 'zl')
+        end
+    end
+    vim.keymap.set('n', '<S-h>', function()
+        ScrollSidewaysChunk('left')
+    end, { desc = '' })
+    vim.keymap.set('n', '<S-l>', function()
+        ScrollSidewaysChunk('right')
+    end, { desc = '' })
 
     -- Printline shortcuts
     vim.api.nvim_create_autocmd({ 'FileType' }, {
