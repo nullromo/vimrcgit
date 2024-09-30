@@ -17,7 +17,7 @@ return function()
 
     -- Highlight system.config file as JSON
     vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
-        pattern = 'system.config',
+        pattern = 'system.config,*.gpdummyconfig,*.gp800systemdiagram',
         command = 'set filetype=json',
         desc = 'set system.config filetype',
     })
