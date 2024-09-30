@@ -117,27 +117,53 @@ return function()
         { desc = 'enter terminal normal mode' }
     )
 
-    -- Move along rows instead of lines (for lines that wrap around)
-    vim.keymap.set('n', 'j', 'gj', { desc = 'move down across line wrap' })
-    vim.keymap.set('n', 'k', 'gk', { desc = 'move up across line wrap' })
-    vim.keymap.set(
-        'n',
-        '0',
-        'g0',
-        { desc = 'jump to beginning of line across line wrap' }
-    )
-    vim.keymap.set(
-        'n',
-        '^',
-        'g^',
-        { desc = 'jump to beginning of text across line wrap' }
-    )
-    vim.keymap.set(
-        'n',
-        '$',
-        'g$',
-        { desc = 'jump to end of line across line wrap' }
-    )
+    -- Move along rows instead of lines (for lines that wrap around). The 0, ^,
+    -- and $ versions also swap the g- prefixed commands so that they are
+    -- accessible if necessary
+    vim.keymap.set('n', 'j', 'gj', { desc = 'move down within line wrap' })
+    vim.keymap.set('n', 'k', 'gk', { desc = 'move up within line wrap' })
+    -- Function for handling 0, ^, and $. The motion argument can be 0, ^, or $.
+    -- The g argument can be true or false, and it signifies whether or not g
+    -- was pressed before the motion
+    local lineJumpMotion = function(motion, g)
+        -- if wrap is on, then we want to switch the motion and g-motion
+        -- commands. This means the non-g actions to move to the visible
+        -- starts/ends of lines
+        if vim.opt.wrap:get() then
+            if g then
+                vim.cmd('normal! ' .. motion)
+            else
+                vim.cmd('normal! g' .. motion)
+            end
+        -- if wrap is off, then we want to keep the default motion vs. g-motion
+        -- behavior. This means the non-g actions move the the actual
+        -- starts/ends of lines
+        else
+            if g then
+                vim.cmd('normal! g' .. motion)
+            else
+                vim.cmd('normal! ' .. motion)
+            end
+        end
+    end
+    vim.keymap.set('n', '0', function()
+        lineJumpMotion('0', false)
+    end, { desc = 'jump to beginning of line within line wrap' })
+    vim.keymap.set('n', 'g0', function()
+        lineJumpMotion('0', true)
+    end, { desc = 'jump to beginning of line across line wrap' })
+    vim.keymap.set('n', '^', function()
+        lineJumpMotion('^', false)
+    end, { desc = 'jump to beginning of text within line wrap' })
+    vim.keymap.set('n', 'g^', function()
+        lineJumpMotion('^', true)
+    end, { desc = 'jump to beginning of text across line wrap' })
+    vim.keymap.set('n', '$', function()
+        lineJumpMotion('$', false)
+    end, { desc = 'jump to end of line within line wrap' })
+    vim.keymap.set('n', 'g$', function()
+        lineJumpMotion('$', true)
+    end, { desc = 'jump to end of line across line wrap' })
 
     -- Use space to center the screen
     vim.keymap.set(
