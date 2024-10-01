@@ -104,6 +104,8 @@ return function()
         require('plugins.spectre')(),
         -- auto-close unused buffers
         require('plugins.hbac')(),
+        -- multi-cursor plugin
+        require('plugins.vim-visual-multi')(),
     }
 
     -- load fewer plugins when using firenvim
