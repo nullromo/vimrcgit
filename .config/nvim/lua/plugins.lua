@@ -106,6 +106,8 @@ return function()
         require('plugins.hbac')(),
         -- multi-cursor plugin
         require('plugins.vim-visual-multi')(),
+        -- quickfix improvement plugin
+        require('plugins.quicker')(),
     }
 
     -- load fewer plugins when using firenvim
