@@ -40,7 +40,7 @@ connect() {
     KEY_SUFFIX=$1
     HOST=$2
     ssh-keygen -f "/home/kkovacs/.ssh/known_hosts" -R "[$2]:22055"
-    ssh -i ~/oss-ssh-key-$KEY_SUFFIX -p 22055 -o StrictHostKeyChecking=accept-new oss-gp@$HOST
+    ssh -i ~/oss-ssh-key-$KEY_SUFFIX -p 22055 -o StrictHostKeyChecking=accept-new -o ForwardX11=yes oss-gp@$HOST
 }
 
 # use bat instead of cat
