@@ -50,5 +50,10 @@ return function()
     -- Use <C-/> as a shortcut for :nohlsearch to hide the search highlighting
     vim.keymap.set('n', '<C-/>', function()
         vim.cmd.nohlsearch()
-    end)
+    end, { desc = 'Hide search' })
+    -- In some terminals, typing <C-/> actually sends <C-_> to vim for some
+    -- reason. So this mapping covers that
+    vim.keymap.set('n', '<C-_>', function()
+        vim.cmd.nohlsearch()
+    end, { desc = 'Hide search 2' })
 end
