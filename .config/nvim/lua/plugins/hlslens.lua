@@ -8,7 +8,6 @@ return function()
             hlslens.setup()
 
             -- set up colors
-            vim.api.nvim_set_hl(0, 'HlSearchNear', { link = 'FlashLabel' })
             vim.api.nvim_set_hl(
                 0,
                 'HlSearchLens',
@@ -19,6 +18,13 @@ return function()
                 'HlSearchLensNear',
                 { link = 'HlSearchLens' }
             )
+            -- for this one, if you set it to a highlight group, it will
+            -- highlight the match nearest to the cursor with that group. I
+            -- didn't like that, so I set it to None to preserve vim's default
+            -- behavior of the CurSearch highlight. See
+            -- https://github.com/kevinhwang91/nvim-hlslens/issues/72 for
+            -- details.
+            vim.api.nvim_set_hl(0, 'HlSearchNear', { link = 'None' })
 
             -- trigger hlslens when searching forwards or backwards
             vim.keymap.set('n', 'n', function()
