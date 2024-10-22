@@ -3,6 +3,9 @@
     name = Kyle Kovacs
 [core]
     editor = vim
+    fsmonitor = true
+    untrackedcache = true
+    preloadindex = true
 [init]
     defaultBranch = main
 [diff]
