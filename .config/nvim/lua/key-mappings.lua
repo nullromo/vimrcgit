@@ -390,4 +390,12 @@ return function()
         'g_',
         { desc = 'do not include newline at end of line' }
     )
+
+    -- add <count>j and <count>k to jumplist
+    vim.keymap.set({ 'n', 'x' }, 'j', function()
+        return vim.v.count > 1 and "m'" .. vim.v.count .. 'j' or 'j'
+    end, { expr = true, desc = 'add <count>j to jumplist' })
+    vim.keymap.set({ 'n', 'x' }, 'k', function()
+        return vim.v.count > 1 and "m'" .. vim.v.count .. 'k' or 'k'
+    end, { expr = true, desc = 'add <count>k to jumplist' })
 end
