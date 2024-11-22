@@ -8,6 +8,9 @@ return function()
     -- Set encoding type
     vim.opt.encoding = 'utf-8'
 
+    -- Try to make git not have a weird end-of-file issue
+    vim.opt.fileformats = 'unix,dos,mac'
+
     -- Highlight Jenkinsfile as a Groovy script
     vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
         pattern = 'Jenkinsfile',
