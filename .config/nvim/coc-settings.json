@@ -21,5 +21,6 @@
     "git.topRemovedSign.hlGroup": "GitSignsDelete",
     "git.changeRemovedSign.hlGroup": "GitSingsChange",
     "Lua.workspace.library": ["/usr/share/nvim/runtime"],
-    "eslint.autoFixOnSave": true
+    "eslint.autoFixOnSave": true,
+    "markdown-preview-enhanced.previewTheme": "github-light.css"
 }
