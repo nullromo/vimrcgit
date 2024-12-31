@@ -1,6 +1,6 @@
 return function()
     return {
-        'nullromo/nvim-notify',
+        'rcarriga/nvim-notify',
         config = function()
             require('notify').setup({
                 max_width = 100,
