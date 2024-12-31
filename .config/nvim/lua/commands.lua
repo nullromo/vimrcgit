@@ -37,7 +37,7 @@ return function()
     -- Move the current buffer into its own tab to the left of the current one
     vim.api.nvim_create_user_command(
         'MoveLeft',
-        'normal :-1tabnew<CR>,wgt,w:q<CR>gT',
+        'normal :-1tabnew<CR>,wgt,w:q<CR>',
         { bang = true, desc = 'move current buffer left' }
     )
 
