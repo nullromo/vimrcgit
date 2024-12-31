@@ -108,6 +108,10 @@ return function()
         require('plugins.vim-visual-multi')(),
         -- quickfix improvement plugin
         require('plugins.quicker')(),
+        -- indentation movement mappings
+        require('plugins.indentwise')(),
+        -- re-open closed windows
+        require('plugins.undoquit')(),
     }
 
     -- load fewer plugins when using firenvim
@@ -130,6 +134,8 @@ return function()
             require('plugins.mark-radar')(),
             require('plugins.boole')(),
             require('plugins.hlslens')(),
+            require('plugins.vim-visual-multi')(),
+            require('plugins.indentwise')(),
             -- use vim in the browser
             require('plugins.firenvim')(),
         }
