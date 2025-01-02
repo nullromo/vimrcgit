@@ -42,4 +42,10 @@ return function()
         '<ESC>O',
         { desc = 'insert newline above current line' }
     )
+
+    -- use proper settings for yaml files
+    vim.api.nvim_create_autocmd(
+        'FileType',
+        { pattern = 'yaml', command = 'setlocal shiftwidth=4 tabstop=4' }
+    )
 end
