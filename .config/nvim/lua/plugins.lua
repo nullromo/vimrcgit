@@ -112,6 +112,8 @@ return function()
         require('plugins.indentwise')(),
         -- re-open closed windows
         require('plugins.undoquit')(),
+        -- allow scrolling past the top of a file
+        require('plugins.go-up')(),
     }
 
     -- load fewer plugins when using firenvim

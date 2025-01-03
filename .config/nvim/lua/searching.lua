@@ -18,20 +18,6 @@ return function()
     -- just moving between lines)
     vim.keymap.set('n', '+', '/<C-r>/\\|', { desc = 'add to current search' })
 
-    -- Center the screen after searching. NOTE: This is now done by hlslens instead
-    --vim.keymap.set(
-    --'n',
-    --'n',
-    --'nzz',
-    --{ desc = 'center screen after searching forward' }
-    --)
-    --vim.keymap.set(
-    --'n',
-    --'N',
-    --'Nzz',
-    --{ desc = 'center screen after searching backward' }
-    --)
-
     -- Use // in visual mode to search for what is highlighted. Also integrate
     -- with custom function
     vim.keymap.set('v', '//', function()

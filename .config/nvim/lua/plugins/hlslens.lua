@@ -3,9 +3,11 @@ return function()
     local fujiGray = '#727169'
     return {
         'kevinhwang91/nvim-hlslens',
+        dependencies = { 'nullromo/go-up.nvim' },
         config = function()
             local hlslens = require('hlslens')
             hlslens.setup()
+            local goUp = require('go-up')
 
             -- set up colors
             vim.api.nvim_set_hl(
@@ -28,20 +30,22 @@ return function()
 
             -- trigger hlslens when searching forwards or backwards
             vim.keymap.set('n', 'n', function()
-                local ok, result = pcall(function()
-                    vim.cmd('normal! ' .. vim.v.count1 .. 'nzz')
+                local ok, _ = pcall(function()
+                    vim.cmd('normal! ' .. vim.v.count1 .. 'n')
                 end)
                 if ok then
                     hlslens.start()
                 end
+                goUp.centerScreen()
             end, { silent = true, desc = 'hlslens forward search' })
             vim.keymap.set('n', 'N', function()
-                local ok, result = pcall(function()
-                    vim.cmd('normal! ' .. vim.v.count1 .. 'Nzz')
+                local ok, _ = pcall(function()
+                    vim.cmd('normal! ' .. vim.v.count1 .. 'N')
                 end)
                 if ok then
                     hlslens.start()
                 end
+                goUp.centerScreen()
             end, { silent = true, desc = 'hlslens backward search' })
 
             -- TODO: These are not working because they conflict with my other cash.nvim mappings

@@ -25,8 +25,6 @@ require('key-mappings')()
 require('files')()
 require('general')()
 require('commands')()
--- messing around with scrolling thing
-require('plugins.untitled-scrolling-plugin')()
 
 -- TODO: turn this into a plugin
 -- possible names:

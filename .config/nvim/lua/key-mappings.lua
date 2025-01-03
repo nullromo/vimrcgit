@@ -165,14 +165,6 @@ return function()
         lineJumpMotion('$', true)
     end, { desc = 'jump to end of line across line wrap' })
 
-    -- Use space to center the screen
-    vim.keymap.set(
-        { 'n', 'v' },
-        '<space>',
-        'zz',
-        { desc = 'center the screen' }
-    )
-
     -- Use , + direction to resize windows
     vim.keymap.set(
         'n',
