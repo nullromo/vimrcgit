@@ -228,7 +228,7 @@ return function()
 
     -- Custom function for scrolling 1/4 of the screen
     vim.cmd([[
-        function! ScrollQuarter(move) abort
+        function! ScrollQuarter(move, motion) abort
             let height = winheight(0)
             if a:move == 'up'
                 let scrollKey = "\<C-Y>"
@@ -241,11 +241,15 @@ return function()
                 let motionKey = ""
             endif
             execute 'normal! ' . height/4 . scrollKey
-            execute 'normal! ' . height/4 . motionKey
+            if a:motion == 'true'
+                execute 'normal! ' . height/4 . motionKey
+            endif
         endfunction
         " Remap <C-u> and <C-d> to move using the custom function
-        nnoremap <silent> <C-U> :call ScrollQuarter('up')<CR>
-        nnoremap <silent> <C-D> :call ScrollQuarter('down')<CR>
+        nnoremap <silent> <C-U> :call ScrollQuarter('up', 'true')<CR>
+        nnoremap <silent> <C-D> :call ScrollQuarter('down', 'true')<CR>
+        nnoremap <silent> <M-u> :call ScrollQuarter('up', 'false')<CR>
+        nnoremap <silent> <M-d> :call ScrollQuarter('down', 'false')<CR>
     ]])
     local ScrollSidewaysChunk = function(move)
         local amount = math.floor(vim.fn.winwidth(0) / 8)
