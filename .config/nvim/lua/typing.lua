@@ -21,9 +21,6 @@ return function()
     -- Allow backspacing over everything in insert mode
     vim.opt.backspace = '2'
 
-    -- Keep 4 lines above/below cursor
-    vim.opt.scrolloff = 4
-
     -- Make the backspace key work
     vim.opt.backspace = { 'indent', 'eol', 'start' }
 

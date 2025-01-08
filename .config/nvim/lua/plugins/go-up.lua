@@ -9,6 +9,11 @@ return function()
             vim.keymap.set({ 'n', 'v' }, '<space>', function()
                 goUp.centerScreen()
             end, { desc = 'center the screen' })
+
+            -- Use <C-space> to align top
+            vim.keymap.set({ 'n', 'v' }, '<C-Space>', function()
+                goUp.align()
+            end, { desc = 'align the top of the screen' })
         end,
     }
 end
