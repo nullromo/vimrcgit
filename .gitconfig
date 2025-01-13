@@ -19,3 +19,5 @@
     keepBackup = false
 [alias]
     f = fetch --all --prune --progress
+[rebase]
+	instructionFormat = (%an <%ae>) %s
