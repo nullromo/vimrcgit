@@ -246,10 +246,10 @@ return function()
             endif
         endfunction
         " Remap <C-u> and <C-d> to move using the custom function
-        nnoremap <silent> <C-U> :call ScrollQuarter('up', 'true')<CR>
-        nnoremap <silent> <C-D> :call ScrollQuarter('down', 'true')<CR>
-        nnoremap <silent> <M-u> :call ScrollQuarter('up', 'false')<CR>
-        nnoremap <silent> <M-d> :call ScrollQuarter('down', 'false')<CR>
+        nnoremap <silent> <C-U> :call ScrollQuarter('up', 'false')<CR>
+        nnoremap <silent> <C-D> :call ScrollQuarter('down', 'false')<CR>
+        nnoremap <silent> <M-u> :call ScrollQuarter('up', 'true')<CR>
+        nnoremap <silent> <M-d> :call ScrollQuarter('down', 'true')<CR>
     ]])
     local ScrollSidewaysChunk = function(move)
         local amount = math.floor(vim.fn.winwidth(0) / 8)
