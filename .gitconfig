@@ -19,5 +19,6 @@
     keepBackup = false
 [alias]
     f = fetch --all --prune --progress
+    jump = !~/.config/git/git-jump.sh
 [rebase]
 	instructionFormat = (%an <%ae>) %s
