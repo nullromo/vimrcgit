@@ -394,9 +394,9 @@ return function()
 
     -- add <count>j and <count>k to jumplist
     vim.keymap.set({ 'n', 'x' }, 'j', function()
-        return vim.v.count > 1 and "m'" .. vim.v.count .. 'j' or 'j'
+        return vim.v.count > 1 and "m'" .. vim.v.count .. 'gj' or 'gj'
     end, { expr = true, desc = 'add <count>j to jumplist' })
     vim.keymap.set({ 'n', 'x' }, 'k', function()
-        return vim.v.count > 1 and "m'" .. vim.v.count .. 'k' or 'k'
+        return vim.v.count > 1 and "m'" .. vim.v.count .. 'gk' or 'gk'
     end, { expr = true, desc = 'add <count>k to jumplist' })
 end
