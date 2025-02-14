@@ -18,7 +18,7 @@
 [mergetool]
     keepBackup = false
 [alias]
-    f = fetch --all --prune --progress
+    f = fetch --all --prune --progress --tags
     jump = !~/.config/git/git-jump.sh
 [rebase]
 	instructionFormat = (%an <%ae>) %s
