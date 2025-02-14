@@ -25,6 +25,10 @@ return function()
             local telescopeActionState = require('telescope.actions.state')
             local telescopeActionSet = require('telescope.actions.set')
             local telescopeThemes = require('telescope.themes')
+            local telescopePickers = require('telescope.pickers')
+            local telescopeFinders = require('telescope.finders')
+            local telescopeSorters = require('telescope.sorters')
+            local telescopeConfig = require('telescope.config')
 
             -- function that scrolls the telescope preview window by 1 line up
             -- or down
@@ -205,6 +209,42 @@ return function()
             vim.api.nvim_create_user_command('Hbac', function()
                 telescope.extensions.hbac.buffers()
             end, { desc = 'hbac search' })
+
+            local pickUnstagedGitHunks = function()
+                telescopePickers
+                    .new({
+                        finder = telescopeFinders.new_oneshot_job(
+                            { 'git', 'jump', '--stdout', 'diff' },
+                            {
+                                entry_maker = function(line)
+                                    local filename, lineNumberString =
+                                        line:match('([^:]+):(%d+).*')
+                                    if filename:match('^/dev/null') then
+                                        return nil
+                                    end
+                                    return {
+                                        value = filename,
+                                        display = line,
+                                        ordinal = line,
+                                        filename = filename,
+                                        lnum = tonumber(lineNumberString),
+                                    }
+                                end,
+                            }
+                        ),
+                        sorter = telescopeSorters.get_generic_fuzzy_sorter(),
+                        previewer = telescopeConfig.values.grep_previewer({}),
+                        results_title = 'Unstaged git hunks',
+                        preview_title = 'Unstaged git hunks preview',
+                        prompt_title = 'Search unstaged git hunks',
+                        layout_strategy = 'flex',
+                    }, {})
+                    :find()
+            end
+
+            vim.api.nvim_create_user_command('Diff', function()
+                pickUnstagedGitHunks()
+            end, { desc = 'telescope unstaged git hunks' })
         end,
         event = 'VeryLazy',
     }
