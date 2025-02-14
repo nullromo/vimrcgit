@@ -24,6 +24,7 @@ return function()
             local telescopeState = require('telescope.state')
             local telescopeActionState = require('telescope.actions.state')
             local telescopeActionSet = require('telescope.actions.set')
+            local telescopeThemes = require('telescope.themes')
 
             -- function that scrolls the telescope preview window by 1 line up
             -- or down
@@ -195,7 +196,9 @@ return function()
 
             -- use :Emoji to search through emoji
             vim.api.nvim_create_user_command('Emoji', function()
-                telescope.extensions.emoji.emoji()
+                telescope.extensions.emoji.emoji(telescopeThemes.get_cursor({
+                    layout_config = { height = 20 },
+                }))
             end, { desc = 'telescope emoji' })
 
             -- use :Hbac to search through hbac pin status
