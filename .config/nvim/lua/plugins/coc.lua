@@ -18,6 +18,7 @@ return function()
                 'coc-markdown-preview-enhanced',
                 'coc-lua',
                 'coc-db',
+                '@yaegassy/coc-marksman',
             }
 
             -- navigate the completion list with control + j/k in addition to
@@ -240,6 +241,13 @@ return function()
                 expr = true,
                 desc = 'CoC scroll popup up',
             })
+
+            -- provide a user command for creating a table of contents in a markdown file
+            vim.api.nvim_create_user_command(
+                'TableOfContents',
+                ":call CocActionAsync('codeAction', '', ['source'], v:true)",
+                { desc = 'coc-marksman create table of contents' }
+            )
         end,
         lazy = false,
     }
