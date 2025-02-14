@@ -372,6 +372,11 @@ return function()
     vim.keymap.set('x', 'p', 'P', { desc = 'switch p and P' })
     vim.keymap.set('x', 'P', 'p', { desc = 'switch P and p' })
 
+    -- auto-indent after paste. Unfortunately from my experience, this "auto"
+    -- feature usually gets the indentation wrong, so I don't use it anymore
+    --vim.keymap.set('n', 'p', 'p=`]', { desc = 'auto-indent after paste' })
+    --vim.keymap.set('n', 'P', 'P=`[', { desc = 'auto-indent after paste' })
+
     -- Open help windows to the left by default without having to use :vertical
     vim.api.nvim_create_autocmd({ 'FileType' }, {
         pattern = 'help',
