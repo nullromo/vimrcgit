@@ -62,6 +62,7 @@ return function()
         require('plugins.nvim-treesitter')(),
         -- installer for language servers
         require('plugins.mason')(),
+        require('plugins.mason-tool-installer')(),
         -- connector for language servers
         require('plugins.mason-lspconfig')(),
         -- lsp configuration
@@ -116,6 +117,8 @@ return function()
         require('plugins.go-up')(),
         -- automatically insert matching parentheses and quotes
         require('plugins.nvim-autopairs')(),
+        -- spell checker
+        require('plugins.typos-lsp')(),
     }
 
     -- load fewer plugins when using firenvim
