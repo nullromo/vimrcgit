@@ -114,6 +114,8 @@ return function()
         require('plugins.undoquit')(),
         -- allow scrolling past the top of a file
         require('plugins.go-up')(),
+        -- automatically insert matching parentheses and quotes
+        require('plugins.nvim-autopairs')(),
     }
 
     -- load fewer plugins when using firenvim
@@ -138,6 +140,7 @@ return function()
             require('plugins.hlslens')(),
             require('plugins.vim-visual-multi')(),
             require('plugins.indentwise')(),
+            require('plugins.nvim-autopairs')(),
             -- use vim in the browser
             require('plugins.firenvim')(),
         }
