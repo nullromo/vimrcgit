@@ -47,17 +47,17 @@ return function()
             -- windows there is still a problem. See
             -- https://github.com/kwkarlwang/bufresize.nvim/issues/15 for
             -- details.
-            vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter' }, {
-                callback = function()
-                    if lastAction == 'close' then
-                        --vim.notify('doing a close')
-                        require('bufresize').resize_close()
-                    elseif lastAction == 'open' then
-                        --vim.notify('doing an open')
-                        require('bufresize').resize_open()
-                    end
-                end,
-            })
+            --vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter' }, {
+            --callback = function()
+            --if lastAction == 'close' then
+            ----vim.notify('doing a close')
+            --require('bufresize').resize_close()
+            --elseif lastAction == 'open' then
+            ----vim.notify('doing an open')
+            --require('bufresize').resize_open()
+            --end
+            --end,
+            --})
         end,
     }
 end
