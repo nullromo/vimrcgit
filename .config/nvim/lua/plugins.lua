@@ -140,6 +140,7 @@ return function()
             require('plugins.hlslens')(),
             require('plugins.vim-visual-multi')(),
             require('plugins.indentwise')(),
+            require('plugins.go-up')(),
             require('plugins.nvim-autopairs')(),
             -- use vim in the browser
             require('plugins.firenvim')(),
