@@ -26,14 +26,16 @@ return function()
 
     -- Turn spell-checking on when editing a .notes file
     vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
-        pattern = '*',
-        command = 'set nospell',
-        desc = 'disable spell check by default',
-    })
-    vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
         pattern = '*.notes,*.md,*.mdx',
         command = 'set spell',
         desc = 'enable spell check for certain filetypes',
+    })
+
+    -- Turn spell-checking on when editing any file
+    vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+        pattern = '*',
+        command = 'set spell',
+        desc = 'enable spell check by default',
     })
 
     -- Always show all characters in markdown files
