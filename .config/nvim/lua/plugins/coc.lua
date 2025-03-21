@@ -19,6 +19,7 @@ return function()
                 'coc-lua',
                 'coc-db',
                 '@yaegassy/coc-marksman',
+                'coc-typos',
             }
 
             -- navigate the completion list with control + j/k in addition to
@@ -48,6 +49,40 @@ return function()
                 silent = true,
                 desc = 'CoC previous diagnostic',
             })
+
+            -- Vim's default motions to jump between typos OR "strange words"
+            -- are [s and ]s. Vim's default motions to jump between typos are
+            -- [S and ]S. Since I don't care about "strange words," I want to
+            -- map the default [S and ]S to [s and]s. I also want to map
+            -- coc-typos to [S and ]S.
+            vim.keymap.set('n', ']s', ']S', {
+                silent = true,
+                desc = 'Use lowercase s for typo backward jump',
+            })
+            vim.keymap.set('n', '[s', '[S', {
+                silent = true,
+                desc = 'Use lowercase s for typo forward jump',
+            })
+            vim.keymap.set(
+                'n',
+                ']S',
+                '<Plug>(coc-typos-next)',
+                { silent = true, desc = 'CoC next typo' }
+            )
+            vim.keymap.set(
+                'n',
+                '[S',
+                '<Plug>(coc-typos-prev)',
+                { silent = true, desc = 'CoC previous typo' }
+            )
+
+            -- fix typos
+            vim.keymap.set(
+                'n',
+                'Z=',
+                '<Plug>(coc-typos-fix)',
+                { silent = true, desc = 'CoC fix typo' }
+            )
 
             -- allow the [[ and ]] to work in python
             vim.g.no_python_maps = 1
