@@ -118,7 +118,7 @@ return function()
         -- automatically insert matching parentheses and quotes
         require('plugins.nvim-autopairs')(),
         -- spell checker
-        require('plugins.typos-lsp')(),
+        --require('plugins.typos-lsp')(),
     }
 
     -- load fewer plugins when using firenvim
