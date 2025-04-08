@@ -22,5 +22,8 @@
     "git.changeRemovedSign.hlGroup": "GitSingsChange",
     "Lua.workspace.library": ["/usr/share/nvim/runtime"],
     "eslint.autoFixOnSave": true,
-    "markdown-preview-enhanced.previewTheme": "github-light.css"
+    "markdown-preview-enhanced.previewTheme": "github-light.css",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
 }
