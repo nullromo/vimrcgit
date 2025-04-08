@@ -239,7 +239,7 @@ return function()
                 { bang = true, desc = 'Auto-fix all eslint errors' }
             )
 
-            -- shortcut for perttier to format javascript/css
+            -- shortcut for prettier to format javascript/css
             vim.api.nvim_create_user_command(
                 'Prettier',
                 ':CocCommand prettier.formatFile',
