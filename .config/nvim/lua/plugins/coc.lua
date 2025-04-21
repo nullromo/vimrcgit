@@ -16,7 +16,6 @@ return function()
                 'coc-clangd',
                 'coc-webview',
                 'coc-markdown-preview-enhanced',
-                'coc-lua',
                 'coc-db',
                 '@yaegassy/coc-marksman',
                 'coc-typos',

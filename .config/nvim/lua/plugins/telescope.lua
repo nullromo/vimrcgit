@@ -116,6 +116,7 @@ return function()
             telescope.load_extension('live_grep_args')
             telescope.load_extension('emoji')
             telescope.load_extension('hbac')
+            telescope.load_extension('fidget')
 
             -- use ,* to live grep for the word under the cursor
             vim.keymap.set('n', '<leader>*', function()

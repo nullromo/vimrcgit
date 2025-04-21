@@ -60,13 +60,6 @@ return function()
         require('plugins.flash')(),
         -- core utility for language server functionality
         require('plugins.nvim-treesitter')(),
-        -- installer for language servers
-        require('plugins.mason')(),
-        require('plugins.mason-tool-installer')(),
-        -- connector for language servers
-        require('plugins.mason-lspconfig')(),
-        -- lsp configuration
-        require('plugins.nvim-lspconfig')(),
         -- status updater for lsp
         require('plugins.fidget')(),
         -- searcher
