@@ -8,7 +8,7 @@ return function()
             vim.g.indentLine_char = '|'
             -- Do not use in json or help files
             --   NOTE: since this plugin uses vim's conceal feature, and that
-            --   messes up JSON quotes, it doens't really work in json files or
+            --   messes up JSON quotes, it doesn't really work in json files or
             --   markdown
             vim.g.indentLine_fileTypeExclude =
                 { 'json', 'jsonc', 'help', 'markdown', 'markdown.mdx' }
