@@ -21,7 +21,7 @@ return function()
         -- display git branch on statusline
         require('plugins.vim-fugitive')(),
         -- show vertical lines for indented blocks
-        require('plugins.indentline')(),
+        --require('plugins.indentline')(),
         -- highlight trailing whitespace
         require('plugins.vim-better-whitespace')(),
         -- allows swapping windows with <leader>w
@@ -112,6 +112,8 @@ return function()
         require('plugins.nvim-autopairs')(),
         -- spell checker
         --require('plugins.typos-lsp')(),
+        -- replacement for indentline
+        require('plugins.indent-blankline')(),
     }
 
     -- load fewer plugins when using firenvim
