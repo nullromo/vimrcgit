@@ -336,6 +336,7 @@ return function()
 
     -- Open a new tab with ,t
     vim.keymap.set('n', '<leader>t', ':tabnew<CR>', { desc = 'new tab' })
+    vim.keymap.set('n', '<leader>T', ':-tabnew<CR>', { desc = 'new tab' })
 
     -- Open a terminal in a vertial split
     vim.keymap.set(
