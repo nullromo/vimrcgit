@@ -12,7 +12,7 @@ vim.g.mapleader = ','
 require('plugins')()
 
 -- Subsections of vim configuration
-require('lsp')()
+--require('lsp')()
 require('autoformatting')()
 require('statusline')()
 require('colors')()
