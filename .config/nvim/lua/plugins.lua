@@ -90,6 +90,8 @@ return function()
         require('plugins.gitlinker')(),
         -- SQL plugin
         require('plugins.dadbod')(),
+        -- splash screen
+        require('plugins.minintro')(),
         -- fancier search UI
         require('plugins.hlslens')(),
         -- diff viewer
