@@ -116,6 +116,8 @@ return function()
         --require('plugins.typos-lsp')(),
         -- replacement for indentline
         require('plugins.indent-blankline')(),
+        -- easy way to edit registers
+        require('plugins.registereditor')(),
     }
 
     -- load fewer plugins when using firenvim
