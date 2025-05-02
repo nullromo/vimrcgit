@@ -10,7 +10,8 @@ gui:
   showBottomLine: false
   expandFocusedSidePanel: true
   showBranchCommitHash: true
-  expandedSidePanelWeight: 16
+  expandedSidePanelWeight: 3
+  showNumstatInFilesView: true
 git:
   log:
     showGraph: 'always'
