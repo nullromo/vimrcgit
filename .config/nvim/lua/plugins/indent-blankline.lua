@@ -1,3 +1,5 @@
+-- show vertical lines for indented blocks
+
 return function()
     local sumiInk1 = '#1F1F28'
     local sumiInk4 = '#54546D'

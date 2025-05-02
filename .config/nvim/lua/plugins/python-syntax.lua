@@ -1,3 +1,5 @@
+-- better syntax highlighting for python
+
 return function()
     return {
         'vim-python/python-syntax',

@@ -1,3 +1,5 @@
+-- easy way to edit registers
+
 return function()
     return {
         -- this is a fork of tuurep/registereditor. See

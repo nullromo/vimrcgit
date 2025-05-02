@@ -1,3 +1,5 @@
+-- file browser for editing file names/permissions
+
 return function()
     return {
         'stevearc/oil.nvim',

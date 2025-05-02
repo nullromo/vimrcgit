@@ -1,3 +1,5 @@
+-- allow scrolling past the top of a file
+
 return function()
     return {
         'nullromo/go-up.nvim',

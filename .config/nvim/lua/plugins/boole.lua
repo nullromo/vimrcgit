@@ -1,3 +1,5 @@
+-- extends <C-a> and <C-x> to toggle booleans
+
 return function()
     return {
         'nat-418/boole.nvim',

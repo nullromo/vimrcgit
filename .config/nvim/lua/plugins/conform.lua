@@ -1,3 +1,5 @@
+-- nvim auto formatter
+
 return function()
     return {
         'stevearc/conform.nvim',

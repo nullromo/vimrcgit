@@ -1,3 +1,5 @@
+-- SQL plugin
+
 return function()
     return {
         'kristijanhusak/vim-dadbod-ui',

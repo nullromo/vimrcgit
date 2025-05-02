@@ -1,3 +1,5 @@
+-- search highlighting tool
+
 return function()
     return {
         'nullromo/cash.nvim',

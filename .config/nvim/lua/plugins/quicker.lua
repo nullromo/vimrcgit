@@ -1,3 +1,5 @@
+-- quickfix improvement plugin
+
 return function()
     return {
         'stevearc/quicker.nvim',

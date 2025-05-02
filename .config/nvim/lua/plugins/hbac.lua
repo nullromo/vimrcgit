@@ -1,3 +1,5 @@
+-- auto-close unused buffers
+
 return function()
     return {
         'axkirillov/hbac.nvim',

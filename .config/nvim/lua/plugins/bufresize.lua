@@ -1,3 +1,5 @@
+-- maintain window sizes when resizing vim
+
 return function()
     return {
         'kwkarlwang/bufresize.nvim',

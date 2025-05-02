@@ -1,3 +1,5 @@
+-- make w, e, and b behave differently
+
 return function()
     local motionFromInsertMode = require('util').motionFromInsertMode
 

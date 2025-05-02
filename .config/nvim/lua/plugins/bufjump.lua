@@ -1,3 +1,5 @@
+-- buffer jumping
+
 return function()
     return {
         'kwkarlwang/bufjump.nvim',

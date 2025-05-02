@@ -1,3 +1,5 @@
+-- get github/gitlab links from code using <Leader>gb
+
 return function()
     return {
         'ruifm/gitlinker.nvim',

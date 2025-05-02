@@ -1,3 +1,5 @@
+-- colorscheme
+
 return function()
     local sumiInk0 = '#16161D'
     local sumiInk4 = '#54546D'

@@ -1,3 +1,5 @@
+-- autocomplete and syntax checking
+
 return function()
     return {
         'neoclide/coc.nvim',

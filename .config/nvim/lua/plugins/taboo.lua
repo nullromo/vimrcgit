@@ -1,3 +1,5 @@
+-- makes the tabline pretty
+
 return function()
     return {
         'gcmt/taboo.vim',

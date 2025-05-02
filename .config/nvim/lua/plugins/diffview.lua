@@ -1,3 +1,5 @@
+-- diff viewer
+
 return function()
     return {
         'sindrets/diffview.nvim',

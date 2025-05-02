@@ -1,3 +1,5 @@
+-- searcher
+
 return function()
     return {
         'nvim-telescope/telescope.nvim',

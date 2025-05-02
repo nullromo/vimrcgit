@@ -1,3 +1,5 @@
+-- visual mode comment/uncomment
+
 return function()
     return {
         'preservim/nerdcommenter',

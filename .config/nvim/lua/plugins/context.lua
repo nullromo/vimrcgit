@@ -1,3 +1,5 @@
+-- show context of current function
+
 return function()
     return {
         'wellle/context.vim',

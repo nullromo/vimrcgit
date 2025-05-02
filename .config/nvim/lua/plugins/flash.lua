@@ -1,3 +1,5 @@
+-- tool for moving around the screen more easily
+
 return function()
     return {
         'folke/flash.nvim',

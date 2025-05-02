@@ -1,3 +1,5 @@
+-- core utility for language server functionality
+
 return function()
     return {
         'nvim-treesitter/nvim-treesitter',

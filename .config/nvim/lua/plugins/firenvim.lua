@@ -1,3 +1,5 @@
+-- use vim in the browser
+
 return function()
     return {
         'glacambre/firenvim',

@@ -1,3 +1,5 @@
+-- fancier search UI
+
 return function()
     local winterBlue = '#252535'
     local fujiGray = '#727169'

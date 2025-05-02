@@ -1,3 +1,5 @@
+-- screen saver
+
 return function()
     return {
         'folke/drop.nvim',

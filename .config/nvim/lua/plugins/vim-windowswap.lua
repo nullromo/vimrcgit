@@ -1,3 +1,5 @@
+-- allows swapping windows with <leader>w
+
 return function()
     return {
         'wesQ3/vim-windowswap',

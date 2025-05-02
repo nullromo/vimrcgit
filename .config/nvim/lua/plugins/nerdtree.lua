@@ -1,3 +1,5 @@
+-- file explorer
+
 return function()
     return {
         'preservim/nerdtree',

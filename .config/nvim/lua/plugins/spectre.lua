@@ -1,3 +1,5 @@
+-- find-and-replacer
+
 return function()
     return {
         'nvim-pack/nvim-spectre',

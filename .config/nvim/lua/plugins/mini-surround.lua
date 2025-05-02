@@ -1,3 +1,5 @@
+-- utility for editing surrounding symbols like quotes and xml tags
+
 return function()
     return {
         'echasnovski/mini.surround',

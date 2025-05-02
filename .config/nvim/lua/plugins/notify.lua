@@ -1,3 +1,5 @@
+-- notification UI element
+
 return function()
     return {
         'rcarriga/nvim-notify',
