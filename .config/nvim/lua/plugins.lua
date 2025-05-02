@@ -19,8 +19,6 @@ return function()
         'nerdcommenter',
         'nerdtree',
         'vim-fugitive',
-        -- show vertical lines for indented blocks
-        --require('plugins.indentline')(),
         'vim-better-whitespace',
         'vim-windowswap',
         'python-syntax',
@@ -33,8 +31,6 @@ return function()
         'coc',
         'black',
         'vim-toml',
-        -- folding in markdown
-        --require('plugins.vim-markdown-folding')(),
         'vim-surround',
         'vim-fanfingtastic',
         'context',
@@ -68,8 +64,6 @@ return function()
         'undoquit',
         'go-up',
         'nvim-autopairs',
-        -- spell checker
-        --require('plugins.typos-lsp')(),
         'indent-blankline',
         'registereditor',
     }
