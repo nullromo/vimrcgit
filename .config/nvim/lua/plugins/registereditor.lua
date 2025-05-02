@@ -7,9 +7,5 @@ return function()
         -- https://github.com/tuurep/registereditor/pull/7
         'nullromo/registereditor',
         branch = 'multiple-edit',
-        config = function()
-            local registereditor = require('registereditor')
-            registereditor.setup()
-        end,
     }
 end

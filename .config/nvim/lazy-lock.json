@@ -34,7 +34,7 @@
   "python-syntax": { "branch": "master", "commit": "2cc00ba72929ea5f9456a26782db57fb4cc56a65" },
   "qf_helper.nvim": { "branch": "master", "commit": "62e94495385a06f5143527548c348f4a9df2e704" },
   "quicker.nvim": { "branch": "master", "commit": "1798be71cdcb15fb84fa8054148a56e17fd391dc" },
-  "registereditor": { "branch": "multiple-edit", "commit": "95ca9323b2441e599fdf8442122661b108bb3152" },
+  "registereditor": { "branch": "multiple-edit", "commit": "17a26dd071a26469e06f20b994c275358cc09964" },
   "taboo.vim": { "branch": "master", "commit": "937f67ab9dc2ba1861fabc40ca367e5622c30d36" },
   "telescope-emoji.nvim": { "branch": "master", "commit": "86248d97be84a1ce83f0541500ef9edc99ea2aa1" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "1f08ed60cafc8f6168b72b80be2b2ea149813e55" },
