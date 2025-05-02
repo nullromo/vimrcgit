@@ -35,11 +35,29 @@ return function()
     vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('lsp', {}),
         callback = function(args)
-            local clientID = args.data.client_id
-            --local client = vim.lsp.get_client_by_id(args.data.client_id)
+            local client = assert(
+                vim.lsp.get_client_by_id(args.data.client_id),
+                'Failed to get LSP client'
+            )
 
             -- enable autocomplete
-            vim.lsp.completion.enable(true, clientID, 0, { autotrigger = true })
+            if client:supports_method('textDocument/completion') then
+                local chars = { '.', '"', "'", '/', '@', '<' }
+                for i = 65, 90 do -- A-Z
+                    table.insert(chars, string.char(i))
+                end
+                for i = 97, 122 do -- a-z
+                    table.insert(chars, string.char(i))
+                end
+                client.server_capabilities.completionProvider.triggerCharacters =
+                    chars
+                vim.lsp.completion.enable(
+                    true,
+                    client.id,
+                    args.buf,
+                    { autotrigger = true }
+                )
+            end
 
             -- enable semantic token highlighting
             --vim.lsp.semantic_tokens.start(0, clientID)
