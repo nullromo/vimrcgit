@@ -27,7 +27,6 @@ return function()
         'typescript-vim',
         'vim-jsx-typescript',
         'yang',
-        'vim-jsonc',
         'coc',
         'black',
         'vim-toml',
