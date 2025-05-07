@@ -6,6 +6,6 @@ return function()
         -- https://github.com/tuurep/registereditor/pull/6 and
         -- https://github.com/tuurep/registereditor/pull/7
         'nullromo/registereditor',
-        branch = 'multiple-edit',
+        branch = 'master',
     }
 end
