@@ -16,6 +16,8 @@ return function()
 
             -- Show line numbers in NERDTree
             vim.g.NERDTreeShowLineNumbers = 1
+
+            vim.g.NERDTreeCustomOpenArgs = { file = { reuse = '' } }
         end,
         lazy = false,
     }
