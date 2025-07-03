@@ -11,19 +11,24 @@ return function()
     -- Try to make git not have a weird end-of-file issue
     vim.opt.fileformats = 'unix,dos,mac'
 
-    -- Highlight Jenkinsfile as a Groovy script
-    vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
-        pattern = 'Jenkinsfile',
-        command = 'set filetype=groovy',
-        desc = 'set Jenkinsfile filetype',
-    })
+    -- Set filetype (and highlighting) for certain files
+    local filetypeMap = {
+        { pattern = 'Jenkinsfile', filetype = 'groovy' },
+        {
+            pattern = 'system.config,*.gpdummyconfig,*.gp800systemdiagram',
+            filetype = 'json',
+        },
+        { pattern = '*.rules', filetype = 'udevrules' },
+        { pattern = '*.service', filetype = 'systemd' },
+    }
 
-    -- Highlight system.config file as JSON
-    vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
-        pattern = 'system.config,*.gpdummyconfig,*.gp800systemdiagram',
-        command = 'set filetype=json',
-        desc = 'set system.config filetype',
-    })
+    for _, config in ipairs(filetypeMap) do
+        vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+            pattern = config.pattern,
+            command = 'set filetype=' .. config.filetype,
+            desc = 'set ' .. config.pattern .. ' filetype',
+        })
+    end
 
     -- Don't allow hidden modified buffers
     vim.opt.hidden = false
