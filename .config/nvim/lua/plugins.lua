@@ -65,6 +65,7 @@ return function()
         'nvim-autopairs',
         'indent-blankline',
         'registereditor',
+        'scrolleof',
     }
 
     -- load fewer plugins when using firenvim
