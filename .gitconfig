@@ -20,5 +20,7 @@
 [alias]
     f = fetch --all --prune --progress --tags
     jump = !~/.config/git/git-jump.sh
+    dr = push origin --delete
+    d = branch -D
 [rebase]
 	instructionFormat = (%an <%ae>) %s
