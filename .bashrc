@@ -197,3 +197,6 @@ export EDITOR=vim
 
 # source rust thingy
 . "$HOME/.cargo/env"
+
+# fix clip.exe (https://github.com/microsoft/WSL/issues/9146#issuecomment-1315005037)
+sudo update-binfmts --disable cli
