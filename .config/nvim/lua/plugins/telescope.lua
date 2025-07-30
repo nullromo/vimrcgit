@@ -15,7 +15,7 @@ return function()
                 end,
             },
             'nvim-telescope/telescope-live-grep-args.nvim',
-            'xiyaowong/telescope-emoji.nvim',
+            'nvim-telescope/telescope-symbols.nvim',
         },
         config = function()
             -- import stuff from telescope
@@ -100,11 +100,6 @@ return function()
                     live_grep_args = {
                         disable_devicons = true,
                     },
-                    emoji = {
-                        action = function(emoji)
-                            vim.api.nvim_put({ emoji.value }, 'c', false, true)
-                        end,
-                    },
                 },
             })
 
@@ -117,7 +112,6 @@ return function()
                 )
             end
             telescope.load_extension('live_grep_args')
-            telescope.load_extension('emoji')
             telescope.load_extension('hbac')
             telescope.load_extension('fidget')
 
@@ -202,12 +196,20 @@ return function()
                 { bang = true, desc = 'telescope resume' }
             )
 
-            -- use :Emoji to search through emoji
-            vim.api.nvim_create_user_command('Emoji', function()
-                telescope.extensions.emoji.emoji(telescopeThemes.get_cursor({
+            local showSymbolsAndEmoji = function(sources)
+                telescopeBuiltins.symbols(telescopeThemes.get_cursor({
                     layout_config = { height = 20 },
+                    sources = sources,
                 }))
+            end
+
+            -- use :Symbols and :Emoji to search through symbols and/or emoji
+            vim.api.nvim_create_user_command('Emoji', function()
+                showSymbolsAndEmoji({ 'emoji', 'gitmoji' })
             end, { desc = 'telescope emoji' })
+            vim.api.nvim_create_user_command('Symbols', function()
+                showSymbolsAndEmoji({ 'julia', 'math' })
+            end, { desc = 'telescope symbols' })
 
             -- use :Hbac to search through hbac pin status
             vim.api.nvim_create_user_command('Hbac', function()
