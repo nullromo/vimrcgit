@@ -31,6 +31,7 @@ return function()
             local telescopeFinders = require('telescope.finders')
             local telescopeSorters = require('telescope.sorters')
             local telescopeConfig = require('telescope.config')
+            local telescopeActions = require('telescope.actions')
 
             -- function that scrolls the telescope preview window by 1 line up
             -- or down
@@ -57,7 +58,7 @@ return function()
                 ['<C-y>'] = function(bufferNumber)
                     scrollSingleLine(bufferNumber, false)
                 end,
-                ['<C-f>'] = require('telescope.actions').to_fuzzy_refine,
+                ['<C-f>'] = telescopeActions.to_fuzzy_refine,
             }
 
             -- opens the selected item in a new tab (in applicable pickers) and
