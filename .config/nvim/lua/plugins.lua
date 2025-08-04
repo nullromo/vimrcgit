@@ -66,6 +66,7 @@ return function()
         'indent-blankline',
         'registereditor',
         'scrolleof',
+        'fishtank',
     }
 
     -- load fewer plugins when using firenvim
