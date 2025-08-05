@@ -5,7 +5,7 @@ return function()
         'nullromo/fishtank.nvim',
         config = function()
             local fishtank = require('fishtank')
-            fishtank.setup()
+            fishtank.setup({ screensaver = { enabled = true, timeout = 3000 } })
         end,
     }
 end
