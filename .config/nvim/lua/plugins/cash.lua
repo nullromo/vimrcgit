@@ -3,7 +3,7 @@
 return function()
     return {
         'nullromo/cash.nvim',
-        branch = 'dev',
+        branch = 'main',
         config = function()
             local cash = require('cash')
             cash.setup()
