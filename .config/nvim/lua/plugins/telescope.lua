@@ -16,6 +16,7 @@ return function()
             },
             'nvim-telescope/telescope-live-grep-args.nvim',
             'nvim-telescope/telescope-symbols.nvim',
+            'nullromo/telescope-box-drawing.nvim',
         },
         config = function()
             -- import stuff from telescope
@@ -100,6 +101,9 @@ return function()
                     live_grep_args = {
                         disable_devicons = true,
                     },
+                    ['box-drawing'] = telescopeThemes.get_cursor({
+                        layout_config = { height = 20, width = 40 },
+                    }),
                 },
             })
 
@@ -114,6 +118,7 @@ return function()
             telescope.load_extension('live_grep_args')
             telescope.load_extension('hbac')
             telescope.load_extension('fidget')
+            telescope.load_extension('box-drawing')
 
             -- use ,* to live grep for the word under the cursor
             vim.keymap.set('n', '<leader>*', function()
@@ -251,6 +256,14 @@ return function()
             vim.api.nvim_create_user_command('Diff', function()
                 pickUnstagedGitHunks()
             end, { desc = 'telescope unstaged git hunks' })
+
+            vim.api.nvim_create_user_command('BoxDrawing', function()
+                telescope.extensions['box-drawing']['box-drawing'](
+                    telescopeThemes.get_cursor({
+                        layout_config = { height = 20, width = 40 },
+                    })
+                )
+            end, { desc = 'telescope box drawing characters' })
         end,
         event = 'VeryLazy',
     }
