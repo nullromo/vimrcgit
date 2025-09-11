@@ -62,7 +62,7 @@ return function()
         'indentwise',
         'undoquit',
         'go-up',
-        'nvim-autopairs',
+        --'nvim-autopairs',
         'indent-blankline',
         'registereditor',
         'scrolleof',
