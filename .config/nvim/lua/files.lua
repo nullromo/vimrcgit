@@ -51,4 +51,9 @@ return function()
 
     -- Open all folds by default
     vim.opt.foldlevelstart = 99
+
+    -- Open the folder of the currently open file
+    vim.api.nvim_create_user_command('Folder', function()
+        vim.cmd('e %:h')
+    end, { desc = 'Open the folder of the current file' })
 end
