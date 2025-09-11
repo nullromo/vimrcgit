@@ -67,6 +67,7 @@ return function()
         'registereditor',
         'scrolleof',
         'fishtank',
+        'nvim-regexplainer',
     }
 
     -- load fewer plugins when using firenvim
