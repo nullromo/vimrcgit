@@ -195,11 +195,14 @@ return function()
             )
 
             -- use :Ts to resume telescope
-            vim.api.nvim_create_user_command(
-                'Tr',
-                telescopeBuiltins.resume,
-                { bang = true, desc = 'telescope resume' }
-            )
+            vim.api.nvim_create_user_command('Tr', function()
+                telescopeBuiltins.resume()
+                vim.api.nvim_feedkeys(
+                    vim.api.nvim_replace_termcodes('<ESC>', true, false, true),
+                    '',
+                    false
+                )
+            end, { bang = true, desc = 'telescope resume' })
 
             local showSymbolsAndEmoji = function(sources)
                 telescopeBuiltins.symbols(telescopeThemes.get_cursor({
