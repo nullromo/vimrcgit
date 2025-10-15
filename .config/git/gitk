@@ -57,12 +57,12 @@ set web_browser xdg-open
 set workingfilescirclecolor red
 set wrapcomment none
 set wrapdefault none
-set geometry(main) 2560x1387+4080+1602
+set geometry(main) 1728x1378+4400+1610
 set geometry(state) normal
-set geometry(topwidth) 2560
-set geometry(topheight) 697
-set geometry(pwsash0) "1588 1"
-set geometry(pwsash1) "2156 1"
-set geometry(botwidth) 1291
-set geometry(botheight) 685
+set geometry(topwidth) 1728
+set geometry(topheight) 623
+set geometry(pwsash0) "1068 1"
+set geometry(pwsash1) "1451 1"
+set geometry(botwidth) 871
+set geometry(botheight) 750
 set permviews {}
