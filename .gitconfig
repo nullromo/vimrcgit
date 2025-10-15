@@ -2,7 +2,7 @@
 	email = kylerobertkovacs@gmail.com
     name = Kyle Kovacs
 [core]
-    editor = vim
+    editor = nvim
     fsmonitor = true
     untrackedcache = true
     preloadindex = true
