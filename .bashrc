@@ -193,10 +193,21 @@ printf '\033[3 q'
 # set up z (https://github.com/rupa/z)
 . /home/kkovacs/z/z.sh
 
-export EDITOR=vim
+export EDITOR=nvim
+export VISUAL=nvim
 
 # source rust thingy
 . "$HOME/.cargo/env"
 
 # fix clip.exe (https://github.com/microsoft/WSL/issues/9146#issuecomment-1315005037)
 sudo update-binfmts --disable cli
+
+# add nvim to path (installed via bob)
+# note: install bob via `cargo install --git https://github.com/MordechaiHadad/bob.git`
+case ":${PATH}:" in
+    *:"/home/kkovacs/.local/share/bob/nvim-bin":*)
+        ;;
+    *)
+        export PATH="/home/kkovacs/.local/share/bob/nvim-bin:$PATH"
+        ;;
+esac
