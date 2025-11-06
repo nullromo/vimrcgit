@@ -159,6 +159,7 @@ return function()
                 'normal <Plug>(coc-codeaction)',
                 { bang = true, desc = 'CoC action' }
             )
+            vim.keymap.set('n', 'go', ':CocAction<CR>')
 
             -- use K for hover-style documentation/help
             function _G.show_docs()
