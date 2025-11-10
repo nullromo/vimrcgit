@@ -20,5 +20,12 @@
     "git.changeRemovedSign.hlGroup": "GitSingsChange",
     "markdown-preview-enhanced.previewTheme": "github-light.css",
     "eslint.problems.shortenToSingleLine": true,
-    "eslint.options": { "cache": true }
+    "eslint.options": { "cache": true },
+    "Lua.workspace.library": [
+        "/home/kkovacs/.local/share/bob/v0.11.4/share/nvim/runtime/lua",
+        "/home/kkovacs/.local/share/bob/v0.11.4/share/nvim/runtime/lua/vim",
+        "/home/kkovacs/.local/share/bob/v0.11.4/share/nvim/runtime/lua/vim/lsp",
+        "${3rd}/luv/library"
+    ],
+    "Lua.diagnostics.globals": ["vim"]
 }

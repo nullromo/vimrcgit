@@ -21,6 +21,7 @@ return function()
                 'coc-db',
                 '@yaegassy/coc-marksman',
                 'coc-typos',
+                'coc-lua',
             }
 
             -- navigate the completion list with control + j/k in addition to
