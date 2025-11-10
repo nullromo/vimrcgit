@@ -10,6 +10,7 @@ return function()
                     enabled = true,
                     timeout = 5 * 60 * 1000, -- 5 minutes
                 },
+                numberOfFish = 2,
             })
         end,
     }
