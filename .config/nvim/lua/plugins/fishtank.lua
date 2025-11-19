@@ -2,7 +2,8 @@
 
 return function()
     return {
-        'nullromo/fishtank.nvim',
+        --'nullromo/fishtank.nvim',
+        'logandavies181/fishtank.nvim',
         config = function()
             local fishtank = require('fishtank')
             fishtank.setup({
@@ -11,6 +12,24 @@ return function()
                     timeout = 5 * 60 * 1000, -- 5 minutes
                 },
                 numberOfFish = 2,
+                sprite = {
+                    left = [[
+      .:/
+  ,,///;,   ,;/
+ o:::::::;;///
+>::::::::;;\\\
+  ''\\\\\'" ';\
+     ';\
+]],
+                    right = [[
+       \:.
+\;,   ,;\\\,,
+ \\\;;:::::::o
+ ///;;::::::::<
+/;' "'/////''
+       /;'
+]],
+                },
             })
         end,
     }
