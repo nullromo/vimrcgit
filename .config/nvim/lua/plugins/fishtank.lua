@@ -2,8 +2,7 @@
 
 return function()
     return {
-        --'nullromo/fishtank.nvim',
-        'logandavies181/fishtank.nvim',
+        'nullromo/fishtank.nvim',
         config = function()
             local fishtank = require('fishtank')
             fishtank.setup({

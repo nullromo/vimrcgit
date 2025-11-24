@@ -9,7 +9,7 @@
   "context.vim": { "branch": "master", "commit": "82eb26de265292808917b82f3eda2725b53d785c" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "fidget.nvim": { "branch": "main", "commit": "3f5475949679953af6d78654db29b944fa826e6a" },
-  "fishtank.nvim": { "branch": "main", "commit": "458d1af9bf050760a2afcb3e8bd37c627baaba6c" },
+  "fishtank.nvim": { "branch": "main", "commit": "aee6bff4a9838a53806377b1d865674457e13a6d" },
   "flash.nvim": { "branch": "main", "commit": "b68bda044d68e4026c4e1ec6df3c5afd7eb8e341" },
   "gitlinker.nvim": { "branch": "master", "commit": "cc59f732f3d043b626c8702cb725c82e54d35c25" },
   "go-up.nvim": { "branch": "main", "commit": "0151656d66cdad1a696ac10169b2400628c7b451" },
