@@ -60,6 +60,8 @@ return function()
                     scrollSingleLine(bufferNumber, false)
                 end,
                 ['<C-f>'] = telescopeActions.to_fuzzy_refine,
+                ['<C-o>'] = telescopeActions.cycle_history_prev,
+                ['<C-i>'] = telescopeActions.cycle_history_next,
             }
 
             -- opens the selected item in a new tab (in applicable pickers) and
