@@ -21,7 +21,7 @@ return function()
 
             -- setup
             require('ibl').setup({
-                indent = { highlight = colors },
+                indent = { highlight = colors, priority = 10 },
                 scope = { enabled = false },
             })
         end,
