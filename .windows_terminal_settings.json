@@ -1,0 +1,165 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": 
+    [
+        {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "id": "User.splitPane.A6751878"
+        },
+        {
+            "command": "find",
+            "id": "User.find"
+        }
+    ],
+    "copyFormatting": "none",
+    "copyOnSelect": false,
+    "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+    "keybindings": 
+    [
+        {
+            "id": null,
+            "keys": "ctrl+comma"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+v"
+        },
+        {
+            "id": "User.find",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+plus"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+minus"
+        },
+        {
+            "id": "User.splitPane.A6751878",
+            "keys": "alt+shift+d"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+c"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+0"
+        }
+    ],
+    "newTabMenu": 
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
+    "profiles": 
+    {
+        "defaults": 
+        {
+            "adjustIndistinguishableColors": "never",
+            "antialiasingMode": "grayscale",
+            "bellStyle": "audible",
+            "colorScheme": "Campbell",
+            "cursorShape": "underscore",
+            "font": 
+            {
+                "face": "Consolas",
+                "size": 11
+            },
+            "intenseTextStyle": "bright",
+            "padding": "2"
+        },
+        "list": 
+        [
+            {
+                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "name": "Windows PowerShell"
+            },
+            {
+                "commandline": "%SystemRoot%\\System32\\cmd.exe",
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "hidden": false,
+                "name": "Command Prompt"
+            },
+            {
+                "colorScheme": "Kyle's wsltty",
+                "font": 
+                {
+                    "cellHeight": "1.25"
+                },
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "hidden": false,
+                "intenseTextStyle": "all",
+                "name": "Ubuntu",
+                "padding": "0",
+                "source": "Windows.Terminal.Wsl",
+                "useAcrylic": false
+            },
+            {
+                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+                "hidden": false,
+                "name": "Azure Cloud Shell",
+                "source": "Windows.Terminal.Azure"
+            },
+            {
+                "guid": "{4b28b25f-9a50-54ea-8f65-986f51d80a9f}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{0e5c884c-049a-5f05-a822-ecaef2d94e9b}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{c8ac75e0-5616-57ad-b411-373a7c85a5af}",
+                "hidden": false,
+                "name": "docker-desktop",
+                "source": "Microsoft.WSL"
+            }
+        ]
+    },
+    "schemes": 
+    [
+        {
+            "background": "#000000",
+            "black": "#121212",
+            "blue": "#005DFF",
+            "brightBlack": "#606060",
+            "brightBlue": "#7D97FF",
+            "brightCyan": "#00F0F0",
+            "brightGreen": "#00F200",
+            "brightPurple": "#FF70FF",
+            "brightRed": "#E75B67",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#F2F200",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#00A89A",
+            "foreground": "#CCCCCC",
+            "green": "#1CA800",
+            "name": "Kyle's wsltty",
+            "purple": "#B148C6",
+            "red": "#D42C3A",
+            "selectionBackground": "#FFFFFF",
+            "white": "#BFBFBF",
+            "yellow": "#C0A000"
+        }
+    ],
+    "showTabsInTitlebar": true,
+    "theme": "dark",
+    "themes": [],
+    "useAcrylicInTabRow": false
+}
