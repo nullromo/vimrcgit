@@ -64,7 +64,8 @@ GREEN='\[\033[01;32m\]'
 GRAY='\[\033[00m\]'
 BLUE='\[\033[01;34m\]'
 YELLOW='\[\033[33m\]'
-WHITE='\[\033[37m\]'
+WHITE='\[\033[1;37m\]'
+CYAN='\[\033[1;36m\]'
 
 # prints a label for the PS1
 get_git_branch() {
@@ -84,7 +85,10 @@ get_git_branch() {
 }
 
 if [ "$color_prompt" = yes ]; then
-    PS1="${debian_chroot:+($debian_chroot)}${GREEN}\u${GRAY}:${BLUE}\w${YELLOW} \$(get_git_branch)${GRAY}\$ "
+    function set_ps1() {
+        PS1="${debian_chroot:+($debian_chroot)}${CYAN}[${WHITE}$(date +%-I:%M)${CYAN}] ${GREEN}\u${GRAY}:${BLUE}\w${YELLOW} \$(get_git_branch)${GRAY}\$ "
+    }
+    export PROMPT_COMMAND=set_ps1
 else
     PS1='${debian_chroot:+($debian_chroot)}\u:\w\$ '
 fi
