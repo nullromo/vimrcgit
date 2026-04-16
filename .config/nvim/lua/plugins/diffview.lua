@@ -5,13 +5,10 @@ return function()
         'sindrets/diffview.nvim',
         config = function()
             require('diffview').setup({
+                view = { merge_tool = { layout = 'diff4_mixed' } },
                 file_panel = {
                     tree_options = {
                         flatten_dirs = false,
-                    },
-                    win_config = {
-                        position = 'top',
-                        height = 16,
                     },
                 },
                 hooks = {
