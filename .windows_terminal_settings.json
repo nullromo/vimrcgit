@@ -1,11 +1,10 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
-    [
+    "actions": [
+        { "command": "find", "id": "User.find" },
         {
-            "command": 
-            {
+            "command": {
                 "action": "splitPane",
                 "split": "auto",
                 "splitMode": "duplicate"
@@ -13,73 +12,37 @@
             "id": "User.splitPane.A6751878"
         },
         {
-            "command": "find",
-            "id": "User.find"
+            "command": { "action": "sendInput", "input": "\u001b[13;2u" },
+            "id": "User.sendInput.8882FD6D"
         }
     ],
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-    "keybindings": 
-    [
-        {
-            "id": null,
-            "keys": "ctrl+comma"
-        },
-        {
-            "id": null,
-            "keys": "ctrl+v"
-        },
-        {
-            "id": "User.find",
-            "keys": "ctrl+shift+f"
-        },
-        {
-            "id": null,
-            "keys": "ctrl+plus"
-        },
-        {
-            "id": null,
-            "keys": "ctrl+minus"
-        },
-        {
-            "id": "User.splitPane.A6751878",
-            "keys": "alt+shift+d"
-        },
-        {
-            "id": null,
-            "keys": "ctrl+c"
-        },
-        {
-            "id": null,
-            "keys": "ctrl+0"
-        }
+    "keybindings": [
+        { "id": null, "keys": "ctrl+plus" },
+        { "id": null, "keys": "ctrl+minus" },
+        { "id": "User.splitPane.A6751878", "keys": "alt+shift+d" },
+        { "id": "User.sendInput.8882FD6D", "keys": "shift+enter" },
+        { "id": null, "keys": "ctrl+comma" },
+        { "id": null, "keys": "ctrl+v" },
+        { "id": "User.find", "keys": "ctrl+shift+f" },
+        { "id": null, "keys": "ctrl+c" },
+        { "id": null, "keys": "ctrl+0" }
     ],
-    "newTabMenu": 
-    [
-        {
-            "type": "remainingProfiles"
-        }
-    ],
-    "profiles": 
-    {
-        "defaults": 
-        {
+    "newTabMenu": [{ "type": "remainingProfiles" }],
+    "profiles": {
+        "defaults": {
             "adjustIndistinguishableColors": "never",
             "antialiasingMode": "grayscale",
             "bellStyle": "audible",
             "colorScheme": "Campbell",
             "cursorShape": "underscore",
-            "font": 
-            {
-                "face": "Consolas",
-                "size": 11
-            },
+            "font": { "face": "Consolas", "size": 11 },
             "intenseTextStyle": "bright",
             "padding": "2"
         },
-        "list": 
-        [
+        "list": [
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
@@ -94,10 +57,7 @@
             },
             {
                 "colorScheme": "Kyle's wsltty",
-                "font": 
-                {
-                    "cellHeight": "1.25"
-                },
+                "font": { "cellHeight": "1.25" },
                 "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
                 "hidden": false,
                 "intenseTextStyle": "all",
@@ -132,8 +92,7 @@
             }
         ]
     },
-    "schemes": 
-    [
+    "schemes": [
         {
             "background": "#000000",
             "black": "#121212",
