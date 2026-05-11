@@ -215,3 +215,4 @@ case ":${PATH}:" in
         export PATH="/home/kkovacs/.local/share/bob/nvim-bin:$PATH"
         ;;
 esac
+notify-send() { ~/wsl-notify-send.exe --category $WSL_DISTRO_NAME "${@}"; }
