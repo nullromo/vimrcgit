@@ -28,5 +28,6 @@
         "${3rd}/luv/library"
     ],
     "Lua.diagnostics.globals": ["vim"],
-    "Lua.runtime.version": "Lua 5.1"
+    "Lua.runtime.version": "Lua 5.1",
+    "prettier.resolveGlobalModules": true
 }
