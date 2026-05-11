@@ -75,13 +75,11 @@ return function()
         pluginNames = {
             'nerdcommenter',
             'vim-fugitive',
-            'indentline',
             'vim-windowswap',
             'taboo',
             'vim-surround',
             'vim-fanfingtastic',
             'flash',
-            'telescope',
             'kanagawa',
             'cash',
             'spider',
