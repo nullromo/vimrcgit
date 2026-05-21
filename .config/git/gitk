@@ -48,6 +48,8 @@ set tagbgcolor yellow
 set tagfgcolor black
 set tagoutlinecolor black
 set textfont {monospace 9}
+set theme default
+set themeloader {}
 set uicolor grey85
 set uifgcolor black
 set uifgdisabledcolor #999
@@ -57,12 +59,12 @@ set web_browser xdg-open
 set workingfilescirclecolor red
 set wrapcomment none
 set wrapdefault none
-set geometry(main) 2560x1387+4080+1602
+set geometry(main) 1728x3019+1920+23
 set geometry(state) normal
-set geometry(topwidth) 2560
-set geometry(topheight) 1382
-set geometry(pwsash0) "1586 1"
-set geometry(pwsash1) "2155 1"
-set geometry(botwidth) 871
-set geometry(botheight) 428
+set geometry(topwidth) 1728
+set geometry(topheight) 2314
+set geometry(pwsash0) "1161 1"
+set geometry(pwsash1) "1445 1"
+set geometry(botwidth) 647
+set geometry(botheight) 700
 set permviews {}
