@@ -3,10 +3,31 @@ return function()
     vim.keymap.set('i', 'jk', '<ESC>', { desc = 'leave insert mode' })
 
     -- Move between windows faster
-    vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'move to window above' })
-    vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'move to window below' })
-    vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'move to window left' })
-    vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'move to window right' })
+    local smartSplits = require('smart-splits')
+    vim.keymap.set(
+        'n',
+        '<C-k>',
+        smartSplits.move_cursor_up,
+        { desc = 'move to window above' }
+    )
+    vim.keymap.set(
+        'n',
+        '<C-j>',
+        smartSplits.move_cursor_down,
+        { desc = 'move to window below' }
+    )
+    vim.keymap.set(
+        'n',
+        '<C-h>',
+        smartSplits.move_cursor_left,
+        { desc = 'move to window left' }
+    )
+    vim.keymap.set(
+        'n',
+        '<C-l>',
+        smartSplits.move_cursor_right,
+        { desc = 'move to window right' }
+    )
     -- Move between terminal windows too
     vim.keymap.set(
         't',

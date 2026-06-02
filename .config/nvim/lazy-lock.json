@@ -37,6 +37,7 @@
   "quicker.nvim": { "branch": "master", "commit": "6b88ca4d70e35df877d9564beba83f00ba0c3133" },
   "registereditor": { "branch": "update-registers", "commit": "7469efe194c0a041df0e42b165a602717c515355" },
   "scrollEOF.nvim": { "branch": "master", "commit": "e462b9a07b8166c3e8011f1dcbc6bf68b67cd8d7" },
+  "smart-splits.nvim": { "branch": "master", "commit": "1865e6826b1cd90098f198acb0f5b744a7b40c22" },
   "taboo.vim": { "branch": "master", "commit": "937f67ab9dc2ba1861fabc40ca367e5622c30d36" },
   "telescope-box-drawing.nvim": { "branch": "main", "commit": "a8328d9af54749abde6dd0c69b4f54f347b7dee1" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "1f08ed60cafc8f6168b72b80be2b2ea149813e55" },

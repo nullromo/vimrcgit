@@ -68,6 +68,7 @@ return function()
         'scrolleof',
         'fishtank',
         'nvim-regexplainer',
+        'smart-splits',
     }
 
     -- load fewer plugins when using firenvim
