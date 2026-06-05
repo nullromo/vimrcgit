@@ -3,5 +3,9 @@
 return function()
     return {
         'mrjones2014/smart-splits.nvim',
+        config = function()
+            local smartSplits = require('smart-splits')
+            smartSplits.setup({ at_edge = 'stop' })
+        end,
     }
 end
