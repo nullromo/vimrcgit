@@ -92,6 +92,7 @@ return function()
             'indentwise',
             'go-up',
             'nvim-autopairs',
+            'smart-splits',
             -- use vim in the browser
             'firenvim',
         }
