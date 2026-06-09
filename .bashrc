@@ -35,9 +35,9 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set terminal variable to use color. Hopefully this does not cause problems
-# later on.
-export TERM='xterm-256color'
+if [ -z "$TMUX" ]; then
+    export TERM='xterm-256color'
+fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
