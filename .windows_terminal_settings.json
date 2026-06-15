@@ -2,6 +2,7 @@
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
     "actions": [
+        { "command": "toggleFocusMode", "id": "User.toggleFocusMode" },
         { "command": "find", "id": "User.find" },
         {
             "command": {
@@ -28,7 +29,8 @@
         { "id": null, "keys": "ctrl+v" },
         { "id": "User.find", "keys": "ctrl+shift+f" },
         { "id": null, "keys": "ctrl+c" },
-        { "id": null, "keys": "ctrl+0" }
+        { "id": null, "keys": "ctrl+0" },
+        { "id": "User.toggleFocusMode", "keys": "ctrl+f11" }
     ],
     "newTabMenu": [{ "type": "remainingProfiles" }],
     "profiles": {
