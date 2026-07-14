@@ -69,6 +69,7 @@ return function()
         'fishtank',
         'nvim-regexplainer',
         'smart-splits',
+        'lazygit',
     }
 
     -- load fewer plugins when using firenvim
