@@ -55,3 +55,5 @@ alias vlg='lazygit --git-dir="$HOME/vimrcgit" --work-tree="$HOME"'
 
 # use j to check jobs
 alias j='jobs'
+# use wm for workmux
+alias wm='workmux'
