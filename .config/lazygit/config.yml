@@ -3,7 +3,7 @@ customCommands:
     command: "git mergetool {{ .SelectedFile.Name }}"
     context: "files"
     loadingText: "opening git mergetool"
-    subprocess: true
+    output: terminal
 gui:
   showFileTree: false
   showCommandLog: false
@@ -12,6 +12,14 @@ gui:
   showBranchCommitHash: true
   expandedSidePanelWeight: 3
   showNumstatInFilesView: true
+  useHunkModeInStagingView: false
 git:
   log:
     showGraph: 'always'
+  #pagers:
+    #- colorArg: always
+      #pager: delta --paging=never --line-numbers
+  autoForwardBranches: none
+os:
+  editPreset: 'nvim'
+  edit: 'nvr -l --remote {{filename}}'
