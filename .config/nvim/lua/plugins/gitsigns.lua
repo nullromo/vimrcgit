@@ -7,20 +7,20 @@ return function()
             local gitsigns = require('gitsigns')
             gitsigns.setup({
                 signs = {
-                    add = { show_count = true },
-                    change = { show_count = true },
-                    delete = { show_count = true },
-                    topdelete = { show_count = true },
-                    changedelete = { show_count = true },
-                    untracked = { show_count = true },
+                    add = { text = '+', show_count = true },
+                    change = { text = '~', show_count = true },
+                    delete = { text = '-', show_count = true },
+                    topdelete = { text = '‾', show_count = true },
+                    changedelete = { text = '≃', show_count = true },
+                    untracked = { text = '|', show_count = true },
                 },
                 signs_staged = {
-                    add = { show_count = true },
-                    change = { show_count = true },
-                    delete = { show_count = true },
-                    topdelete = { show_count = true },
-                    changedelete = { show_count = true },
-                    untracked = { show_count = true },
+                    add = { text = '┃', show_count = true },
+                    change = { text = '┃', show_count = true },
+                    delete = { text = '┃', show_count = true },
+                    topdelete = { text = '┃', show_count = true },
+                    changedelete = { text = '┃', show_count = true },
+                    untracked = { text = '┃', show_count = true },
                 },
                 signs_staged_enable = true,
                 signcolumn = true,
@@ -32,6 +32,7 @@ return function()
                     virt_text_pos = 'right_align',
                     delay = 0,
                 },
+                attach_to_untracked = true,
             })
 
             -- git reset the hunk under the cursor in visual or normal mode

@@ -18,6 +18,7 @@
     "git.removedSign.hlGroup": "GitSignsDelete",
     "git.topRemovedSign.hlGroup": "GitSignsDelete",
     "git.changeRemovedSign.hlGroup": "GitSingsChange",
+    "git.enableGutters": false,
     "markdown-preview-enhanced.previewTheme": "github-light.css",
     "eslint.problems.shortenToSingleLine": true,
     "eslint.options": { "cache": true },
