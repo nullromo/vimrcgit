@@ -18,7 +18,6 @@ return function()
     local pluginNames = {
         'nerdcommenter',
         'nerdtree',
-        'vim-fugitive',
         'vim-better-whitespace',
         'vim-windowswap',
         'python-syntax',
@@ -70,13 +69,13 @@ return function()
         'nvim-regexplainer',
         'smart-splits',
         'lazygit',
+        'gitsigns',
     }
 
     -- load fewer plugins when using firenvim
     if vim.g.started_by_firenvim == true then
         pluginNames = {
             'nerdcommenter',
-            'vim-fugitive',
             'vim-windowswap',
             'taboo',
             'vim-surround',

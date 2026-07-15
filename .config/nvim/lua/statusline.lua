@@ -16,15 +16,11 @@ return function()
         local branchNameColor = '%#StatusLineGitBranchName' .. colorNC .. '#'
         -- Add the buffer number
         statusline = statusline .. metaColor .. '%n%*'
-        -- Add the current git branch name
-        --   NOTE: there is an issue here. The statusline is updated both when
-        --   entering and exiting a buffer. This means that the call to
-        --   fugitive#head() will set both the switched-from and switched-to
-        --   buffer's status lines to have the branch of the switched-to buffer.
-        local notInGit = vim.fn.len(vim.fn.FugitiveHead()) == 0
         statusline = statusline
-            .. ' '
-            .. (notInGit and '' or (branchNameColor .. '%{FugitiveHead()}%* '))
+            .. '%( '
+            .. branchNameColor
+            .. "%{get(b:,'gitsigns_status_dict','')['head']}%*%)"
+        statusline = statusline .. ' '
         -- Add the folder path
         statusline = statusline .. "%{expand('%:~:h')}/"
         -- Add file name
