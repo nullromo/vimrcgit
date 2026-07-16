@@ -240,11 +240,10 @@ return function()
     -- Use :Q for :cquit. Sometimes you might want vim to exit with a non-zero
     -- exit code (for example, you are using vimdiff and you don't want to save
     -- any changes). In this case, you can use :cq.
-    vim.keymap.set(
-        'c',
-        'Q<CR>',
-        "getcmdtype() =~ '^[:]$' ? 'cquit<CR>' : 'Q<CR>'",
-        { expr = true, desc = 'close file with Q' }
+    vim.api.nvim_create_user_command(
+        'Q',
+        'cquit',
+        { bang = true, desc = 'Exit vim with non-zero exit code' }
     )
 
     -- Custom function for scrolling 1/4 of the screen
