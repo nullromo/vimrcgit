@@ -21,8 +21,8 @@ return function()
             .. branchNameColor
             .. "%{get(b:,'gitsigns_status_dict','')['head']}%*%)"
         statusline = statusline .. ' '
-        -- Add the folder path
-        statusline = statusline .. "%{expand('%:~:h')}/"
+        -- Add the folder path and truncate it from the left if necessary
+        statusline = statusline .. '%<' .. "%{expand('%:~:h')}/"
         -- Add file name
         statusline = statusline .. fileNameColor .. '%t%*'
         -- Add modified flag
