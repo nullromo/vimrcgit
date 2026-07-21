@@ -29,6 +29,9 @@
         "/home/kkovacs/.local/share/bob/v0.11.5/share/nvim/runtime/lua",
         "/home/kkovacs/.local/share/bob/v0.11.5/share/nvim/runtime/lua/vim",
         "/home/kkovacs/.local/share/bob/v0.11.5/share/nvim/runtime/lua/vim/lsp",
+        "/home/kkovacs/.local/share/bob/v0.12.4/share/nvim/runtime/lua",
+        "/home/kkovacs/.local/share/bob/v0.12.4/share/nvim/runtime/lua/vim",
+        "/home/kkovacs/.local/share/bob/v0.12.4/share/nvim/runtime/lua/vim/lsp",
         "${3rd}/luv/library"
     ],
     "Lua.diagnostics.globals": ["vim"],
