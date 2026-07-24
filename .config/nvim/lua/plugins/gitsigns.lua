@@ -40,6 +40,11 @@ return function()
                 gitsigns.reset_hunk()
             end, { desc = 'Gitsigns reset hunk' })
 
+            -- git add the hunk under the cursor in visual or normal mode
+            vim.keymap.set({ 'n', 'x' }, '<Leader>s', function()
+                gitsigns.stage_hunk()
+            end, { desc = 'Gitsigns stage hunk' })
+
             -- show the git diff of the current hunk inline until the cursor is
             -- moved
             vim.keymap.set('n', 'gs', function()
