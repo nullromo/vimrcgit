@@ -149,7 +149,7 @@ return function()
             -- show git chunk diff
             vim.keymap.set(
                 'n',
-                'gs',
+                'gS',
                 '<Plug>(coc-git-chunkinfo)',
                 { remap = true, silent = true, desc = 'CoC git diff' }
             )

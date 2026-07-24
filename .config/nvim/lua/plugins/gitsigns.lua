@@ -42,7 +42,7 @@ return function()
 
             -- show the git diff of the current hunk inline until the cursor is
             -- moved
-            vim.keymap.set('n', 'gS', function()
+            vim.keymap.set('n', 'gs', function()
                 gitsigns.preview_hunk_inline()
             end, { desc = 'Gitsigns inline diff preview' })
 
