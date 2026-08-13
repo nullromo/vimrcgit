@@ -1,65 +1,90 @@
 -- core utility for language server functionality
 
+-- language parsers to install
+-- NOTE: jsonc is deliberately absent. The main branch has no jsonc parser and
+-- instead maps the jsonc filetype onto the json parser (plugin/filetypes.lua).
+local languages = {
+    -- required defaults
+    'c',
+    'lua',
+    'vim',
+    'vimdoc',
+    'query',
+    -- additional languages
+    'bash',
+    'cmake',
+    'cpp',
+    'css',
+    'csv',
+    'diff',
+    'dockerfile',
+    'doxygen',
+    'git_config',
+    'git_rebase',
+    'gitcommit',
+    'gitignore',
+    'html',
+    'http',
+    'javascript',
+    'jsdoc',
+    'json',
+    'luadoc',
+    'make',
+    'markdown',
+    'markdown_inline',
+    'python',
+    'regex',
+    'sql',
+    'ssh_config',
+    'toml',
+    'tsx',
+    'typescript',
+    'xml',
+    'yaml',
+    'yang',
+}
+
 return function()
     return {
         'nvim-treesitter/nvim-treesitter',
+        branch = 'main',
+        -- the main branch does not support lazy-loading
+        lazy = false,
         build = ':TSUpdate',
         config = function()
-            require('nvim-treesitter.configs').setup({
-                -- language parsers to install
-                ensure_installed = {
-                    -- required defaults
-                    'c',
-                    'lua',
-                    'vim',
-                    'vimdoc',
-                    'query',
-                    -- additional languages
-                    'bash',
-                    'cmake',
-                    'cpp',
-                    'css',
-                    'csv',
-                    'diff',
-                    'dockerfile',
-                    'doxygen',
-                    'git_config',
-                    'git_rebase',
-                    'gitcommit',
-                    'gitignore',
-                    'html',
-                    'http',
-                    'javascript',
-                    'jsdoc',
-                    'json',
-                    'jsonc',
-                    'luadoc',
-                    'make',
-                    'markdown',
-                    'markdown_inline',
-                    'python',
-                    'regex',
-                    'sql',
-                    'ssh_config',
-                    'toml',
-                    'tsx',
-                    'typescript',
-                    'xml',
-                    'yaml',
-                    'yang',
-                },
-                -- install parsers synchronously
-                sync_install = false,
-                -- install parsers when opening buffers
-                auto_install = false,
-                -- language parsers NOT to install
-                ignore_install = {},
-                -- enable treesitter-based syntax highlighting
-                highlight = { enable = true },
-                -- enable treesitter-based indentation
-                indent = { enable = true },
-                -- extra modules for treesitter
-                modules = {},
+            local treesitter = require('nvim-treesitter')
+
+            -- parsers and queries are installed here, and this directory is
+            -- prepended to the runtimepath so it takes priority
+            treesitter.setup({
+                install_dir = vim.fn.stdpath('data') .. '/site',
+            })
+
+            -- no-op once the parsers are present, so this is safe on startup
+            treesitter.install(languages)
+
+            vim.api.nvim_create_autocmd({ 'FileType' }, {
+                desc = 'Enable treesitter highlighting and indentation',
+                callback = function(args)
+                    local filetype = vim.bo[args.buf].filetype
+                    local language = vim.treesitter.language.get_lang(filetype)
+                    -- language.add() returns nil when no parser is installed
+                    if
+                        not language
+                        or not vim.treesitter.language.add(language)
+                    then
+                        return
+                    end
+
+                    vim.treesitter.start(args.buf, language)
+
+                    -- only take over indenting for languages that actually
+                    -- have an indents query
+                    if vim.treesitter.query.get(language, 'indents') then
+                        vim.bo[args.buf].indentexpr =
+                            "v:lua.require'nvim-treesitter'.indentexpr()"
+                    end
+                end,
             })
 
             -- for some reason, treesitter seems to be hiding some text in help
