@@ -104,7 +104,7 @@ return function()
     end
 
     -- set up plugins
-    require('lazy').setup(plugins, {})
+    require('lazy').setup(plugins, { dev = { path = '~/github-repos' } })
 
     -- Add package to jump between html tags
     vim.cmd('packadd! matchit')
