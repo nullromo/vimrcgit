@@ -33,7 +33,6 @@ return function()
         'vim-fanfingtastic',
         'context',
         'vim-mdx-js',
-        --'drop',
         'flash',
         'nvim-treesitter',
         'fidget',
