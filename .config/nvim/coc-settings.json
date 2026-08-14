@@ -1,5 +1,5 @@
 {
-    "[css][javascript][typescript][javascriptreact][typescriptreact][markdown]": {
+    "[css][javascript][typescript][javascriptreact][typescriptreact]": {
         "coc.preferences.formatOnSave": true
     },
     "python.linting.pylintEnabled": true,
@@ -35,6 +35,5 @@
         "${3rd}/luv/library"
     ],
     "Lua.diagnostics.globals": ["vim"],
-    "Lua.runtime.version": "Lua 5.1",
-    "prettier.resolveGlobalModules": true
+    "Lua.runtime.version": "Lua 5.1"
 }
