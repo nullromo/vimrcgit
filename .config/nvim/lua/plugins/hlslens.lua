@@ -30,43 +30,28 @@ return function()
             -- details.
             vim.api.nvim_set_hl(0, 'HlSearchNear', { link = 'None' })
 
-            -- trigger hlslens when searching forwards or backwards
+            -- trigger hlslens when searching forwards or backwards.
+            --
+            -- The jump itself goes through cash.nvim rather than through
+            -- vim's own n because
+            --   1. It visits the matches of every cash register in the search
+            --      set instead of only the working one (see cash's manageJumps
+            --      option) this
+            --   2. It tells cash not to clear highlights (see cash's
+            --      autoNoHighlight option)
+            --
+            -- Counts, vim's wrap message, and vim's not-found message all
+            -- still work
             vim.keymap.set('n', 'n', function()
-                local ok, _ = pcall(function()
-                    vim.cmd('normal! ' .. vim.v.count1 .. 'n')
-                end)
-                if ok then
-                    hlslens.start()
-                end
+                require('cash').nextMatch()
+                hlslens.start()
                 goUp.centerScreen()
             end, { silent = true, desc = 'hlslens forward search' })
             vim.keymap.set('n', 'N', function()
-                local ok, _ = pcall(function()
-                    vim.cmd('normal! ' .. vim.v.count1 .. 'N')
-                end)
-                if ok then
-                    hlslens.start()
-                end
+                require('cash').previousMatch()
+                hlslens.start()
                 goUp.centerScreen()
             end, { silent = true, desc = 'hlslens backward search' })
-
-            -- TODO: These are not working because they conflict with my other cash.nvim mappings
-            --vim.keymap.set('n', '*', function()
-            --vim.cmd('*')
-            --hlslens.start()
-            --end, { silent = true, desc = 'hlslens * search' })
-            --vim.keymap.set('n', '#', function()
-            --vim.cmd('#')
-            --hlslens.start()
-            --end, { silent = true, desc = 'hlslens # search' })
-            --vim.keymap.set('n', 'g*', function()
-            --vim.cmd('g*')
-            --hlslens.start()
-            --end, { silent = true, desc = 'hlslens g*' })
-            --vim.keymap.set('n', 'g#', function()
-            --vim.cmd('g#')
-            --hlslens.start()
-            --end, { silent = true, desc = 'hlslens g#' })
         end,
     }
 end
