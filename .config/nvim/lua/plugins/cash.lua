@@ -10,6 +10,12 @@ return function()
                 autoNoHighlight = true,
                 chooser = { position = 'bottom-right' },
                 drawer = { detailPane = true },
+                -- n and N are mapped in plugins/hlslens.lua instead, and that
+                -- mapping calls cash.nextMatch and cash.previousMatch. If this
+                -- setting is left on, both plugins would map n at load time
+                -- and whichever loads last would win. The load order is not
+                -- the same one every session, so that's bad
+                manageJumps = false,
             })
         end,
     }
