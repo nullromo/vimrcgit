@@ -55,30 +55,18 @@ return function()
 
             -- trigger hlslens from *, #, g*, and g#
             --
-            -- These cannot just be mapped. cash.nvim maps * and #,
-            -- registereditor maps all four, and both of them wrap whatever is
-            -- already on the key at the moment they load. A mapping written
-            -- here would therefore sometimes wrap them and sometimes be
-            -- wrapped by them, depending on a load order that is not the same
-            -- every session. Waiting for VimEnter puts this link at the end of
-            -- the chain every time, no matter who else got there first
+            -- These cannot just be mapped. cash.nvim and registereditor both
+            -- map all four, and both of them wrap whatever is already on the
+            -- key at the moment they load. A mapping written here would
+            -- therefore sometimes wrap them and sometimes be wrapped by them,
+            -- depending on a load order that is not the same every session.
+            -- Waiting for VimEnter puts this link at the end of the chain
+            -- every time, no matter who else got there first.
             local startLensAfter = function(key)
                 local existing = vim.fn.maparg(key, 'n', false, true)
 
                 vim.keymap.set('n', key, function()
-                    -- cash maps * and #, and tells itself about the search. g*
-                    -- and g# it does not map at all, so they have to say so
-                    -- here: told nothing, cash reads the jump as ordinary
-                    -- movement and autoNoHighlight takes the highlighting away
-                    -- the moment the cursor lands. That also stops the lens,
-                    -- which follows v:hlsearch
-                    if key == 'g*' or key == 'g#' then
-                        local cash = require('cash')
-                        cash.setSearch(vim.fn.expand('<cword>'))
-                        cash.expectSearchMove()
-                    end
-
-                    -- then do whatever was already on the key
+                    -- do whatever was already on the key
                     if next(existing) == nil then
                         vim.cmd('normal! ' .. vim.v.count1 .. key)
                     elseif existing.callback ~= nil then
