@@ -52,6 +52,88 @@ return function()
                 hlslens.start()
                 goUp.centerScreen()
             end, { silent = true, desc = 'hlslens backward search' })
+
+            -- trigger hlslens from *, #, g*, and g#
+            --
+            -- These cannot just be mapped. cash.nvim maps * and #,
+            -- registereditor maps all four, and both of them wrap whatever is
+            -- already on the key at the moment they load. A mapping written
+            -- here would therefore sometimes wrap them and sometimes be
+            -- wrapped by them, depending on a load order that is not the same
+            -- every session. Waiting for VimEnter puts this link at the end of
+            -- the chain every time, no matter who else got there first
+            local startLensAfter = function(key)
+                local existing = vim.fn.maparg(key, 'n', false, true)
+
+                vim.keymap.set('n', key, function()
+                    -- cash maps * and #, and tells itself about the search. g*
+                    -- and g# it does not map at all, so they have to say so
+                    -- here: told nothing, cash reads the jump as ordinary
+                    -- movement and autoNoHighlight takes the highlighting away
+                    -- the moment the cursor lands. That also stops the lens,
+                    -- which follows v:hlsearch
+                    if key == 'g*' or key == 'g#' then
+                        local cash = require('cash')
+                        cash.setSearch(vim.fn.expand('<cword>'))
+                        cash.expectSearchMove()
+                    end
+
+                    -- then do whatever was already on the key
+                    if next(existing) == nil then
+                        vim.cmd('normal! ' .. vim.v.count1 .. key)
+                    elseif existing.callback ~= nil then
+                        local keys = existing.callback()
+
+                        -- an expr mapping hands back the keys to run rather
+                        -- than running them, and the count has to be put back
+                        -- in front (this mapping has already taken it off)
+                        if existing.expr == 1 and type(keys) == 'string' then
+                            vim.api.nvim_feedkeys(
+                                vim.v.count1
+                                    .. vim.api.nvim_replace_termcodes(
+                                        keys,
+                                        true,
+                                        false,
+                                        true
+                                    ),
+                                -- no remapping, and run it now rather than
+                                -- leaving it queued behind the lens starting
+                                'nx',
+                                false
+                            )
+                        end
+                    else
+                        vim.cmd(
+                            'normal! '
+                                .. vim.v.count1
+                                .. vim.api.nvim_replace_termcodes(
+                                    existing.rhs,
+                                    true,
+                                    false,
+                                    true
+                                )
+                        )
+                    end
+
+                    -- this is scheduled for one tick later because cash does
+                    -- its half of * and # from a schedule and that is what
+                    -- sets @/
+                    vim.schedule(function()
+                        hlslens.start()
+                    end)
+                end, {
+                    silent = true,
+                    desc = 'hlslens ' .. key .. ' search',
+                })
+            end
+            vim.api.nvim_create_autocmd('VimEnter', {
+                once = true,
+                callback = function()
+                    for _, key in ipairs({ '*', '#', 'g*', 'g#' }) do
+                        startLensAfter(key)
+                    end
+                end,
+            })
         end,
     }
 end
