@@ -7,7 +7,7 @@ return function()
         config = function()
             local cash = require('cash')
             cash.setup({
-                autoNoHighlight = true,
+                --autoNoHighlight = true,
                 chooser = { position = 'bottom-right' },
                 drawer = { detailPane = true },
                 -- n and N are mapped in plugins/hlslens.lua instead, and that
