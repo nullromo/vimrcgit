@@ -298,3 +298,17 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
+
+deduplicate_path() {
+    local out= dir seen=
+    local IFS=:
+    for dir in $PATH; do
+        [ -n "$dir" ] || continue
+        while [ "${dir%/}" != "$dir" ] && [ "$dir" != / ]; do dir="${dir%/}"; done
+        case ":$seen:" in *":$dir:"*) continue ;; esac
+        seen="${seen:+$seen:}$dir"
+        out="${out:+$out:}$dir"
+    done
+    PATH="$out"; export PATH
+}
+deduplicate_path
