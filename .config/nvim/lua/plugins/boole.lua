@@ -3,6 +3,8 @@
 return function()
     return {
         'nat-418/boole.nvim',
+        -- Only load on mapped keys
+        keys = { '<C-a>', '<C-x>' },
         config = function()
             require('boole').setup({
                 mappings = {

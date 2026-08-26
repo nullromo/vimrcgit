@@ -2,32 +2,21 @@ return function()
     -- Use jk to exit insert mode
     vim.keymap.set('i', 'jk', '<ESC>', { desc = 'leave insert mode' })
 
-    -- Move between windows faster
-    local smartSplits = require('smart-splits')
-    vim.keymap.set(
-        'n',
-        '<C-k>',
-        smartSplits.move_cursor_up,
-        { desc = 'move to window above' }
-    )
-    vim.keymap.set(
-        'n',
-        '<C-j>',
-        smartSplits.move_cursor_down,
-        { desc = 'move to window below' }
-    )
-    vim.keymap.set(
-        'n',
-        '<C-h>',
-        smartSplits.move_cursor_left,
-        { desc = 'move to window left' }
-    )
-    vim.keymap.set(
-        'n',
-        '<C-l>',
-        smartSplits.move_cursor_right,
-        { desc = 'move to window right' }
-    )
+    -- Move between windows faster.
+    -- NOTE: Each callback uses require() here so that lazy.nvim can defer
+    -- loading smart-splits until one of these keys is pressed.
+    vim.keymap.set('n', '<C-k>', function()
+        require('smart-splits').move_cursor_up()
+    end, { desc = 'move to window above' })
+    vim.keymap.set('n', '<C-j>', function()
+        require('smart-splits').move_cursor_down()
+    end, { desc = 'move to window below' })
+    vim.keymap.set('n', '<C-h>', function()
+        require('smart-splits').move_cursor_left()
+    end, { desc = 'move to window left' })
+    vim.keymap.set('n', '<C-l>', function()
+        require('smart-splits').move_cursor_right()
+    end, { desc = 'move to window right' })
     -- Move between terminal windows too
     vim.keymap.set(
         't',

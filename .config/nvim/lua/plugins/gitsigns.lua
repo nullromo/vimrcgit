@@ -3,6 +3,9 @@
 return function()
     return {
         'lewis6991/gitsigns.nvim',
+        -- load when a file opens rather than at startup. Signs appear as soon
+        -- as there is a buffer to put them on
+        event = { 'BufReadPre', 'BufNewFile' },
         config = function()
             local gitsigns = require('gitsigns')
 

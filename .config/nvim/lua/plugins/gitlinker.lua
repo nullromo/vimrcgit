@@ -3,6 +3,10 @@
 return function()
     return {
         'ruifm/gitlinker.nvim',
+        -- <leader>gb is mapped below. Only load when the keymap is used
+        keys = {
+            { '<leader>gb', mode = { 'n', 'v' }, desc = 'Gitlinker' },
+        },
         config = function()
             require('gitlinker').setup({
                 callbacks = {

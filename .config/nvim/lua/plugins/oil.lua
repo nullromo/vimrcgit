@@ -3,6 +3,9 @@
 return function()
     return {
         'stevearc/oil.nvim',
+        -- only load when :Oil is run. Safe because default_file_explorer
+        -- is false below, so oil never needs to intercept a file open
+        cmd = 'Oil',
         opts = {},
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         config = function()

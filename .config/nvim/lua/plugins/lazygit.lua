@@ -3,6 +3,16 @@
 return function()
     return {
         'kdheepak/lazygit.nvim',
+        -- only load when a lazygit command is run.
+        cmd = {
+            'Lg',
+            'LazyGit',
+            'LazyGitConfig',
+            'LazyGitCurrentFile',
+            'LazyGitFilter',
+            'LazyGitFilterCurrentFile',
+            'LazyGitLog',
+        },
         dependencies = { 'nvim-lua/plenary.nvim' },
         config = function()
             local lazygit = require('lazygit')

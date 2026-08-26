@@ -6,6 +6,9 @@ return function()
 
     return {
         'lukas-reineke/indent-blankline.nvim',
+        -- load when a file opens rather than at startup. mark-radar's hooks
+        -- call require('ibl') on demand, which is after this point
+        event = { 'BufReadPost', 'BufNewFile' },
         config = function()
             -- add highlight groups
             vim.api.nvim_set_hl(0, 'IndentLevel0', { fg = sumiInk1 })

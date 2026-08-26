@@ -3,6 +3,12 @@
 return function()
     return {
         'echasnovski/mini.surround',
+        -- Only load on the mappings configured below.
+        keys = {
+            { '<C-s>a', mode = { 'n', 'v' }, desc = 'surround add' },
+            { '<C-s>d', desc = 'surround delete' },
+            { '<C-s>r', desc = 'surround replace' },
+        },
         version = false,
         config = function()
             require('mini.surround').setup({
