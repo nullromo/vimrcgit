@@ -29,6 +29,18 @@ return function()
         statusline = statusline .. ' %m'
         -- Add spacer
         statusline = statusline .. '%='
+        -- Add the cash.nvim indicator in the focused window only.
+        local cashLoaded, cash = pcall(require, 'cash')
+        if focused and cashLoaded and cash.opts ~= nil then
+            statusline = statusline
+                .. ' '
+                .. cash.statusline({
+                    brackets = 'angle',
+                    display = 'number',
+                    style = 'current',
+                })
+                .. ' '
+        end
         -- Add location within file
         statusline = statusline
             .. '%(line '
