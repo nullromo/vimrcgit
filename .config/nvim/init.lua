@@ -8,6 +8,10 @@ vim.g.mapleader = ','
 -- https://vi.stackexchange.com/questions/28269/command-already-typed-in-when-i-open-vim
 --vim.cmd("set t_u7=")
 
+-- shortmess+=I must be set before plugins load to prevent the intro screen
+-- from appearing
+vim.opt.shortmess:append('I')
+
 -- performance must initialize before plugins because nerdtree's fs_menu.vim
 -- calls has('clipboard') at source time, which resolves the clipboard
 -- provider. If g:clipboard isn't pinned by then, the provider runs its full
