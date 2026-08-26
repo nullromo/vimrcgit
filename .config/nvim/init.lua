@@ -8,6 +8,12 @@ vim.g.mapleader = ','
 -- https://vi.stackexchange.com/questions/28269/command-already-typed-in-when-i-open-vim
 --vim.cmd("set t_u7=")
 
+-- performance must initialize before plugins because nerdtree's fs_menu.vim
+-- calls has('clipboard') at source time, which resolves the clipboard
+-- provider. If g:clipboard isn't pinned by then, the provider runs its full
+-- probe and costs ~1.5s. See lua/performance.lua for details
+require('performance')()
+
 -- Third-party plugins
 require('plugins')()
 
@@ -21,7 +27,6 @@ require('mouse')()
 require('searching')()
 require('gui-elements')()
 require('netrw')()
-require('performance')()
 require('key-mappings')()
 require('files')()
 require('general')()
