@@ -3,6 +3,16 @@
 return function()
     return {
         'sindrets/diffview.nvim',
+        -- only load when a Diffview command is actually run
+        cmd = {
+            'DiffviewOpen',
+            'DiffviewClose',
+            'DiffviewToggleFiles',
+            'DiffviewFocusFiles',
+            'DiffviewRefresh',
+            'DiffviewFileHistory',
+            'DiffviewLog',
+        },
         config = function()
             require('diffview').setup({
                 view = { merge_tool = { layout = 'diff4_mixed' } },
