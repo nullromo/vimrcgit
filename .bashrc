@@ -170,9 +170,6 @@ export NODE_PATH=/usr/local/lib/node_modules/
 # add docker to path
 export PATH="$PATH:$HOME/.local/bin"
 
-# define docker host
-export DOCKER_HOST=tcp://localhost:2375
-
 # add sqlcmd to path
 export PATH="$PATH:/opt/mssql-tools/bin"
 
@@ -181,9 +178,6 @@ export LD_LIBRARY_PATH=/usr/lib
 
 # add confd to path
 source /opt/confd/confdrc
-
-# set docker host
-export DOCKER_HOST=tcp://localhost:2375
 
 # make the cursor a blinking underscore
 printf '\033[3 q'
@@ -216,6 +210,13 @@ case ":${PATH}:" in
         ;;
 esac
 notify-send() { ~/wsl-notify-send.exe --category $WSL_DISTRO_NAME "${@}"; }
+
+# enable tab completion for workmux
+eval "$(workmux completions bash)"
+# bash looks up completions by the word typed, not the alias target,
+# so the `wm` alias needs its own registration
+complete -F _workmux_dynamic -o bashdefault -o default wm
+
 
 # lagygit vim plugin configuration
 if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
