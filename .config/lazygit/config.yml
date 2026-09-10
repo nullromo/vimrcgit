@@ -4,6 +4,55 @@ customCommands:
     context: "files"
     loadingText: "opening git mergetool"
     output: terminal
+  - key: "P"
+    context: "global"
+    description: "push"
+    loadingText: "pushing"
+    output: terminal
+    prompts:
+      - type: "menu"
+        title: "Pre-push hooks"
+        key: "Verify"
+        options:
+          - name: "verify"
+            description: "run pre-push hooks"
+            value: "--verify"
+            key: "v"
+          - name: "no verify"
+            description: "skip pre-push hooks"
+            value: "--no-verify"
+            key: "n"
+      - type: "menuFromCommand"
+        title: "No upstream set. Push to which remote?"
+        key: "NewRemote"
+        condition: '{{ eq .CheckedOutBranch.UpstreamRemote "" }}'
+        command: "git remote"
+      - type: "menu"
+        title: "Branch is behind its upstream"
+        key: "Force"
+        condition: '{{ and (ne .CheckedOutBranch.UpstreamRemote "") (ne .CheckedOutBranch.AheadForPull "?") (ne .CheckedOutBranch.BehindForPull "?") (ne .CheckedOutBranch.BehindForPush "0") }}'
+        options:
+          - name: "force with lease"
+            description: "overwrite the remote, but only if it has not moved"
+            value: "--force-with-lease"
+            key: "f"
+          - name: "push without forcing"
+            description: "will be rejected"
+            value: "--no-force-with-lease"
+            key: "p"
+    command: >-
+      {{ if eq .CheckedOutBranch.UpstreamRemote "" -}}
+      git push --set-upstream {{.Form.Verify}} {{.Form.NewRemote}}
+      refs/heads/{{.CheckedOutBranch.Name}}:{{.CheckedOutBranch.Name}}
+      {{- else -}}
+      git push {{.Form.Force}} {{.Form.Verify}} {{.CheckedOutBranch.UpstreamRemote}}
+      refs/heads/{{.CheckedOutBranch.Name}}:{{.CheckedOutBranch.UpstreamBranch}}
+      || { printf "\nPush was rejected. Retry with --force? [y/N] "; read -r reply;
+      case "$reply" in [yY]*) git push --force {{.Form.Verify}}
+      {{.CheckedOutBranch.UpstreamRemote}}
+      refs/heads/{{.CheckedOutBranch.Name}}:{{.CheckedOutBranch.UpstreamBranch}} ;;
+      *) echo "Aborted." ;; esac; }
+      {{- end }}
 gui:
   showFileTree: false
   showCommandLog: false
