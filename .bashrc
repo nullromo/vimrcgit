@@ -148,9 +148,9 @@ if ! shopt -oq posix; then
 fi
 
 # restart mysql if it isn't running
-MYSQL_RUNNING=$(sudo service mysql status)
+MYSQL_RUNNING=$(sudo -n service mysql status </dev/null)
 if [ "$MYSQL_RUNNING" == " * MySQL is stopped." ]; then
-    sudo service mysql restart
+    sudo -n service mysql restart </dev/null
 fi
 
 # allow X11 to work
@@ -198,7 +198,7 @@ export VISUAL=nvim
 . "$HOME/.cargo/env"
 
 # fix clip.exe (https://github.com/microsoft/WSL/issues/9146#issuecomment-1315005037)
-sudo update-binfmts --disable cli
+sudo -n update-binfmts --disable cli </dev/null
 
 # add nvim to path (installed via bob)
 # note: install bob via `cargo install --git https://github.com/MordechaiHadad/bob.git`
@@ -216,6 +216,9 @@ eval "$(workmux completions bash)"
 # bash looks up completions by the word typed, not the alias target,
 # so the `wm` alias needs its own registration
 complete -F _workmux_dynamic -o bashdefault -o default wm
+
+# Fix Docker daemon connection issue in WSL by unsetting DOCKER_HOST
+unset DOCKER_HOST
 
 
 # lagygit vim plugin configuration
