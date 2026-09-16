@@ -69,6 +69,7 @@ return function()
         'smart-splits',
         'lazygit',
         'gitsigns',
+        'render-markdown',
     }
 
     -- load fewer plugins when using firenvim
