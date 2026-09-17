@@ -71,4 +71,5 @@ git:
   autoForwardBranches: none
 os:
   editPreset: 'nvim'
-  edit: 'nvr -l --remote {{filename}}'
+  edit: 'if [ -z "$NVIM" ]; then nvim -- {{filename}}; else nvr --remote-send "q" && nvr -l --remote {{filename}}; fi'
+  editAtLine: 'if [ -z "$NVIM" ]; then nvim +{{line}} -- {{filename}}; else nvr --remote-send "q" && nvr -l --remote +{{line}} {{filename}}; fi'
