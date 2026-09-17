@@ -6,6 +6,14 @@
     fsmonitor = true
     untrackedcache = true
     preloadindex = true
+[delta]
+    line-numbers = true
+    ; a good built-in theme if kanagawa is not installed. To install it, download the file and install in batcat first
+    ;syntax-theme = Catppuccin Macchiato
+    syntax-theme = kanagawa
+    ; can use these to remove the background line highlights
+    ;minus-style = syntax normal
+    ;plus-style = syntax normal
 [init]
     defaultBranch = main
 [diff]
