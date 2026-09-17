@@ -7,6 +7,6 @@ return function()
             'nvim-treesitter/nvim-treesitter',
             --'nvim-tree/nvim-web-devicons',
         },
-        opts = {},
+        opts = { file_types = { 'markdown', 'markdown.mdx' } },
     }
 end
