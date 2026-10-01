@@ -71,5 +71,6 @@ git:
   autoForwardBranches: none
 os:
   editPreset: 'nvim'
-  edit: 'if [ -z "$NVIM" ]; then nvim -- {{filename}}; else nvr --remote-send "q" && nvr -l --remote {{filename}}; fi'
+  # opens at the first changed line, but falls back to line 1
+  edit: 'line=1; set -- {{filename}}; if [ $# -eq 1 ]; then l=$(git diff -U0 --no-color --no-ext-diff HEAD -- "$1" 2>/dev/null | sed -n "s/^@@ -[0-9,]* +\([0-9]*\).*/\1/p" | head -n 1); [ -n "$l" ] && [ "$l" -gt 0 ] && line=$l; fi; if [ -z "$NVIM" ]; then nvim +$line -- "$@"; else nvr --remote-send "q" && nvr -l --remote +$line "$@"; fi'
   editAtLine: 'if [ -z "$NVIM" ]; then nvim +{{line}} -- {{filename}}; else nvr --remote-send "q" && nvr -l --remote +{{line}} {{filename}}; fi'
