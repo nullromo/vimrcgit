@@ -17,7 +17,9 @@
 [init]
     defaultBranch = main
 [diff]
-    tool = kdiff3
+    tool = nvim
+    guitool = kdiff3
+    context = 10
 [merge]
     tool = nvim
     ;tool = vimdiff
