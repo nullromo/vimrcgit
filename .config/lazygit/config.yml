@@ -61,13 +61,13 @@ gui:
   showBranchCommitHash: true
   expandedSidePanelWeight: 3
   showNumstatInFilesView: true
-  useHunkModeInStagingView: false
+  useHunkModeInDiffView: false
 git:
   log:
     showGraph: 'always'
-  #pagers:
-    #- colorArg: always
-      #pager: delta --paging=never --line-numbers
+  # delta reads its own settings from the [delta] section of ~/.gitconfig.
+  diffRenderers:
+    - command: delta --{{colorScheme}} --paging=never
   autoForwardBranches: none
 os:
   editPreset: 'nvim'
