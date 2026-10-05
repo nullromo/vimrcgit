@@ -57,3 +57,6 @@ alias vlg='lazygit --git-dir="$HOME/vimrcgit" --work-tree="$HOME"'
 alias j='jobs'
 # use wm for workmux
 alias wm='workmux'
+
+# use tmux-clear to clear saved tmux sessions
+alias tmux-clear='rm -rf ~/.local/share/tmux/resurrect/*'
