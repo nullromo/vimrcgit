@@ -10,6 +10,22 @@ customCommands:
     loadingText: "pushing"
     output: terminal
     prompts:
+      - type: "menu"
+        title: "Pre-push hooks"
+        key: "Verify"
+        # Skipped when the repo has no pre-push hook; `git hook list` covers
+        # .git/hooks, core.hooksPath, and config-defined hooks.
+        condition: >-
+          {{ runCommand "sh -c 'git hook list pre-push >/dev/null 2>&1 && echo yes || true'" }}
+        options:
+          - name: "verify"
+            description: "run pre-push hooks"
+            value: "--verify"
+            key: "v"
+          - name: "no verify"
+            description: "skip pre-push hooks"
+            value: "--no-verify"
+            key: "n"
       - type: "menuFromCommand"
         title: "No upstream set. Push to which remote?"
         key: "NewRemote"
@@ -28,22 +44,15 @@ customCommands:
             description: "will be rejected"
             value: "--no-force-with-lease"
             key: "p"
-    # Only ask about pre-push hooks when the repo has one; `git hook list`
-    # covers .git/hooks, core.hooksPath, and config-defined hooks.
     command: >-
-      verify=;
-      if git hook list pre-push >/dev/null 2>&1; then
-      printf "Run pre-push hooks? [Y/n] "; read -r reply;
-      case "$reply" in [nN]*) verify=--no-verify ;; *) verify=--verify ;; esac;
-      fi;
       {{ if eq .CheckedOutBranch.UpstreamRemote "" -}}
-      git push --set-upstream $verify {{.Form.NewRemote}}
+      git push --set-upstream {{.Form.Verify}} {{.Form.NewRemote}}
       refs/heads/{{.CheckedOutBranch.Name}}:{{.CheckedOutBranch.Name}}
       {{- else -}}
-      git push {{.Form.Force}} $verify {{.CheckedOutBranch.UpstreamRemote}}
+      git push {{.Form.Force}} {{.Form.Verify}} {{.CheckedOutBranch.UpstreamRemote}}
       refs/heads/{{.CheckedOutBranch.Name}}:{{.CheckedOutBranch.UpstreamBranch}}
       || { printf "\nPush was rejected. Retry with --force? [y/N] "; read -r reply;
-      case "$reply" in [yY]*) git push --force $verify
+      case "$reply" in [yY]*) git push --force {{.Form.Verify}}
       {{.CheckedOutBranch.UpstreamRemote}}
       refs/heads/{{.CheckedOutBranch.Name}}:{{.CheckedOutBranch.UpstreamBranch}} ;;
       *) echo "Aborted." ;; esac; }
