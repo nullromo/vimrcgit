@@ -139,3 +139,19 @@ Error: Connection lost mid-response. The response above may be incomplete."
 Well, it's a huge bummer because I would expect you to work through that, not
 just give up. Then I need to manually say "retry please" and wait for a long
 time.
+
+## Prefer plural for passive voice
+
+When writing about non-specific examples, prefer plurals; for example,
+"Dashboards are shown in the Web GUI" is better than "A dashboard is shown in
+the Web GUI". The former means it applies generally, whereas the latter makes it
+sound like there's only one dashboard.
+
+## Use straight quotation marks
+
+Never use angled (curly) quotation marks or apostrophes: not `“` or `”`, and not
+`‘` or `’`. Write the straight `"` and `'` instead.
+
+## Use 12-hour time
+
+Time is reported as 1:00 p.m. instead of 13:00.
